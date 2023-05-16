@@ -2,7 +2,6 @@ import {
   Card,
   CardHeader,
   Stack,
-  Box,
   Heading,
   CardBody,
   Text,
@@ -12,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import backGround from "../../assets/backGround.png";
 import Header from "../../components/header/header";
+import Strings from "../../data/string";
 
 const backGroundStyle = {
   backgroundImage: `url(${backGround})`,
@@ -25,9 +25,8 @@ const backGroundStyle = {
 };
 
 const cardStyle = {
-  width: "528px",
-  padding: "20px",
-  marginTop: "30%",
+  width: "450px",
+  padding: "10px",
   alignItems: "center",
   borderRadius: "20px",
   boxShadow: "0px 12px 50px rgba(0, 0, 0, 0.18)",
@@ -52,11 +51,21 @@ const submitButton = {
 const Register = () => {
   return (
     <Stack sx={backGroundStyle}>
-      <Header linkText="قبلا ثبت‌نام کرده‌ای؟" btnText="ورود" />
-      <Box>
+      <Header
+        linkText={Strings.loginText}
+        btnText={Strings.loginBtn}
+        path={"/login"}
+      />
+      <Stack
+        sx={{
+          height: "100vh",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Card sx={cardStyle}>
           <CardHeader>
-            <Heading size="lg">ثبت نام در کوئرا تسک منیجر</Heading>
+            <Heading fontSize="28px">ثبت نام در کوئرا تسک منیجر</Heading>
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
             <Text sx={lableStyle}>نام کامل</Text>
@@ -90,7 +99,7 @@ const Register = () => {
             </Stack>
           </CardBody>
         </Card>
-      </Box>
+      </Stack>
     </Stack>
   );
 };
