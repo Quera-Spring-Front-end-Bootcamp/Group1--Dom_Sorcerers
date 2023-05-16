@@ -7,7 +7,6 @@ import {
   Text,
   Input,
   Button,
-  Checkbox,
 } from "@chakra-ui/react";
 import backGround from "../../assets/backGround.png";
 import Header from "../../components/header/header";
@@ -48,7 +47,7 @@ const submitButton = {
   width: "100%",
 };
 
-const Register = () => {
+const Forget = () => {
   return (
     <Stack sx={backGroundStyle}>
       <Header
@@ -65,38 +64,21 @@ const Register = () => {
       >
         <Card sx={cardStyle}>
           <CardHeader>
-            <Heading fontSize="28px">ثبت نام در کوئرا تسک منیجر</Heading>
+            <Heading fontSize="28px">فراموشی رمز عبور</Heading>
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
-            <Text sx={lableStyle}>نام کامل</Text>
+            <Text sx={lableStyle}>ایمیل خود را وارد کنید</Text>
             <Input sx={inputStyle} />
-
-            <Text sx={lableStyle} mt="20px">
-              ایمیل
-            </Text>
-            <Input sx={inputStyle} />
-
-            <Text sx={lableStyle} mt="20px">
-              رمز عبور
-            </Text>
-            <Input sx={inputStyle} />
-
-            <Checkbox mt="20px">قوانین و مقرارت را میپذریم.</Checkbox>
 
             <Button sx={submitButton} colorScheme="teal" variant="solid">
-              ورود
+              دریافت ایمیل بازیابی رمز عبور
             </Button>
             <Stack
               sx={{ justifyContent: "center", alignContent: "center" }}
               direction="row"
               spacing={2}
               mt="20px"
-            >
-              <Text fontSize="14px">ثبت‌نام نکرده‌ای؟</Text>
-              <Button fontSize="14px" color="#208D8E" variant="link">
-                ثبت‌نام
-              </Button>
-            </Stack>
+            ></Stack>
           </CardBody>
         </Card>
       </Stack>
@@ -104,4 +86,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Forget;

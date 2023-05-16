@@ -7,11 +7,12 @@ import {
   Text,
   Input,
   Button,
-  Link,
+  Checkbox,
 } from "@chakra-ui/react";
 import backGround from "../../assets/backGround.png";
 import Header from "../../components/header/header";
 import Strings from "../../data/string";
+
 const backGroundStyle = {
   backgroundImage: `url(${backGround})`,
   backgroundSize: "100% 60%",
@@ -24,8 +25,8 @@ const backGroundStyle = {
 };
 
 const cardStyle = {
-  width: "500px",
-  padding: "20px",
+  width: "450px",
+  padding: "10px",
   alignItems: "center",
   borderRadius: "20px",
   boxShadow: "0px 12px 50px rgba(0, 0, 0, 0.18)",
@@ -40,12 +41,6 @@ const inputStyle = {
   borderColor: "#AAAAAA",
 };
 
-const forgetButton = {
-  color: "#208D8E",
-  fontSize: "12px",
-  mt: "10px",
-};
-
 const submitButton = {
   background: "#208D8E",
   fontSize: "14px",
@@ -53,13 +48,13 @@ const submitButton = {
   width: "100%",
 };
 
-const Login = () => {
+const Register = () => {
   return (
     <Stack sx={backGroundStyle}>
       <Header
-        linkText={Strings.registerText}
-        btnText={Strings.registerBtn}
-        path={"/register"}
+        linkText={Strings.loginText}
+        btnText={Strings.loginBtn}
+        path={"/login"}
       />
       <Stack
         sx={{
@@ -70,20 +65,24 @@ const Login = () => {
       >
         <Card sx={cardStyle}>
           <CardHeader>
-            <Heading fontSize="28px">به کوئرا تسک منیجر خوش برگشتی :) </Heading>
+            <Heading fontSize="28px">ثبت نام در کوئرا تسک منیجر</Heading>
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
-            <Text sx={lableStyle}>ایمیل</Text>
+            <Text sx={lableStyle}>نام کامل</Text>
             <Input sx={inputStyle} />
+
+            <Text sx={lableStyle} mt="20px">
+              ایمیل
+            </Text>
+            <Input sx={inputStyle} />
+
             <Text sx={lableStyle} mt="20px">
               رمز عبور
             </Text>
             <Input sx={inputStyle} />
-            <Link href="/forget">
-              <Button sx={forgetButton} color="#208D8E" variant="link">
-                رمز عبور را فراموش کرده‌ای؟
-              </Button>
-            </Link>
+
+            <Checkbox mt="20px">قوانین و مقرارت را میپذریم.</Checkbox>
+
             <Button sx={submitButton} colorScheme="teal" variant="solid">
               ورود
             </Button>
@@ -92,14 +91,7 @@ const Login = () => {
               direction="row"
               spacing={2}
               mt="20px"
-            >
-              <Text fontSize="14px">ثبت‌نام نکرده‌ای؟</Text>
-              <Link href="/register">
-                <Button fontSize="14px" color="#208D8E" variant="link">
-                  ثبت‌نام
-                </Button>
-              </Link>
-            </Stack>
+            ></Stack>
           </CardBody>
         </Card>
       </Stack>
@@ -107,4 +99,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

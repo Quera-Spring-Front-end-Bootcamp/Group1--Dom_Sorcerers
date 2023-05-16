@@ -28,7 +28,7 @@ const Header = ({ linkText, btnText, path }: HeaderProps) => {
       <Image sx={logoStyle} src="src/assets/logo.png " />
       <Spacer />
       <Stack direction="row" spacing={5} sx={{ alignItems: "center" }}>
-        <Text sx={{ fontWeight: "bold" }}>{linkText}</Text>
+        <Text>{linkText}</Text>
         <Link href={path}>
           <Button colorScheme="teal" variant="solid">
             {btnText}
