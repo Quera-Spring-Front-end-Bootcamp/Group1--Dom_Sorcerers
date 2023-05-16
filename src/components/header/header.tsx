@@ -1,9 +1,8 @@
-import { FC } from "react";
 import { Flex, Image, Button, Spacer, Stack } from "@chakra-ui/react";
 
 interface HeaderProps {
-  notRegisteredText: string;
-  registerText: string;
+  linkText: string;
+  btnText: string;
 }
 
 const logoStyle = {
@@ -14,17 +13,17 @@ const headerContainerStyle = {
   width: "100%",
 };
 
-const Header: FC<HeaderProps> = ({ tex, registerText }) => {
+const Header = ({ linkText, btnText }: HeaderProps) => {
   return (
     <Flex sx={headerContainerStyle}>
       <Image sx={logoStyle} src="src/assets/logo.png " />
       <Spacer />
       <Stack direction="row" spacing={5}>
         <Button colorScheme="#000" variant="link">
-          {notRegisteredText}
+          {linkText}
         </Button>
         <Button colorScheme="teal" variant="solid">
-          {registerText}
+          {btnText}
         </Button>
       </Stack>
     </Flex>
@@ -41,7 +40,6 @@ export default Header;
 // const headerContainerStyle = {
 //   width: "100%",
 // };
-
 // const Header = () => {
 //   return (
 //     <Flex sx={headerContainerStyle}>
@@ -49,7 +47,7 @@ export default Header;
 //       <Spacer />
 //       <Stack direction="row" spacing={5}>
 //         <Button colorScheme="#000" variant="link">
-//           ثبت‌نام نکرده‌ای؟
+//           ثبت‌نام نکرده‌ای
 //         </Button>
 //         <Button colorScheme="teal" variant="solid">
 //           ثبت‌نام

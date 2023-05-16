@@ -57,7 +57,7 @@ const submitButton = {
 const Login = () => {
   return (
     <Stack sx={backGroundStyle}>
-      <Header />
+      <Header linkText="ثبت‌نام نکرده‌ای؟" btnText="ثبت‌نام" />
       <Box>
         <Card sx={cardStyle}>
           <CardHeader>

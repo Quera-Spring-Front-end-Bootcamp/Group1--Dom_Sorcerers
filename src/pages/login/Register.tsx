@@ -42,12 +42,6 @@ const inputStyle = {
   borderColor: "#AAAAAA",
 };
 
-const forgetButton = {
-  color: "#208D8E",
-  fontSize: "12px",
-  mt: "10px",
-};
-
 const submitButton = {
   background: "#208D8E",
   fontSize: "14px",
@@ -55,10 +49,10 @@ const submitButton = {
   width: "100%",
 };
 
-const Login = () => {
+const Register = () => {
   return (
     <Stack sx={backGroundStyle}>
-      <Header />
+      <Header linkText="قبلا ثبت‌نام کرده‌ای؟" btnText="ورود" />
       <Box>
         <Card sx={cardStyle}>
           <CardHeader>
@@ -101,4 +95,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
