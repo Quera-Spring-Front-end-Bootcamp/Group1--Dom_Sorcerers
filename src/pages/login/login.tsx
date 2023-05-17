@@ -12,6 +12,7 @@ import {
 import backGround from "../../assets/backGround.png";
 import Header from "../../components/header/header";
 import Strings from "../../data/string";
+
 const backGroundStyle = {
   backgroundImage: `url(${backGround})`,
   backgroundSize: "100% 60%",

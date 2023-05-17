@@ -84,7 +84,7 @@ const Register = () => {
             <Checkbox mt="20px">قوانین و مقرارت را میپذریم.</Checkbox>
 
             <Button sx={submitButton} colorScheme="teal" variant="solid">
-              ورود
+              ثبت‌نام
             </Button>
             <Stack
               sx={{ justifyContent: "center", alignContent: "center" }}
