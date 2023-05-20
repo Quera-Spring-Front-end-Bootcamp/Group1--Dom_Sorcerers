@@ -8,7 +8,6 @@ import {
   Collapse,
   useDisclosure,
   Spacer,
-  Button,
 } from "@chakra-ui/react";
 import { TitleQueraTaskManager } from "../TitleQueraTaskManager";
 import { ArrowDownIcon } from "../Icons/ArrowDownIcon";
@@ -30,23 +29,26 @@ const Sidebar = () => {
         position="sticky"
         right="0"
       >
+        {/* ****************logo *************/}
         <TitleQueraTaskManager text="کوئرا تسک منیجر" />
         <Stack justifyContent="space-between" h="100%" width="100%">
+          {/* section one */}
           <Stack gap="13px">
             <HStack
               alignItems="center"
               justifyContent="space-between"
               width="100%"
             >
+              {/* ****************title *************/}
               <Text fontSize="16px" fontWeight="600" color="#000000">
                 ورک اسپیس ها
               </Text>
               <HStack cursor="pointer" gap="19px" onClick={onToggle}>
-                {/* <MagnifierIcon /> */}
                 <ArrowDownIcon />
               </HStack>
             </HStack>
             <Collapse in={isOpen} animateOpacity>
+              {/* ****************search box *************/}
               <Stack gap="8px">
                 <HStack
                   background="#F6F7F9"
@@ -54,8 +56,6 @@ const Sidebar = () => {
                   borderRadius="4px"
                   gap="2px"
                   role="group"
-
-                  // _groupFocusWithin={{ border: "1px solid red" }}
                 >
                   <HStack
                     _groupFocusWithin={{
@@ -77,6 +77,7 @@ const Sidebar = () => {
                     />
                   </HStack>
                 </HStack>
+                {/* ****************spaceBTN*************/}
                 <HStack
                   background="#D3D3D3"
                   height="32px"
@@ -91,6 +92,7 @@ const Sidebar = () => {
                     ساختن اسپیس جدید
                   </Text>
                 </HStack>
+                {/* ****************list*************/}
                 {Assigenment.map((item) => (
                   <HStack
                     key={item.id}
@@ -118,7 +120,7 @@ const Sidebar = () => {
               </Stack>
             </Collapse>
           </Stack>
-
+          {/* section two */}
           <Stack>
             <HStack gap="8px">
               <Flex
