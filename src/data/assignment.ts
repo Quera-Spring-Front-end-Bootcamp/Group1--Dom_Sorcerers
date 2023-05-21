@@ -1,3 +1,5 @@
+// fake data for sidebar workspace list
+
 export type AssigenmentIner = {
   id: number;
   color: string;

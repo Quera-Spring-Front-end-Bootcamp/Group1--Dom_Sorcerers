@@ -1,8 +1,5 @@
 import { Text } from "@chakra-ui/react";
-interface Props {
-  text: string;
-}
-export const TitleQueraTaskManager = ({ text }: Props) => {
+export const Logo = () => {
   return (
     <Text
       fontWeight="800"
@@ -12,7 +9,7 @@ export const TitleQueraTaskManager = ({ text }: Props) => {
       textAlign="right"
       width="100%"
     >
-      {text}
+      کوئرا تسک منیجر
     </Text>
   );
 };
