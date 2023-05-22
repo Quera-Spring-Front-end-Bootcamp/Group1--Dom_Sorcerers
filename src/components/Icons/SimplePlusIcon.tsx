@@ -1,28 +1,28 @@
-export const MagnifierIcon = () => {
+export const SimplePlusIcon = () => {
 	return (
 		<svg
-			width="18"
-			height="19"
-			viewBox="0 0 18 19"
+			width="10"
+			height="11"
+			viewBox="0 0 10 11"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 		>
-			<circle
-				cx="8.05901"
-				cy="8.55901"
-				r="7.06194"
+			<path
+				d="M5.20931 1.12598V9.45931"
 				stroke="#323232"
-				strokeWidth="1.5"
+				strokeWidth="1.20907"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			/>
 			<path
-				d="M17.0034 17.5034L13.0518 13.5518"
+				d="M9.37728 5.29329H1.04395"
 				stroke="#323232"
-				strokeWidth="1.5"
+				strokeWidth="1.20907"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			/>
 		</svg>
 	);
 };
+
+

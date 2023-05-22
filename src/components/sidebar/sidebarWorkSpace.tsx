@@ -1,16 +1,8 @@
-import {
-  Box,
-  Collapse,
-  HStack,
-  Spacer,
-  Stack,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Collapse, HStack, Stack, Text, useDisclosure } from "@chakra-ui/react";
 import { ArrowDownIcon } from "../Icons/ArrowDownIcon";
 import SidebarSearchBox from "./sidebarSearchBox";
 import SidebarSpaceCTA from "./sidebarSpaceCTA";
-import { Assigenment } from "../../data/assignment";
+import { SideSpaceList } from "./SideSpaceList";
 
 const SidebarWorkSpace = () => {
   const { isOpen, onToggle } = useDisclosure();
@@ -28,27 +20,7 @@ const SidebarWorkSpace = () => {
         <Stack gap="8px">
           <SidebarSearchBox />
           <SidebarSpaceCTA />
-          {/* ****************List*************/}
-          {Assigenment.map((item) => (
-            <HStack key={item.id} alignItems="center" width="100%" role="group">
-              <HStack justifyContent="space-between">
-                <Box
-                  width="20px"
-                  height="20px"
-                  background={item.color}
-                  borderRadius="4px"
-                />
-                <Text fontSize="16px" color="#1E1E1E" fontWeight="500">
-                  {item.title}
-                </Text>
-              </HStack>
-              <Spacer />
-              <Text display="none" _groupHover={{ display: "block" }}>
-                ...
-              </Text>
-            </HStack>
-          ))}
-          {/* ****************List  END*************/}
+          <SideSpaceList />
         </Stack>
       </Collapse>
     </Stack>
