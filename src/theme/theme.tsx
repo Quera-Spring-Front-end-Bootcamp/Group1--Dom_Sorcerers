@@ -5,6 +5,11 @@ const Theme = extendTheme({
     heading: "dana",
     body: "dana",
   },
+  colors: {
+    primary: {
+      600: "#208D8E",
+    },
+  },
 });
 
 export default Theme;
