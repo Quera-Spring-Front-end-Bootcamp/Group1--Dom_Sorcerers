@@ -7,10 +7,11 @@ import {
   Text,
   Input,
   Button,
+  Link,
 } from "@chakra-ui/react";
-import backGround from "../../assets/backGround.png";
-import Header from "../../components/header/header";
-import Strings from "../../data/string";
+import backGround from "../../../assets/backGround.png";
+import Header from "../../../components/header/header";
+import Strings from "../../../data/string";
 
 const backGroundStyle = {
   backgroundImage: `url(${backGround})`,
@@ -24,8 +25,8 @@ const backGroundStyle = {
 };
 
 const cardStyle = {
-  width: "450px",
-  padding: "10px",
+  width: "500px",
+  padding: "20px",
   alignItems: "center",
   borderRadius: "20px",
   boxShadow: "0px 12px 50px rgba(0, 0, 0, 0.18)",
@@ -40,6 +41,12 @@ const inputStyle = {
   borderColor: "#AAAAAA",
 };
 
+const forgetButton = {
+  color: "#208D8E",
+  fontSize: "12px",
+  mt: "10px",
+};
+
 const submitButton = {
   background: "#208D8E",
   fontSize: "14px",
@@ -47,13 +54,13 @@ const submitButton = {
   width: "100%",
 };
 
-const Forget = () => {
+const Login = () => {
   return (
     <Stack sx={backGroundStyle}>
       <Header
-        linkText={Strings.loginText}
-        btnText={Strings.loginBtn}
-        path={"/login"}
+        linkText={Strings.registerText}
+        btnText={Strings.registerBtn}
+        path={"/register"}
       />
       <Stack
         sx={{
@@ -64,21 +71,36 @@ const Forget = () => {
       >
         <Card sx={cardStyle}>
           <CardHeader>
-            <Heading fontSize="28px">فراموشی رمز عبور</Heading>
+            <Heading fontSize="28px">به کوئرا تسک منیجر خوش برگشتی :) </Heading>
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
-            <Text sx={lableStyle}>ایمیل خود را وارد کنید</Text>
+            <Text sx={lableStyle}>ایمیل</Text>
             <Input sx={inputStyle} />
-
+            <Text sx={lableStyle} mt="20px">
+              رمز عبور
+            </Text>
+            <Input sx={inputStyle} />
+            <Link href="/forget">
+              <Button sx={forgetButton} color="#208D8E" variant="link">
+                رمز عبور را فراموش کرده‌ای؟
+              </Button>
+            </Link>
             <Button sx={submitButton} colorScheme="teal" variant="solid">
-              دریافت ایمیل بازیابی رمز عبور
+              ورود
             </Button>
             <Stack
               sx={{ justifyContent: "center", alignContent: "center" }}
               direction="row"
               spacing={2}
               mt="20px"
-            ></Stack>
+            >
+              <Text fontSize="14px">ثبت‌نام نکرده‌ای؟</Text>
+              <Link href="/register">
+                <Button fontSize="14px" color="#208D8E" variant="link">
+                  ثبت‌نام
+                </Button>
+              </Link>
+            </Stack>
           </CardBody>
         </Card>
       </Stack>
@@ -86,4 +108,4 @@ const Forget = () => {
   );
 };
 
-export default Forget;
+export default Login;

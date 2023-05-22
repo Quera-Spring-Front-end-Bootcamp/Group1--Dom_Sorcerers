@@ -5,10 +5,12 @@ import {
   Heading,
   CardBody,
   Text,
+  Input,
+  Button,
 } from "@chakra-ui/react";
-import backGround from "../../assets/backGround.png";
-import Header from "../../components/header/header";
-import Strings from "../../data/string";
+import backGround from "../../../assets/backGround.png";
+import Header from "../../../components/header/header";
+import Strings from "../../../data/string";
 
 const backGroundStyle = {
   backgroundImage: `url(${backGround})`,
@@ -34,7 +36,18 @@ const lableStyle = {
   mb: "8px",
 };
 
-const ForgetNotif = () => {
+const inputStyle = {
+  borderColor: "#AAAAAA",
+};
+
+const submitButton = {
+  background: "#208D8E",
+  fontSize: "14px",
+  mt: "30px",
+  width: "100%",
+};
+
+const Reset = () => {
   return (
     <Stack sx={backGroundStyle}>
       <Header
@@ -51,13 +64,26 @@ const ForgetNotif = () => {
       >
         <Card sx={cardStyle}>
           <CardHeader>
-            <Heading fontSize="28px">فراموشی رمز عبور</Heading>
+            <Heading fontSize="28px">بازیابی رمز عبور</Heading>
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
-            <Text sx={lableStyle}>
-              لینک بازیابی رمز عبور برای شما ایمیل شد. لطفا ایمیل خود را بررسی
-              کنید.
+            <Text sx={lableStyle}>پسورد جدید خود را وارد کنید</Text>
+            <Input sx={inputStyle} />
+
+            <Text sx={lableStyle} mt="20px">
+              تایید پسورد
             </Text>
+            <Input sx={inputStyle} />
+
+            <Button sx={submitButton} colorScheme="teal" variant="solid">
+              ذخیره
+            </Button>
+            <Stack
+              sx={{ justifyContent: "center", alignContent: "center" }}
+              direction="row"
+              spacing={2}
+              mt="20px"
+            ></Stack>
           </CardBody>
         </Card>
       </Stack>
@@ -65,4 +91,4 @@ const ForgetNotif = () => {
   );
 };
 
-export default ForgetNotif;
+export default Reset;

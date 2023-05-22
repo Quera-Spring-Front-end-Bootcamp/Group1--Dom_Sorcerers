@@ -1,3 +1,5 @@
+//  String data used in authentication page components
+
 class Strings {
   static registerBtn = "ثبت نام";
   static loginBtn = "ورود";
