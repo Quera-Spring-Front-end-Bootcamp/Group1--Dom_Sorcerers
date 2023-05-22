@@ -72,10 +72,10 @@ export const MoreSpaceModal = ({ isShow, onCloseModal }: Props) => {
 
           <ModalFooter padding="0px 15px 15px">
             <Button
-              background="primary"
-              colorScheme="teal"
+              background="primary.600"
+              colorScheme="primary"
               width="100%"
-              color="white"
+              // color="white"
               flexDirection="row"
               gap="10px"
               alignItems="center"
