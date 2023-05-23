@@ -12,7 +12,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import {
-  ColorPalletIcon,
   EditIcon,
   ShareLinkIcon,
   SimplePlusIcon,

@@ -16,11 +16,17 @@ import ShareIcon from "../Icons/shareIcon";
 import { MagnifierIcon } from "../Icons";
 import FilterIcon from "../Icons/filterIcon";
 import GridBoardView from "./gridBoardView";
-
+import MyCalendar from "../MyCalendar";
+import { useState } from "react";
 const Board = () => {
+  const [tabIndex, setTabIndex] = useState(0);
+  const handleTabsChange = (index: number) => {
+    setTabIndex(index);
+    // console.log(tabIndex);
+  };
   return (
     <Box width="75%" height="100vh" py="40px" px="30px">
-      <Tabs colorScheme="primary" zIndex="2">
+      <Tabs colorScheme="primary" zIndex="2" onChange={handleTabsChange}>
         <TabList border="0px">
           <Flex width="100%" flexDirection="row">
             <Stack justifyContent="center">
@@ -115,9 +121,7 @@ const Board = () => {
           <TabPanel height="80vh" overflowY="auto" px="0">
             <GridBoardView />
           </TabPanel>
-          <TabPanel>
-            <p>three!</p>
-          </TabPanel>
+          <TabPanel>{tabIndex === 2 && <MyCalendar />}</TabPanel>
         </TabPanels>
       </Tabs>
     </Box>

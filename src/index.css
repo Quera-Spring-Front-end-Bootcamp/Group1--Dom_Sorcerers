@@ -4,3 +4,22 @@ body {
   direction: rtl;
   user-select: none;
 }
+.fc-col-header-cell {
+  border-bottom: none !important;
+}
+.fc .fc-daygrid-day-top {
+  position: absolute;
+  left: 12px;
+  bottom: 5px;
+  color: "#000";
+  font-size: 16px;
+  font-weight: 500;
+}
+.fc-scrollgrid-sync-inner {
+  text-align: right;
+  padding-top: 12px;
+  padding-right: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+}
