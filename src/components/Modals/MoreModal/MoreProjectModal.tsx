@@ -25,9 +25,8 @@ interface Props {
   isShow: boolean;
 }
 const modalData = [
-  { id: 1, title: "ساختن پروژه جدید", icon: SimplePlusIcon },
-  { id: 2, title: "ویرایش نام ورک اسپیس", icon: EditIcon },
-  { id: 3, title: "ویرایش رنگ", icon: ColorPalletIcon },
+  { id: 1, title: "ساختن تسک جدید", icon: SimplePlusIcon },
+  { id: 2, title: "ویرایش نام پروژه", icon: EditIcon },
   { id: 4, title: "کپی لینک", icon: ShareLinkIcon },
   { id: 5, title: "حذف", icon: TrashIcon },
 ];
