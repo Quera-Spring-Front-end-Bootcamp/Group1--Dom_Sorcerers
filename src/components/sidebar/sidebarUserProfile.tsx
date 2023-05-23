@@ -1,4 +1,4 @@
-import { Flex, HStack, Text } from "@chakra-ui/react";
+import { Flex, HStack, Text , Link } from "@chakra-ui/react";
 
 const SidebarUserProfile = () => {
   return (
@@ -13,9 +13,11 @@ const SidebarUserProfile = () => {
       >
         <Text>NM</Text>
       </Flex>
+      <Link href="profile">
       <Text fontSize="16px" color="#1E1E1E" fontWeight="500">
         نیلوفر محمدی
       </Text>
+      </Link>
     </HStack>
   );
 };
