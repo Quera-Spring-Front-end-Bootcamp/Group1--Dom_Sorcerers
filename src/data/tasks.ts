@@ -20,8 +20,8 @@ const tasks: tasksType = [
   },
   {
     taskName: "پروژه اول",
-    taskCategory: "Open",
-    taskCategoryColor: "#F98F2E",
+    taskCategory: "In Progress",
+    taskCategoryColor: "#2E7FF9",
     taskTitle: "این یک تیتر برای این تسک است.",
     taskDeadline: "۵ مهر",
     taskImage: "",
@@ -36,4 +36,15 @@ const tasks: tasksType = [
     taskImage: "",
     taskTag: ["پروژه"],
   },
+  {
+    taskName: "پروژه اول",
+    taskCategory: "Todo",
+    taskCategoryColor: "#F98F2E",
+    taskTitle: "این یک تیتر برای این تسک است.",
+    taskDeadline: "۵ مهر",
+    taskImage: "",
+    taskTag: ["پروژه"],
+  },
 ];
+
+export default tasks;

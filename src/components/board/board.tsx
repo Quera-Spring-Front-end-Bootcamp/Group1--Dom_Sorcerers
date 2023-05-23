@@ -15,7 +15,7 @@ import CalenderIcon from "../Icons/calendarIcon";
 import ShareIcon from "../Icons/shareIcon";
 import { MagnifierIcon } from "../Icons";
 import FilterIcon from "../Icons/filterIcon";
-import ListBoard from "./listBoard";
+import GridBoardView from "./gridBoardView";
 
 const Board = () => {
   return (
@@ -60,7 +60,7 @@ const Board = () => {
                 نمایش ستونی
               </Text>
             </Tab>
-            <Tab px="0" pr="20px" py="20px">
+            <Tab px="0" pr="20px" py="15px">
               <CalenderIcon />
               <Text
                 fontSize="16px"
@@ -84,12 +84,12 @@ const Board = () => {
 
         <Divider borderColor="#AAAAAA" zIndex="0" mt="1px" />
 
-        <HStack py="10px">
-          <HStack my="15px" h="25px">
+        <HStack py="5px">
+          <HStack my="10px" h="25px">
             <MagnifierIcon />
             <Input
-              fontSize="13px"
-              width="225px"
+              fontSize="12px"
+              width="227px"
               border="none"
               type="text"
               placeholder="جستجو بین تسک‌ها"
@@ -102,7 +102,7 @@ const Board = () => {
 
           <HStack justifyContent="center" alignItems="center" pr="20px">
             <FilterIcon />
-            <Text fontSize="13px" fontWeight="500">
+            <Text fontSize="12px" fontWeight="500">
               فیلترها
             </Text>
           </HStack>
@@ -111,11 +111,9 @@ const Board = () => {
         <Divider borderColor="#AAAAAA" />
 
         <TabPanels>
-          <TabPanel>
-            <ListBoard />
-          </TabPanel>
-          <TabPanel>
-            <p>two!</p>
+          <TabPanel height="80vh" overflowY="auto" px="0"></TabPanel>
+          <TabPanel height="80vh" overflowY="auto" px="0">
+            <GridBoardView />
           </TabPanel>
           <TabPanel>
             <p>three!</p>
