@@ -16,10 +16,11 @@ import ShareIcon from "../Icons/shareIcon";
 import { MagnifierIcon } from "../Icons";
 import FilterIcon from "../Icons/filterIcon";
 import GridBoardView from "./gridBoardView";
+import ListBoardView from "./listBoardView";
 
 const Board = () => {
   return (
-    <Box width="75%" height="100vh" py="40px" px="30px">
+    <Box width="75%" height="100vh" py="40px" pr="10px" pl="20px">
       <Tabs colorScheme="primary" zIndex="2">
         <TabList border="0px">
           <Flex width="100%" flexDirection="row">
@@ -111,8 +112,43 @@ const Board = () => {
         <Divider borderColor="#AAAAAA" />
 
         <TabPanels>
-          <TabPanel height="80vh" overflowY="auto" px="0"></TabPanel>
-          <TabPanel height="80vh" overflowY="auto" px="0">
+          <TabPanel
+            css={{
+              "&::-webkit-scrollbar": {
+                height: "6px",
+              },
+              "&::-webkit-scrollbar-track": {
+                width: "7px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "#eee",
+                borderRadius: "24px",
+              },
+            }}
+            height="80vh"
+            overflowY="auto"
+            px="0"
+          >
+            <ListBoardView />
+          </TabPanel>
+          <TabPanel
+            css={{
+              "&::-webkit-scrollbar": {
+                width: "6px",
+              },
+              "&::-webkit-scrollbar-track": {
+                width: "7px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "#eee",
+                borderRadius: "24px",
+              },
+            }}
+            height="80vh"
+            overflowY="auto"
+            pr="0px"
+            pl="5px"
+          >
             <GridBoardView />
           </TabPanel>
           <TabPanel>
