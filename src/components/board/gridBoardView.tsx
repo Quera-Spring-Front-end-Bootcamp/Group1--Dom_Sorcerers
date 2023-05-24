@@ -6,7 +6,6 @@ import {
   Spacer,
   Text,
   Stack,
-  Box,
 } from "@chakra-ui/react";
 import FlagIcon from "../Icons/flagIcon";
 import TextIcon from "../Icons/textIcon";
