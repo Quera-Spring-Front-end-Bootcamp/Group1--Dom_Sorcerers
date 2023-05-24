@@ -6,6 +6,7 @@ import {
   Spacer,
   Text,
   Stack,
+  Box,
 } from "@chakra-ui/react";
 import FlagIcon from "../Icons/flagIcon";
 import TextIcon from "../Icons/textIcon";
@@ -15,8 +16,24 @@ import tasksData from "../../data/tasks";
 
 const GridBoardView = () => {
   return (
-    <HStack overflowX="auto" spacing="20px">
-      {tasksData.map((task) => (
+    <HStack
+      css={{
+        "&::-webkit-scrollbar": {
+          height: "6px",
+        },
+        "&::-webkit-scrollbar-track": {
+          width: "7px",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          background: "#eee",
+          borderRadius: "24px",
+        },
+      }}
+      alignItems="flex-start"
+      overflowX="auto"
+      spacing="20px"
+    >
+      {tasksData?.map((task) => (
         <Stack>
           <Card
             boxShadow="0px 2px 8px rgba(0, 0, 0, 0.18)"
@@ -29,7 +46,7 @@ const GridBoardView = () => {
             mb="12px"
             justifyContent="center"
           >
-            <HStack alignItems="center">
+            <HStack justifyContent="flex-start" alignItems="center">
               <Text>{task.taskCategory}</Text>
               <Text
                 px="5px"
@@ -42,9 +59,8 @@ const GridBoardView = () => {
               </Text>
             </HStack>
           </Card>
-          {tasksData.map((task) => (
+          {tasksData?.map((task) => (
             <Card
-              transition="0.5s"
               p="12px"
               mb="12px"
               width="250px"
@@ -52,6 +68,7 @@ const GridBoardView = () => {
               borderRadius="4px"
               boxShadow="0px 6px 8px rgba(0, 0, 0, 0.14)"
               zIndex="10"
+              role="group"
             >
               <Text
                 zIndex="0"
@@ -96,13 +113,21 @@ const GridBoardView = () => {
                   پروژه
                 </Text>
               </HStack>
-              <Divider mt="15px" borderColor="#EFF0F0" />
-
-              <Flex mt="15px" direction="row">
-                <CheckIcon />
-                <Spacer />
-                <MoreIcon />
-              </Flex>
+              <Stack
+                display="none"
+                _groupHover={{
+                  display: "flex",
+                  transitionDuration: "700ms",
+                  transitionTimingFunction: "ease-in-out",
+                }}
+              >
+                <Divider mt="15px" borderColor="#EFF0F0" />
+                <Flex mt="15px" direction="row">
+                  <CheckIcon />
+                  <Spacer />
+                  <MoreIcon />
+                </Flex>
+              </Stack>
             </Card>
           ))}
         </Stack>

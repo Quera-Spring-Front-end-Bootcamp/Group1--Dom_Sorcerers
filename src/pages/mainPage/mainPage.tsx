@@ -5,7 +5,7 @@ import Sidebar from "../../components/sidebar/sidebar";
 const MainPage = () => {
   return (
     <>
-      <HStack>
+      <HStack bgColor="#FAFBFC">
         <Sidebar />
         <Board />
       </HStack>

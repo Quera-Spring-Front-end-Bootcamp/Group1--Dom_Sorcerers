@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   HStack,
   Stack,
@@ -16,8 +17,9 @@ import ShareIcon from "../Icons/shareIcon";
 import { MagnifierIcon } from "../Icons";
 import FilterIcon from "../Icons/filterIcon";
 import GridBoardView from "./gridBoardView";
+import ListBoardView from "./listBoardView";
 import MyCalendar from "../MyCalendar";
-import { useState } from "react";
+
 const Board = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const handleTabsChange = (index: number) => {
@@ -117,8 +119,43 @@ const Board = () => {
         <Divider borderColor="#AAAAAA" />
 
         <TabPanels>
-          <TabPanel height="80vh" overflowY="auto" px="0"></TabPanel>
-          <TabPanel height="80vh" overflowY="auto" px="0">
+          <TabPanel
+            css={{
+              "&::-webkit-scrollbar": {
+                height: "6px",
+              },
+              "&::-webkit-scrollbar-track": {
+                width: "7px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "#eee",
+                borderRadius: "24px",
+              },
+            }}
+            height="80vh"
+            overflowY="auto"
+            px="0"
+          >
+            <ListBoardView />
+          </TabPanel>
+          <TabPanel
+            css={{
+              "&::-webkit-scrollbar": {
+                width: "6px",
+              },
+              "&::-webkit-scrollbar-track": {
+                width: "7px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "#eee",
+                borderRadius: "24px",
+              },
+            }}
+            height="80vh"
+            overflowY="auto"
+            pr="0px"
+            pl="5px"
+          >
             <GridBoardView />
           </TabPanel>
           <TabPanel>{tabIndex === 2 && <MyCalendar />}</TabPanel>
