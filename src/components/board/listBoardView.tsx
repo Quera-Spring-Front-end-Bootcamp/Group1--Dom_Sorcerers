@@ -8,7 +8,6 @@ import {
   Text,
   HStack,
   Square,
-  Flex,
 } from "@chakra-ui/react";
 import TextIcon from "../Icons/textIcon";
 import FlagIcon from "../Icons/flagIcon";

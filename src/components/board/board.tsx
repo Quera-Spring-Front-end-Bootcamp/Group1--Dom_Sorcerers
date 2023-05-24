@@ -158,7 +158,9 @@ const Board = () => {
           >
             <GridBoardView />
           </TabPanel>
-          <TabPanel>{tabIndex === 2 && <MyCalendar />}</TabPanel>
+          <TabPanel overflowY="auto" px="0">
+            {tabIndex === 2 && <MyCalendar />}
+          </TabPanel>
         </TabPanels>
       </Tabs>
     </Box>
