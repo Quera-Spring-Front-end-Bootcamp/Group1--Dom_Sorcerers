@@ -7,6 +7,7 @@ import {
   Text,
   Input,
   Button,
+  Link,
 } from "@chakra-ui/react";
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
@@ -69,10 +70,11 @@ const Forget = () => {
           <CardBody sx={{ width: "100%" }}>
             <Text sx={lableStyle}>ایمیل خود را وارد کنید</Text>
             <Input sx={inputStyle} />
-
-            <Button sx={submitButton} colorScheme="teal" variant="solid">
-              دریافت ایمیل بازیابی رمز عبور
-            </Button>
+            <Link href="forgetnotif">
+              <Button sx={submitButton} colorScheme="teal" variant="solid">
+                دریافت ایمیل بازیابی رمز عبور
+              </Button>
+            </Link>
             <Stack
               sx={{ justifyContent: "center", alignContent: "center" }}
               direction="row"

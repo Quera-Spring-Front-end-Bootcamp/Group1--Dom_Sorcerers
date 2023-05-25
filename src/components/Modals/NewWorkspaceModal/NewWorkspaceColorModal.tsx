@@ -8,22 +8,27 @@ import {
   ModalOverlay,
   HStack,
   Flex,
-  Input,
   Stack,
   ModalHeader,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { CLoseIcon } from "../../Icons";
-import { NewWorkspaceColorModal } from "./NewWorkspaceColorModal";
 interface Props {
   onCloseModal: () => void;
   isShowModal: boolean;
 }
-export const NewWorkspaceModal = ({ isShowModal, onCloseModal }: Props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export const NewWorkspaceColorModal = ({
+  isShowModal,
+  onCloseModal,
+}: Props) => {
   return (
     <>
-      <Modal size="6xl" isCentered isOpen={isShowModal} onClose={onCloseModal}>
+      <Modal
+        size="6xl"
+        isCentered
+        isOpen={isShowModal}
+        onClose={onCloseModal}
+        motionPreset="slideInBottom"
+      >
         <ModalOverlay />
         <ModalContent borderRadius="12px" width="567px" padding="20px">
           {/* /////////////////////////////////////////////////////////////////////////////////// */}
@@ -44,19 +49,18 @@ export const NewWorkspaceModal = ({ isShowModal, onCloseModal }: Props) => {
                 fontWeight="500"
                 color="#000"
               >
-                ساخت ورک‌اسپیس جدید
+                انتخاب رنگ ورک‌اسپیس
               </Text>
             </HStack>
           </ModalHeader>
           {/* //////////////////////////////////////////////////////////////////////////////////// */}
           <ModalBody padding="15px">
             <Stack gap="2px">
-              <Text fontSize="14px">نا‌‌م ورک‌اسپیس</Text>
-              <Input borderColor="#AAAAAA" width="100%" />
+              <Text>color section</Text>
             </Stack>
           </ModalBody>
           {/* ///////////////////////////////////////////////////////////////////////////////////// */}
-          <ModalFooter padding="0px 15px 15px" marginTop="20px">
+          <ModalFooter padding="0px 15px 15px">
             <Button
               background="#208D8E"
               fontSize="14px"
@@ -64,17 +68,9 @@ export const NewWorkspaceModal = ({ isShowModal, onCloseModal }: Props) => {
               width="100%"
               colorScheme="teal"
               variant="solid"
-              onClick={() => {
-                onCloseModal();
-                onOpen();
-              }}
             >
               ادامه
             </Button>
-            <NewWorkspaceColorModal
-              isShowModal={isOpen}
-              onCloseModal={onClose}
-            />
           </ModalFooter>
           {/* ///////////////////////////////////////////////////////////////////////////////////// */}
         </ModalContent>

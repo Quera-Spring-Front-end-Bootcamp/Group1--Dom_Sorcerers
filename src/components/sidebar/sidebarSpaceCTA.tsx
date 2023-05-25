@@ -1,7 +1,6 @@
-import { Button, HStack, Text, useDisclosure } from "@chakra-ui/react";
+import { Button, Text, useDisclosure } from "@chakra-ui/react";
 import { PlusIcon } from "../Icons/PlusIcon";
 import { NewWorkspaceModal } from "../Modals/NewWorkspaceModal/NewWorkspaceModal";
-import { ShareSpaceModal } from "../Modals/ShareModal/ShareSpaceModal";
 
 const SidebarSpaceCTA = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
