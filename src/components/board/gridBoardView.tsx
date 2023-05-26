@@ -15,7 +15,7 @@ import CheckIcon from "../Icons/checkIcon";
 import MoreIcon from "../Icons/moreIcon";
 import tasksData from "../../data/tasks";
 import { PlusIcon, SimplePlusIcon } from "../Icons";
-import { TaskInformationModal } from "../Modals/TaslOnformationModal/TaskInformationModal";
+import { TaskInformationModal } from "../Modals/TaskInformationModal/TaskInformationModal";
 
 const GridBoardView = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
