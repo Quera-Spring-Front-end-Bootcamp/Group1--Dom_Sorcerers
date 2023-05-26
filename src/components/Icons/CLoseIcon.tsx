@@ -1,7 +1,8 @@
 interface Props {
 	onCLick?: () => void;
+	color?: string;
 }
-export const CLoseIcon = ({ onCLick }: Props) => {
+export const CLoseIcon = ({ onCLick, color }: Props) => {
 	return (
 		<svg
 			onClick={onCLick}
@@ -13,14 +14,14 @@ export const CLoseIcon = ({ onCLick }: Props) => {
 		>
 			<path
 				d="M1 1.5L9 9.5"
-				stroke="#323232"
+				stroke={color ? color : "#323232"}
 				strokeWidth="1.5"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			/>
 			<path
 				d="M9 1.5L1 9.5"
-				stroke="#323232"
+				stroke={color ? color : "#323232"}
 				strokeWidth="1.5"
 				strokeLinecap="round"
 				strokeLinejoin="round"

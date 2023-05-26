@@ -81,14 +81,6 @@ export const AssignmentSubItem = (subAss: SubAss) => {
 										<Menu>
 											{isShowDots && (
 												<MenuButton
-													// onClick={(e) => {
-													// 	e.stopPropagation();
-													// }}
-													// onClick={(e) => {
-													// 	if (ass.hasSub) {
-													// 		e.stopPropagation();
-													// 	}
-													// }}
 													bg="transparent"
 													_hover={{ bg: "transparent" }}
 													_focusWithin={{ bg: "transparent" }}

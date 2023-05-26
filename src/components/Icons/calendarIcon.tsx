@@ -29,8 +29,8 @@ const CalenderIcon = () => {
 				strokeLinejoin="round"
 			/>
 			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
+				fillRule="evenodd"
+				clipRule="evenodd"
 				d="M19 4.5H5C3.895 4.5 3 5.395 3 6.5V19.5C3 20.605 3.895 21.5 5 21.5H19C20.105 21.5 21 20.605 21 19.5V6.5C21 5.395 20.105 4.5 19 4.5Z"
 				stroke="#323232"
 				strokeWidth="1.5"
