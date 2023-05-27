@@ -19,26 +19,25 @@ import { TaskInformationModal } from "../Modals/TaskInformationModal/TaskInforma
 const GridBoardView = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <>
-      <HStack
-        css={{
-          "&::-webkit-scrollbar": {
-            height: "6px",
-          },
-          "&::-webkit-scrollbar-track": {
-            width: "7px",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            background: "#eee",
-            borderRadius: "24px",
-          },
-        }}
-        alignItems="flex-start"
-        overflowX="auto"
-        spacing="20px"
-        minWidth="100vw"
-        width="200vw"
-      >
+    <Box
+      css={{
+        "&::-webkit-scrollbar": {
+          height: "6px",
+          width: "7px",
+        },
+        "&::-webkit-scrollbar-track": {
+          width: "7px",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          background: "#eee",
+          borderRadius: "24px",
+        },
+      }}
+      overflow="auto"
+      height="74vh"
+      pb="90px"
+    >
+      <HStack alignItems="flex-start" spacing="20px">
         {tasksData?.map((task) => (
           <Stack>
             <Card
@@ -73,7 +72,6 @@ const GridBoardView = () => {
                 border="#EFF0F0 solid 1px"
                 borderRadius="4px"
                 boxShadow="0px 6px 8px rgba(0, 0, 0, 0.14)"
-                zIndex="10"
                 role="group"
               >
                 <Text
@@ -143,7 +141,7 @@ const GridBoardView = () => {
           </Stack>
         ))}
 
-        <Box as="button" width="250px" ml="20px">
+        <Box as="button" width="250px">
           <Card
             boxShadow="0px 2px 8px rgba(0, 0, 0, 0.18)"
             borderRadius="4px"
@@ -160,7 +158,7 @@ const GridBoardView = () => {
         </Box>
       </HStack>
       <TaskInformationModal isOpen={isOpen} onClose={onClose} />
-    </>
+    </Box>
   );
 };
 

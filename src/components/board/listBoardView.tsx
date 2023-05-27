@@ -65,7 +65,22 @@ const tasksData = [
 
 const ListBoardView = () => {
   return (
-    <>
+    <Box
+      css={{
+        "&::-webkit-scrollbar": {
+          width: "6px",
+        },
+        "&::-webkit-scrollbar-track": {
+          width: "7px",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          background: "#eee",
+          borderRadius: "24px",
+        },
+      }}
+      height="74vh"
+      overflowY="auto"
+    >
       <Text fontWeight="600" fontSize="20px" pb="15px">
         پروژه اول
       </Text>
@@ -149,7 +164,7 @@ const ListBoardView = () => {
           </AccordionItem>
         </Accordion>
       ))}
-    </>
+    </Box>
   );
 };
 
