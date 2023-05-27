@@ -121,9 +121,9 @@ const GridBoardView = () => {
                   visibility="hidden"
                   h="0"
                   _groupHover={{
-                    h: "50px",
+                    h: "45px",
                     visibility: "visible",
-                    transitionDuration: "700ms",
+                    transitionDuration: "500ms",
                     transitionTimingFunction: "ease-in-out",
                   }}
                 >

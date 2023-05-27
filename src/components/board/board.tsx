@@ -108,7 +108,7 @@ const Board = () => {
               >
                 <Button colorScheme="transparent" padding="0px" m="0px">
                   <ShareIcon />
-                  <Text color="black" fontWeight="500">
+                  <Text pr="5px" color="black" fontWeight="500">
                     اشتراک‌گذاری
                   </Text>
                 </Button>

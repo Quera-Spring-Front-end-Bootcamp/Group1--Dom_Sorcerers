@@ -8,6 +8,8 @@ import {
   Button,
   Spacer,
   border,
+  Flex,
+  Box,
 } from "@chakra-ui/react";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
@@ -17,12 +19,14 @@ import {
   Divider,
   Input,
   InputRightElement,
+  InputLeftElement,
   InputGroup,
 } from "@chakra-ui/react";
 import { MagnifierIcon } from "../Icons";
 import FilterIcon from "../Icons/filterIcon";
 import { useState } from "react";
 import DeleteIcon from "../Icons/deleteIcon";
+import MoreIcon from "../Icons/moreIcon";
 
 interface SearchBarProps {}
 
@@ -188,6 +192,50 @@ const SearchBar = () => {
             </PopoverBody>
           </PopoverContent>
         </Popover>
+
+        <Menu>
+          <MenuButton width="145px">تگ</MenuButton>
+          <MenuList minWidth="145px">
+            <InputGroup px="10px" pb="5px">
+              <Input
+                borderRadius="3px"
+                fontSize="12px"
+                placeholder="جستجو"
+                bgColor="#E9E9E9"
+                width="125px"
+              />
+              <InputLeftElement pr="10px" opacity="0.3">
+                <MagnifierIcon />
+              </InputLeftElement>
+            </InputGroup>
+            <HStack width="100%">
+              <MenuItem
+                bgColor="white"
+                _hover={{ bgColor: "white" }}
+                onClick={() => setSelected2("درس")}
+                width="75%"
+              >
+                <Text p="5px" borderRadius="4px" bgColor="#EBC8C8">
+                  درس
+                </Text>
+                <Spacer />
+              </MenuItem>
+              <Box opacity="0.3">
+                <MoreIcon />
+              </Box>
+            </HStack>
+            <MenuItem onClick={() => setSelected2("کار")}>
+              <Text p="5px" borderRadius="4px" bgColor="#C3B7F2">
+                کار
+              </Text>
+            </MenuItem>
+            <MenuItem onClick={() => setSelected2("پروژه")}>
+              <Text p="5px" borderRadius="4px" bgColor="#7FFAFA">
+                پروژه
+              </Text>
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </HStack>
 
       <Divider borderColor="#AAAAAA" mb="20px" />
