@@ -87,6 +87,7 @@ export const AssignmentItem = (ass: Props) => {
 									)}
 									<Portal>
 										<MenuList
+											zIndex="1000"
 											minWidth="184px"
 											borderRadius="8px"
 											border="none"
