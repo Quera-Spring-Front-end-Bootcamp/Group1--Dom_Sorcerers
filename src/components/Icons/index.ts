@@ -15,3 +15,4 @@ export { ShareButtonIcon } from "./ShareButtonIcon";
 export { CLoseIcon } from "./CLoseIcon";
 export { UserIcon } from "./UserIcon";
 export { PlayTimeIcon } from "./PlayTimeIcon";
+export { CommentIcon } from "./CommentIcon";

@@ -21,6 +21,7 @@ import {
 	ArrowLeftIcon,
 	CLoseIcon,
 	CheckBoxButtonIcon,
+	CommentIcon,
 	DotsIcon,
 	FlagIcon,
 	PlayTimeIcon,
@@ -31,6 +32,7 @@ import ShareIcon from "../../Icons/shareIcon";
 import { BookmarkIcon } from "../../Icons/BookmarkIcon";
 import { EyeICon } from "../../Icons/EyeICon";
 import { TaskStatus, TaskStatusEnum } from "./TaskStatus";
+import CommnentInTaskModal from "./CommnentInTaskModal";
 interface Props {
 	isOpen: boolean;
 	onClose: () => void;
@@ -66,7 +68,7 @@ export const TaskInformationModal = ({ isOpen, onClose }: Props) => {
 					position="relative"
 					maxWidth="1352px"
 					height="596px"
-					padding="28px 20px"
+					padding="28px 20px 0px 20px"
 					borderRadius="20px"
 				>
 					<Divider
@@ -419,22 +421,71 @@ export const TaskInformationModal = ({ isOpen, onClose }: Props) => {
 												{(1).toLocaleString("fa-IR")} ساعت پیش
 											</Text>
 										</HStack>
+										{/*start comment */}
+										<HStack alignItems="flex-start" marginTop="12px !important">
+											<Avatar
+												width="35px"
+												height="35px"
+												name="Dan Abrahmov"
+												src="https://bit.ly/dan-abramov"
+											/>
+											<Stack
+												border="1px solid #F4F4F4"
+												borderRadius="12px"
+												padding="20px"
+											>
+												<HStack justifyContent="space-between">
+													<HStack>
+														<Text
+															fontSize="16px"
+															fontWeight="600"
+															color="primary.600"
+														>
+															شما
+														</Text>
+														<Text
+															fontSize="12px"
+															fontWeight="400"
+															color="#AAAAAA"
+															// marginRight="0"
+														>
+															کامنت گذاشتید
+														</Text>
+													</HStack>
+													<Text
+														fontSize="12px"
+														fontWeight="400"
+														color="#AAAAAA"
+													>
+														{(12).toLocaleString("fa-IR")} تیر
+													</Text>
+												</HStack>
+												<HStack>
+													<Text
+														fontSize="12px"
+														fontWeight="400"
+														fontStyle="normal"
+														lineHeight="18px"
+														color="#000"
+													>
+														لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+														صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها
+														و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+														لازم است.
+													</Text>
+												</HStack>
+											</Stack>
+										</HStack>
+										{/* end comment */}
 									</Stack>
 								</HStack>
 							</HStack>
 						</Stack>
 					</ModalBody>
 
-					{/* <ModalFooter padding="0">
-						<HStack bg="red" flex="1">
-							<Text>aaaa</Text>
-							<Text>bbbb</Text>
-						</HStack>
-						<HStack bg="blue" flex="1">
-							<Text>aaaa</Text>
-						</HStack>
-						
-					</ModalFooter> */}
+					<ModalFooter padding="0" position="absolute" bottom="0" left="0">
+						<CommnentInTaskModal />
+					</ModalFooter>
 				</ModalContent>
 			</Modal>
 		</>
