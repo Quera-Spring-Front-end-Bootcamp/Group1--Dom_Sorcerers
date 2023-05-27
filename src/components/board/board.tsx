@@ -148,7 +148,7 @@ const Board = () => {
 								width: "7px",
 							},
 							"&::-webkit-scrollbar-thumb": {
-								background: "#eee",
+								background: "#c1c1c1",
 								borderRadius: "24px",
 							},
 						}}
@@ -156,6 +156,9 @@ const Board = () => {
 						overflowX="auto"
 						pr="0px"
 						pl="5px"
+						width="100%"
+						zIndex="500"
+						// width={tabIndex === 1 && "100%"}
 					>
 						<GridBoardView />
 					</TabPanel>

@@ -16,6 +16,7 @@ import MoreIcon from "../Icons/moreIcon";
 import tasksData from "../../data/tasks";
 import { PlusIcon, SimplePlusIcon } from "../Icons";
 import { TaskInformationModal } from "../Modals/TaskInformationModal/TaskInformationModal";
+import { TaskInformationModalWithGrid } from "../Modals/TaskInformationModal/TaskInformationModalWithGrid";
 
 const GridBoardView = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -126,7 +127,7 @@ const GridBoardView = () => {
 									visibility="hidden"
 									h="0"
 									_groupHover={{
-										h: "50px",
+										h: "45px",
 										visibility: "visible",
 										transitionDuration: "700ms",
 										transitionTimingFunction: "ease-in-out",
@@ -162,7 +163,8 @@ const GridBoardView = () => {
 					</HStack>
 				</Card>
 			</HStack>
-			<TaskInformationModal isOpen={isOpen} onClose={onClose} />
+			<TaskInformationModal isOpen={true} onClose={onClose} />
+			{/* <TaskInformationModalWithGrid isOpen={true} onClose={onClose} /> */}
 		</>
 	);
 };
