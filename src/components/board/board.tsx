@@ -6,6 +6,8 @@ import {
   Box,
   Spacer,
   Flex,
+  Divider,
+  Input,
   Button,
 } from "@chakra-ui/react";
 import {
@@ -28,6 +30,8 @@ import MyCalendar from "../MyCalendar";
 import SearchBar from "./searchBar";
 import { ShareProjectModal } from "../Modals/ShareModal/ShareProjectModal";
 import AddIcon from "../Icons/addIcon";
+import { MagnifierIcon } from "../Icons";
+import FilterIcon from "../Icons/filterIcon";
 
 const Board = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -43,7 +47,6 @@ const Board = () => {
   const onCloseShareModalHandler = () => {
     onClose();
   };
-
   return (
     <Box
       width="calc(100% - 330px)"
@@ -127,6 +130,34 @@ const Board = () => {
           </Flex>
         </TabList>
 
+        <Divider borderColor="#AAAAAA" zIndex="0" mt="1px" />
+
+        <HStack py="5px">
+          <HStack my="10px" h="25px">
+            <MagnifierIcon />
+            <Input
+              fontSize="12px"
+              width="227px"
+              border="none"
+              type="text"
+              placeholder="جستجو بین تسک‌ها"
+              padding="0"
+              _focusVisible={{ outline: "none", boxShadow: "none" }}
+            />
+
+            <Divider opacity="1" borderColor="#AAAAAA" orientation="vertical" />
+          </HStack>
+
+          <HStack justifyContent="center" alignItems="center" pr="20px">
+            <FilterIcon />
+            <Text fontSize="12px" fontWeight="500">
+              فیلترها
+            </Text>
+          </HStack>
+        </HStack>
+
+        <Divider borderColor="#AAAAAA" />
+
         <TabPanels>
           <TabPanel
             css={{
@@ -143,7 +174,7 @@ const Board = () => {
             }}
             height="80vh"
             overflowY="auto"
-            p="0"
+            px="0"
           >
             <SearchBar />
             <ListBoardView />
@@ -161,9 +192,10 @@ const Board = () => {
                 borderRadius: "24px",
               },
             }}
+            height="80vh"
+            overflowY="auto"
             pr="0px"
             pl="5px"
-            py="0"
           >
             <SearchBar />
             <GridBoardView />

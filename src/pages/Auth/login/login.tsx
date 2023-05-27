@@ -85,9 +85,11 @@ const Login = () => {
                 رمز عبور را فراموش کرده‌ای؟
               </Button>
             </Link>
-            <Button sx={submitButton} colorScheme="teal" variant="solid">
-              ورود
-            </Button>
+            <Link href="/">
+              <Button sx={submitButton} colorScheme="teal" variant="solid">
+                ورود
+              </Button>
+            </Link>
             <Stack
               sx={{ justifyContent: "center", alignContent: "center" }}
               direction="row"

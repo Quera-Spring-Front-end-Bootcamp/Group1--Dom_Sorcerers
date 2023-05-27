@@ -1,45 +1,49 @@
 import {
-  HStack,
-  Stack,
-  Text,
-  Box,
-  Spacer,
-  Accordion,
-  AccordionButton,
-  AccordionPanel,
-  AccordionItem,
-  useDisclosure,
+	HStack,
+	Stack,
+	Text,
+	Box,
+	Spacer,
+	Accordion,
+	AccordionButton,
+	AccordionPanel,
+	AccordionItem,
+	useDisclosure,
 } from "@chakra-ui/react";
 import { Assigenment } from "../../data/assignment";
 import { MoreSpaceModal } from "../Modals/MoreModal/MoreSpaceModal";
+import AssignmentItem from "./AssignmentItem";
+import { AssignmentList } from "./AssigenmentList";
 
 export const SideSpaceList = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const onOpenModalHandler = () => {
-    onOpen();
-  };
-  const onCloseModalHandler = () => {
-    onClose();
-  };
-  return (
-    <>
-    <Box
-         height="calc(100vh - 420px )"
-         overflowY="auto"
-         css={{
-          "&::-webkit-scrollbar": {
-           width: "7px",
-          },
-          "&::-webkit-scrollbar-track": {
-           width: "6px",
-          },
-          "&::-webkit-scrollbar-thumb": {
-           background: "#eee",
-           borderRadius: "24px",
-          },
-         }}
-        >
-      <Accordion allowToggle>
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const onOpenModalHandler = () => {
+		onOpen();
+	};
+	const onCloseModalHandler = () => {
+		onClose();
+	};
+	return (
+		<>
+			<Box
+				height="calc(100vh - 420px )"
+				overflowY="auto"
+				css={{
+					"&::-webkit-scrollbar": {
+						width: "7px",
+					},
+					"&::-webkit-scrollbar-track": {
+						width: "6px",
+					},
+					"&::-webkit-scrollbar-thumb": {
+						background: "#eee",
+						borderRadius: "24px",
+					},
+				}}
+			>
+				<AssignmentList />
+
+				{/* <Accordion allowToggle>
         <Stack gap="12px">
           {Assigenment.map((item) => (
             <AccordionItem key={item.id} border="none" background="none">
@@ -108,9 +112,9 @@ export const SideSpaceList = () => {
             </AccordionItem>
           ))}
         </Stack>
-      </Accordion>
-      </Box>
-      <MoreSpaceModal isShow={isOpen} onCloseModal={onCloseModalHandler} />
-    </>
-  );
+      </Accordion> */}
+			</Box>
+			<MoreSpaceModal isShow={isOpen} onCloseModal={onCloseModalHandler} />
+		</>
+	);
 };

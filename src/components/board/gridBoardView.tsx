@@ -7,23 +7,23 @@ import {
   Text,
   Stack,
   Box,
-  Button,
+  useDisclosure,
 } from "@chakra-ui/react";
 import FlagIcon from "../Icons/flagIcon";
 import TextIcon from "../Icons/textIcon";
 import CheckIcon from "../Icons/checkIcon";
 import MoreIcon from "../Icons/moreIcon";
 import tasksData from "../../data/tasks";
-import AddIcon from "../Icons/addIcon";
+import { TaskInformationModal } from "../Modals/TaskInformationModal/TaskInformationModal";
 
 const GridBoardView = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <HStack
         css={{
           "&::-webkit-scrollbar": {
             height: "6px",
-            width: "6px",
           },
           "&::-webkit-scrollbar-track": {
             width: "7px",
@@ -34,12 +34,10 @@ const GridBoardView = () => {
           },
         }}
         alignItems="flex-start"
-        height="76vh"
-        pb="40px"
-        pl="20px"
         overflowX="auto"
-        overflowY="auto"
         spacing="20px"
+        minWidth="100vw"
+        width="200vw"
       >
         {tasksData?.map((task) => (
           <Stack>
@@ -122,9 +120,11 @@ const GridBoardView = () => {
                   </Text>
                 </HStack>
                 <Stack
-                  display="none"
+                  visibility="hidden"
+                  h="0"
                   _groupHover={{
-                    display: "flex",
+                    h: "50px",
+                    visibility: "visible",
                     transitionDuration: "700ms",
                     transitionTimingFunction: "ease-in-out",
                   }}
@@ -133,13 +133,16 @@ const GridBoardView = () => {
                   <Flex mt="15px" direction="row">
                     <CheckIcon />
                     <Spacer />
-                    <MoreIcon />
+                    <HStack onClick={onOpen} cursor="pointer">
+                      <MoreIcon />
+                    </HStack>
                   </Flex>
                 </Stack>
               </Card>
             ))}
           </Stack>
         ))}
+
         <Box as="button" width="250px" ml="20px">
           <Card
             boxShadow="0px 2px 8px rgba(0, 0, 0, 0.18)"
@@ -156,6 +159,7 @@ const GridBoardView = () => {
           </Card>
         </Box>
       </HStack>
+      <TaskInformationModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

@@ -69,8 +69,8 @@ const ListBoardView = () => {
       <Text fontWeight="600" fontSize="20px" pb="15px">
         پروژه اول
       </Text>
-      {tasksData.map((taskData) => (
-        <Accordion allowToggle>
+      {tasksData.map((taskData, index) => (
+        <Accordion key={index} allowToggle>
           <AccordionItem mb="30px" border="none">
             <h2>
               <AccordionButton
@@ -110,8 +110,8 @@ const ListBoardView = () => {
               </AccordionButton>
             </h2>
 
-            {taskData.tasks.map((task) => (
-              <AccordionPanel pb={4}>
+            {taskData.tasks.map((task, index) => (
+              <AccordionPanel key={index} pb={4}>
                 <HStack
                   justifyContent="center"
                   py="15px"
