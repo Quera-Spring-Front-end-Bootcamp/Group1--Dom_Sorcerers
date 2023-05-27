@@ -77,6 +77,7 @@ const GridBoardView = () => {
 								boxShadow="0px 6px 8px rgba(0, 0, 0, 0.14)"
 								zIndex="10"
 								role="group"
+								// transition="all 1s"
 							>
 								<Text
 									zIndex="0"
@@ -122,9 +123,11 @@ const GridBoardView = () => {
 									</Text>
 								</HStack>
 								<Stack
-									display="none"
+									visibility="hidden"
+									h="0"
 									_groupHover={{
-										display: "flex",
+										h: "50px",
+										visibility: "visible",
 										transitionDuration: "700ms",
 										transitionTimingFunction: "ease-in-out",
 									}}
