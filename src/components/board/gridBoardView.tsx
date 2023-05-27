@@ -157,7 +157,7 @@ const GridBoardView = () => {
 					</Card>
 				</Box>
 			</HStack>
-			<TaskInformationModal isOpen={true} onClose={onClose} />
+			<TaskInformationModal isOpen={isOpen} onClose={onClose} />
 		</Box>
 	);
 };
