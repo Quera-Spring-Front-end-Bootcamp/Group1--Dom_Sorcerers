@@ -1,4 +1,14 @@
 import { extendTheme } from "@chakra-ui/react";
+import { defineStyleConfig } from "@chakra-ui/react";
+
+const Menu = defineStyleConfig({
+  // The styles all button have in common
+  baseStyle: {
+    item: {
+      fontSize: "12px",
+    },
+  },
+});
 
 const Theme = extendTheme({
   direction: "rtl",
@@ -17,6 +27,9 @@ const Theme = extendTheme({
     primary: {
       600: "#208D8E",
     },
+  },
+  components: {
+    Menu,
   },
 });
 
