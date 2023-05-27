@@ -18,7 +18,7 @@ import {
   Select,
   InputRightAddon,
 } from "@chakra-ui/react";
-import { ShareLinkIcon, CLoseIcon } from "../../../components/Icons";
+import { ShareLinkIcon, CLoseIcon } from "../../Icons";
 interface Props {
   onCloseModal: () => void;
   isShowModal: boolean;

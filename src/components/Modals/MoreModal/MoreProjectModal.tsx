@@ -18,7 +18,7 @@ import {
   TrashIcon,
   ShareButtonIcon,
 } from "../../../components/Icons";
-import { ShareProjectModal } from "../ShareModal/ShareProjetModal";
+import { ShareProjectModal } from "../ShareModal/ShareProjectModal";
 interface Props {
   onCloseModal: () => void;
   isShow: boolean;
