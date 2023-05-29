@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Modal,
   ModalBody,
@@ -19,11 +20,14 @@ import {
   InputRightAddon,
 } from "@chakra-ui/react";
 import { ShareLinkIcon, CLoseIcon } from "../../Icons";
+import PermissionMenu from "../../menus/permissionMenu";
 interface Props {
   onCloseModal: () => void;
   isShowModal: boolean;
 }
 export const ShareProjectModal = ({ isShowModal, onCloseModal }: Props) => {
+  const [selected, setSelected] = useState("");
+
   return (
     <>
       <Modal
@@ -175,45 +179,8 @@ export const ShareProjectModal = ({ isShowModal, onCloseModal }: Props) => {
                     </Text>
                   </HStack>
                   <Spacer />
-                  <HStack>
-                    <Select
-                      fontSize="12px"
-                      fontWeight="400"
-                      // width="111px"
-                      border="1px solid #E9EBF0"
-                      height="27px"
-                      _focusWithin={{
-                        border: "1px solid teal",
-                      }}
-                      _focusVisible={{
-                        border: "1px solid teal",
-                        outline: "none",
-                      }}
-                    >
-                      <option selected>دسترسی‌کامل</option>
-                      <option>دسترسی‌ادیت</option>
-                      <option>فقط‌خواندی</option>
-                    </Select>
-                    {/* <Select
-                      fontSize="12px"
-                      fontWeight="400"
-                      // width="111px"
-                      border="1px solid #E9EBF0"
-                      height="27px"
-                      _focusWithin={{
-                        border: "1px solid teal",
-                      }}
-                      _focusVisible={{
-                        border: "1px solid teal",
-                        outline: "none",
-                      }}
-                    >
-                      <option selected>همه‌پروژه‌ها</option>
-                      <option>پروژه‌اول</option>
-                      <option>پروژه‌دوم</option>
-                      <option>فقط خواندنی</option>
-                    </Select> */}
-                  </HStack>
+
+                  <PermissionMenu />
                 </HStack>
                 <HStack>
                   <HStack gap="">
@@ -223,11 +190,10 @@ export const ShareProjectModal = ({ isShowModal, onCloseModal }: Props) => {
                     </Text>
                   </HStack>
                   <Spacer />
-                  <HStack>
-                    <Select
+                  <PermissionMenu />
+                  {/* <Select
                       fontSize="12px"
                       fontWeight="400"
-                      // width="111px"
                       border="1px solid #E9EBF0"
                       height="27px"
                       _focusWithin={{
@@ -241,26 +207,7 @@ export const ShareProjectModal = ({ isShowModal, onCloseModal }: Props) => {
                       <option>دسترسی‌کامل</option>
                       <option selected>دسترسی‌ادیت</option>
                       <option>فقط‌خواندی</option>
-                    </Select>
-                    {/* <Select
-                      fontSize="12px"
-                      fontWeight="400"
-                      // width="111px"
-                      border="1px solid #E9EBF0"
-                      height="27px"
-                      _focusWithin={{
-                        border: "1px solid teal",
-                      }}
-                      _focusVisible={{
-                        border: "1px solid teal",
-                        outline: "none",
-                      }}
-                    >
-                      <option>همه‌پروژه‌ها</option>
-                      <option selected>پروژه‌اول</option>
-                      <option>پروژه‌دوم</option>
                     </Select> */}
-                  </HStack>
                 </HStack>
               </Stack>
             </Stack>
