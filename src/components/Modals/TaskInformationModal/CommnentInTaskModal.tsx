@@ -19,13 +19,13 @@ const CommnentInTaskModal = () => {
 		<>
 			<Stack
 				zIndex="100"
-				bg="#fff"
+				bg={isSetComment ? "#fff" : "transparent"}
 				onClick={showCommnet}
 				cursor="pointer"
 				padding="13px 20px 20px 40px"
 				width="686px"
 				borderTop="1px solid #F4F4F4"
-				borderRadius="12px 12px 0px 20px"
+				borderRadius={isSetComment ? "12px 12px 0px 20px" : "none"}
 				justifyContent="space-between"
 				// borderBottomEndRadius="20px"
 				// bg="red"
