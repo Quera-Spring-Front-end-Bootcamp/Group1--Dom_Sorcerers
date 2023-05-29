@@ -8,6 +8,8 @@ import {
   Text,
   HStack,
   Square,
+  Avatar,
+  Flex,
 } from "@chakra-ui/react";
 import TextIcon from "../Icons/textIcon";
 import FlagIcon from "../Icons/flagIcon";
@@ -92,7 +94,7 @@ const ListBoardView = () => {
                 textAlign="right"
                 _hover={{ bgColor: "transparent" }}
               >
-                <HStack textAlign="right" flex="3">
+                <HStack textAlign="right" flex="2.5">
                   <AccordionIcon />
                   <Box
                     as="span"
@@ -110,18 +112,38 @@ const ListBoardView = () => {
                     ۲ تسک
                   </Box>
                 </HStack>
-                <Box as="span" flex="1" fontWeight="500">
+                <Flex
+                  justifyContent="center"
+                  as="span"
+                  flex="1"
+                  fontWeight="500"
+                >
                   اعضا
-                </Box>
-                <Box as="span" flex="1" fontWeight="500">
+                </Flex>
+                <Flex
+                  justifyContent="center"
+                  as="span"
+                  flex="1"
+                  fontWeight="500"
+                >
                   ددلاین
-                </Box>
-                <Box as="span" flex="1" fontWeight="500">
+                </Flex>
+                <Flex
+                  justifyContent="center"
+                  as="span"
+                  flex="1"
+                  fontWeight="500"
+                >
                   اولویت
-                </Box>
-                <Box as="span" flex="1" fontWeight="500">
+                </Flex>
+                <Flex
+                  justifyContent="center"
+                  as="span"
+                  flex="1"
+                  fontWeight="500"
+                >
                   توضیحات
-                </Box>
+                </Flex>
               </AccordionButton>
             </h2>
 
@@ -134,7 +156,7 @@ const ListBoardView = () => {
                   borderRadius="4px"
                   spacing="0"
                 >
-                  <HStack textAlign="right" flex="3">
+                  <HStack textAlign="right" flex="2.5">
                     <Square
                       size="16px"
                       bgColor={taskData.categoryColor}
@@ -146,18 +168,45 @@ const ListBoardView = () => {
                       {task.title}
                     </Box>
                   </HStack>
-                  <Box as="span" flex="1" fontWeight="500" fontSize="12px">
-                    اعضا
-                  </Box>
-                  <Box as="span" flex="1" fontWeight="500" fontSize="12px">
+                  <Flex
+                    justifyContent="center"
+                    as="span"
+                    flex="1"
+                    fontWeight="500"
+                    fontSize="12px"
+                    pr="14px"
+                  >
+                    {task.members.map((member) => (
+                      <Avatar mr="-14px" width="26px" height="26px" />
+                    ))}
+                  </Flex>
+                  <Flex
+                    justifyContent="center"
+                    as="span"
+                    flex="1"
+                    fontWeight="500"
+                    fontSize="12px"
+                  >
                     {task.deadline}
-                  </Box>
-                  <Box as="span" flex="1" fontWeight="500" fontSize="12px">
-                    {task.priority ? <FlagIcon /> : null}
-                  </Box>
-                  <Box as="span" flex="1" fontWeight="500" fontSize="12px">
+                  </Flex>
+                  <Flex
+                    justifyContent="center"
+                    as="span"
+                    flex="1"
+                    fontWeight="500"
+                    fontSize="12px"
+                  >
+                    {task.priority ? <FlagIcon color="red" /> : null}
+                  </Flex>
+                  <Flex
+                    justifyContent="center"
+                    as="span"
+                    flex="1"
+                    fontWeight="500"
+                    fontSize="12px"
+                  >
                     <TextIcon />
-                  </Box>
+                  </Flex>
                 </HStack>
               </AccordionPanel>
             ))}
