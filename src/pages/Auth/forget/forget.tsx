@@ -59,7 +59,7 @@ const Forget = () => {
         sx={{
           height: "100vh",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: "center",  
         }}
       >
         <Card sx={cardStyle}>
