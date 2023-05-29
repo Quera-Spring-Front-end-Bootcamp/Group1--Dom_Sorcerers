@@ -1,7 +1,7 @@
 interface props {
-  color: string;
+  color?: string;
 }
-export const FlagIcon = ({ color }: props) => {
+export const FlagIcon = ({ color = "#FB0606" }: props) => {
   return (
     <svg
       width="16"
