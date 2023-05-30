@@ -28,6 +28,7 @@ import MyCalendar from "../MyCalendar";
 import SearchBar from "./searchBar";
 import { ShareProjectModal } from "../Modals/ShareModal/ShareProjectModal";
 import AddIcon from "../Icons/addIcon";
+import { NewTaskBtn } from "../Modals/NewTask/NewTaskBtn";
 
 const Board = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -136,7 +137,7 @@ const Board = () => {
             </TabPanel>
           </TabPanels>
         </Tabs>
-        <Button
+        {/* <Button
           colorScheme="primary"
           backgroundColor="primary.600"
           position="fixed"
@@ -147,7 +148,18 @@ const Board = () => {
           fontSize="14px"
         >
           تسک جدید
-        </Button>
+        </Button> */}
+        <Box
+          borderRadius="6px"
+          backgroundColor="primary.600"
+          position="fixed"
+          left="50px"
+          bottom="30px"
+          zIndex="50"
+          fontSize="14px"
+        >
+          <NewTaskBtn />
+        </Box>
       </Stack>
     </Box>
   );
