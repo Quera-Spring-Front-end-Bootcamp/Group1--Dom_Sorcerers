@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import {
   Modal,
   ModalBody,
@@ -16,7 +16,6 @@ import {
   Spacer,
   Box,
   Avatar,
-  Select,
   InputRightAddon,
 } from "@chakra-ui/react";
 import { ShareLinkIcon, CLoseIcon } from "../../Icons";
@@ -26,7 +25,7 @@ interface Props {
   isShowModal: boolean;
 }
 export const ShareProjectModal = ({ isShowModal, onCloseModal }: Props) => {
-  const [selected, setSelected] = useState("");
+  // const [selected, setSelected] = useState("");
 
   return (
     <>
