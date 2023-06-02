@@ -1,11 +1,11 @@
 interface Props {
 	color?: string;
 }
-export const PlusIcon = ({ color = "#1E1E1E" }: Props) => {
+export const PlusIconDataCell = ({ color = "#1E1E1E" }: Props) => {
 	return (
 		<svg
-			width="19"
-			height="18"
+			width="15"
+			height="15"
 			viewBox="0 0 19 18"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"

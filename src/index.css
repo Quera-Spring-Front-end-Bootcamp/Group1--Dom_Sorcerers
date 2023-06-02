@@ -1,96 +1,39 @@
 @import url("https://fonts.cdnfonts.com/css/dana");
-
 body {
 	direction: rtl;
 	user-select: none;
 }
-.custom-day-cell {
+.quera-cell {
 	position: relative;
-	width: 100%;
+	right: 0;
 }
-.fc-daygrid-day-number {
-	width: 100%;
-}
-.day-number {
-	padding-right: 5px;
-	position: absolute;
-	bottom: 2px;
-	left: 5px;
+.quera-cell > div > div {
+	max-height: 100% !important;
 	display: flex;
-	flex-direction: row-reverse;
-	width: 100%;
-	flex-grow: 2;
-	justify-content: space-between;
+	flex-direction: column !important;
 }
-.th-header-calendar {
-	border-bottom: none !important;
+.quera-cell > div {
+	display: flex;
+	flex-direction: column-reverse;
+}
+.quera-cell > div a {
+	width: 100%;
+}
+.quera-cell .addEventIcon {
+	/* visibility: hidden; */
+	/* transition: all 500ms ease-in-out; */
+	/* transition-timing-function: ; */
+	display: none;
+}
+.quera-cell:hover .addEventIcon {
+	/* visibility: visible; */
+	display: block;
+}
+.quera-cell.fc-day-today > div {
+	background: #fff !important;
+	border: 1px solid #208d8e !important;
+	z-index: 10;
 }
 .th-header-calendar > div {
 	text-align: right;
 }
-
-/* .td-cell-calendar div.fc-daygrid-day-top a {
-	width: 100%;
-	display: flex;
-	flex-direction: row-reverse;
-}  */
-/* .th-header-calendar div {
-	text-align: right;
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 25px;
-}
-.td-cell-calendar .fc-daygrid-day-top {
-	position: absolute !important;
-	left: 12px;
-	bottom: 5px;
-	color: "#000";
-	font-size: 16px;
-	font-weight: 500;
-}
-.td-cell-calendar .fc-daygrid-day-frame::after {
-	position: absolute;
-	content: "\2542";
-	bottom: 10px;
-	right: 10px;
-	/* left: 10px; */
-/* font-size: 8px; */
-/* width: 15px;/ */
-/* height: 15px;/ */
-/* background: #208d8e; */
-/* display: flex; */
-/* justify-content: center; */
-/* align-items: center; */
-/* color: #fff; */
-/* border-radius: 4px; */
-/* outline: 1px solid #208d8e; */
-/* outline-offset: 2px; */
-/* visibility: hidden; */
-/* padding: 5px; */
-/* box-shadow: 0px 0px 10px #208d8e; */
-/* transition: all 10ms; */
-/* } */
-/* .td-cell-calendar:hover .fc-daygrid-day-frame::after { */
-/* visibility: visible;/ */
-/* } */
-/* .td-cell-calendar:hover { */
-/* outline: 1px solid #208d8e !important; */
-/* z-index: 10000; */
-/* } */
-
-/* .fc .fc-daygrid-day-top {
-  position: absolute;
-  left: 12px;
-  bottom: 5px;
-  color: "#000";
-  font-size: 16px;
-  font-weight: 500;
-}
-.fc-scrollgrid-sync-inner {
-  text-align: right;
-  padding-top: 12px;
-  padding-right: 10px;
-  font-size: 16px;
-  font-weight: 500;
-  color: #000;
-}  */

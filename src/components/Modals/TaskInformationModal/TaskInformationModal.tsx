@@ -3,12 +3,10 @@ import {
 	HStack,
 	Modal,
 	ModalBody,
-	ModalCloseButton,
 	ModalContent,
 	ModalFooter,
 	ModalHeader,
 	ModalOverlay,
-	useDisclosure,
 	Text,
 	Box,
 	Divider,
@@ -21,7 +19,6 @@ import {
 	ArrowLeftIcon,
 	CLoseIcon,
 	CheckBoxButtonIcon,
-	CommentIcon,
 	DotsIcon,
 	FlagIcon,
 	PlayTimeIcon,
@@ -29,6 +26,7 @@ import {
 	UserIcon,
 } from "../../Icons";
 import ShareIcon from "../../Icons/shareIcon";
+
 import { BookmarkIcon } from "../../Icons/BookmarkIcon";
 import { EyeICon } from "../../Icons/EyeICon";
 import { TaskStatus, TaskStatusEnum } from "./TaskStatus";
@@ -51,8 +49,6 @@ export const TaskInformationModal = ({ isOpen, onClose }: Props) => {
 	};
 	return (
 		<>
-			{/* <Button onClick={onOpen}>Open Modal</Button> */}
-
 			<Modal
 				isOpen={isOpen}
 				onClose={onClose}
