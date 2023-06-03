@@ -3,10 +3,12 @@ import {
 	HStack,
 	Modal,
 	ModalBody,
+	ModalCloseButton,
 	ModalContent,
 	ModalFooter,
 	ModalHeader,
 	ModalOverlay,
+	useDisclosure,
 	Text,
 	Box,
 	Divider,
@@ -19,6 +21,7 @@ import {
 	ArrowLeftIcon,
 	CLoseIcon,
 	CheckBoxButtonIcon,
+	CommentIcon,
 	DotsIcon,
 	FlagIcon,
 	PlayTimeIcon,
@@ -28,9 +31,11 @@ import {
 import ShareIcon from "../../Icons/shareIcon";
 
 import { BookmarkIcon } from "../../Icons/BookmarkIcon";
-import { EyeICon } from "../../Icons/EyeICon";
+// import { EyeIcon } from "../../Icons/eyeIcon";
+
 import { TaskStatus, TaskStatusEnum } from "./TaskStatus";
 import CommnentInTaskModal from "./CommnentInTaskModal";
+import { EIcon } from "../../Icons/EIcon";
 interface Props {
 	isOpen: boolean;
 	onClose: () => void;
@@ -49,6 +54,8 @@ export const TaskInformationModal = ({ isOpen, onClose }: Props) => {
 	};
 	return (
 		<>
+			{/* <Button onClick={onOpen}>Open Modal</Button> */}
+
 			<Modal
 				isOpen={isOpen}
 				onClose={onClose}
@@ -246,7 +253,7 @@ export const TaskInformationModal = ({ isOpen, onClose }: Props) => {
 											width: "17px",
 											height: "17px",
 											bg: "#4AB7D8",
-											top: "-15px",
+											top: "-8px",
 											right: "-7px",
 											display: "flex",
 											justifyContent: "center",
@@ -255,7 +262,7 @@ export const TaskInformationModal = ({ isOpen, onClose }: Props) => {
 											padding: "2px",
 										}}
 									>
-										<EyeICon />
+										<EIcon />
 									</Box>
 								</HStack>
 							</HStack>

@@ -13,6 +13,7 @@ import { ColorPalletIcon, EditIcon, MagnifierIcon } from "../Icons";
 import DeleteIcon from "../Icons/deleteIcon";
 import MoreIcon from "../Icons/moreIcon";
 import ColorDataList from "../../data/colorList";
+import FlagIcone from "../Icons/flagIcone";
 
 const TagMenu = () => {
 	const [selected, setSelected] = useState<string>("");
@@ -20,7 +21,9 @@ const TagMenu = () => {
 	const [selected3, setSelected3] = useState<string>("");
 	return (
 		<Menu>
-			<MenuButton width="145px">تگ</MenuButton>
+			<MenuButton>
+				<FlagIcone />
+			</MenuButton>
 			<MenuList minWidth="145px">
 				<InputGroup px="10px" pb="5px">
 					<Input

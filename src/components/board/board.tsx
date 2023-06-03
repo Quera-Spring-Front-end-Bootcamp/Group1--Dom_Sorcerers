@@ -28,6 +28,7 @@ import SearchBar from "./searchBar";
 import { ShareProjectModal } from "../Modals/ShareModal/ShareProjectModal";
 import AddIcon from "../Icons/addIcon";
 import NewCalendar from "../NewCalndar";
+import { NewTaskBtn } from "../Modals/NewTask/NewTaskBtn";
 
 const Board = () => {
 	const [tabIndex, setTabIndex] = useState(0);
@@ -130,40 +131,35 @@ const Board = () => {
 							<SearchBar />
 							<GridBoardView />
 						</TabPanel>
-						<TabPanel
-							overflowY="auto"
-							px="0"
-							py="0"
-							css={{
-								"&::-webkit-scrollbar": {
-									width: "7px",
-								},
-								"&::-webkit-scrollbar-track": {
-									width: "6px",
-								},
-								"&::-webkit-scrollbar-thumb": {
-									background: "#eee",
-									borderRadius: "24px",
-								},
-							}}
-						>
+						<TabPanel overflowY="auto" px="0" py="0">
 							{/* <SearchBar /> */}
 							{tabIndex === 2 && <NewCalendar />}
 						</TabPanel>
 					</TabPanels>
 				</Tabs>
-				<Button
-					colorScheme="primary"
+				{/* <Button
+          colorScheme="primary"
+          backgroundColor="primary.600"
+          position="fixed"
+          left="50px"
+          bottom="30px"
+          leftIcon={<AddIcon />}
+          zIndex="50"
+          fontSize="14px"
+        >
+          تسک جدید
+        </Button> */}
+				<Box
+					borderRadius="6px"
 					backgroundColor="primary.600"
 					position="fixed"
 					left="50px"
 					bottom="30px"
-					leftIcon={<AddIcon />}
 					zIndex="50"
 					fontSize="14px"
 				>
-					تسک جدید
-				</Button>
+					<NewTaskBtn />
+				</Box>
 			</Stack>
 		</Box>
 	);

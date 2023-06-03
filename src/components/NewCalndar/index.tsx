@@ -102,9 +102,9 @@ const NewCalendar = () => {
 				today={today}
 			/>
 			<Box
-				height="calc(100vh - 210px)"
+				height="76vh"
 				background="#fff"
-				marginTop="12px"
+				// marginTop="12px"
 				paddingBottom="10px"
 			>
 				<FullCalendar
