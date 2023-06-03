@@ -4,7 +4,7 @@ import { FlagIcon } from "../Icons";
 import DeleteIcon from "../Icons/deleteIcon";
 import PriorityList from "../../data/priorityList";
 
-interface PriorityMenuProps {}
+
 
 const PriorityMenu = () => {
   return (

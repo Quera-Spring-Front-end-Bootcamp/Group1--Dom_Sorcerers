@@ -24,7 +24,6 @@ import ShareIcon from "../Icons/shareIcon";
 
 import GridBoardView from "./gridBoardView";
 import ListBoardView from "./listBoardView";
-import MyCalendar from "../MyCalendar";
 import SearchBar from "./searchBar";
 import { ShareProjectModal } from "../Modals/ShareModal/ShareProjectModal";
 import AddIcon from "../Icons/addIcon";

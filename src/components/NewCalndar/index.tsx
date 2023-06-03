@@ -47,7 +47,9 @@ const NewCalendar = () => {
 		console.log(
 			refCalnedar.current?.getApi().getDate().toLocaleDateString("fa-ir")
 		);
-		// return () => {};
+		return () => {
+			console.log(refCalnedar);
+		};
 	}, [yearTitle, monthTitle, refCalnedar]);
 	const nexMonth = () => {
 		refCalnedar.current?.getApi().next();
@@ -106,6 +108,7 @@ const NewCalendar = () => {
 				paddingBottom="10px"
 			>
 				<FullCalendar
+					dayHeaderClassNames="my-head-table"
 					headerToolbar={false}
 					ref={refCalnedar}
 					contentHeight="700px"

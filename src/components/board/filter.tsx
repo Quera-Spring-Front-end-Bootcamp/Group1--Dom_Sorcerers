@@ -1,7 +1,5 @@
-interface FilterProps {}
-
 const Filter = () => {
-  return <></>;
+	return <></>;
 };
 
 export default Filter;

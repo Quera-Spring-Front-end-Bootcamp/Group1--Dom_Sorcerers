@@ -176,7 +176,7 @@ const ListBoardView = () => {
                     fontSize="12px"
                     pr="14px"
                   >
-                    {task.members.map((member) => (
+                    {task.members.map((_) => (
                       <Avatar mr="-14px" width="26px" height="26px" />
                     ))}
                   </Flex>

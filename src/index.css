@@ -34,6 +34,9 @@ body {
 	border: 1px solid #208d8e !important;
 	z-index: 10;
 }
-.th-header-calendar > div {
+.my-head-table {
+	border-bottom: none !important;
+}
+.my-head-table > div {
 	text-align: right;
 }
