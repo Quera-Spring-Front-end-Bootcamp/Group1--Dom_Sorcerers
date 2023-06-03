@@ -13,9 +13,8 @@ const SearchBarInFullCalendar = ({ year, month, next, prev, today }: Props) => {
     <Box
       position="sticky"
       zIndex="10"
-      top="0px"
       bg="#FAFBFC"
-      borderTop="1px solid #AAAAAA"
+      borderTop="1px solid #AAAAAAAA"
     >
       {/* <Divider borderColor="#AAAAAA" zIndex="0" mt="1px" /> */}
 

@@ -25,8 +25,6 @@ import DeleteIcon from "../Icons/deleteIcon";
 import TagMenu from "../menus/tagMenu";
 import PriorityMenu from "../menus/priorityMenu";
 
-
-
 const SearchBar = () => {
   const [selected, setSelected] = useState<string>("");
   const [selected2, setSelected2] = useState<string>("");
