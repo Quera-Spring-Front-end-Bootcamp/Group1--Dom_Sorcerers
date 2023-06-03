@@ -22,6 +22,8 @@ import FlagIcone from "../../Icons/flagIcone";
 import AddUserIcon from "../../Icons/addUserIcon";
 import RectangleIcon from "../../Icons/rectangleIcon";
 import { EIcon } from "../../Icons/EIcon";
+import TagMenu from "../../menus/tagMenu";
+import PriorityMenu from "../../menus/priorityMenu";
 
 const inputStyle = {
   height: "220px",
@@ -43,6 +45,7 @@ const submitBtn = {
 };
 const uploadBtn = {
   borderRadius: "4px",
+  border: "solid 1px",
   borderColor: "primary.600",
   padding: "8px",
   bg: "white",
@@ -83,7 +86,7 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
                 width="158px"
                 height="33px"
               ></Input>
-              <Text>یرای</Text>
+              <Text>برای</Text>
               <AddUserIcon />
             </HStack>
             <Textarea
@@ -95,15 +98,17 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
               <Flex alignItems="center">
                 <Text padding="10px"> افزودن پیوست</Text>
                 <Button sx={uploadBtn} leftIcon={<UploadIcon />}>
-                  آپلود فایل{" "}
+                  آپلود فایل
                 </Button>
               </Flex>
             </HStack>
             <HStack alignItems="center" marginTop="15px">
               <Flex gap="10px">
-                <FlagIcone />
+                <TagMenu />
+
                 <CalendartwoIcon />
-                <TagIcon />
+                <PriorityMenu />
+
                 <Box
                   position="relative"
                   _after={{

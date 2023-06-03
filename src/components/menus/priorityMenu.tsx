@@ -3,13 +3,16 @@ import { Text } from "@chakra-ui/react";
 import { FlagIcon } from "../Icons";
 import DeleteIcon from "../Icons/deleteIcon";
 import PriorityList from "../../data/priorityList";
+import TagIcon from "../Icons/tagIcon";
 
 interface PriorityMenuProps {}
 
 const PriorityMenu = () => {
   return (
     <Menu>
-      <MenuButton width="145px">اولویت</MenuButton>
+      <MenuButton>
+        <TagIcon />
+      </MenuButton>
       <MenuList minWidth="145px">
         {PriorityList.map((data) => (
           <MenuItem bgColor="white" _hover={{ bgColor: "white" }}>

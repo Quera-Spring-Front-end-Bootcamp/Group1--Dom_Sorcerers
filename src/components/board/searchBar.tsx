@@ -189,14 +189,6 @@ const SearchBar = () => {
             </PopoverBody>
           </PopoverContent>
         </Popover>
-
-        {/* ********** tag menu *************** */}
-
-        <TagMenu />
-
-        {/* **************** priority menu ***************** */}
-
-        <PriorityMenu />
       </HStack>
 
       <Divider borderColor="#AAAAAA" mb="20px" />

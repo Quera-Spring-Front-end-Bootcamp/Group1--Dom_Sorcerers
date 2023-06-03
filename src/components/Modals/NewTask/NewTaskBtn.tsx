@@ -1,6 +1,6 @@
-import { AddIcon } from "@chakra-ui/icons";
 import { HStack, Button, useDisclosure } from "@chakra-ui/react";
 import NewTaskModal from "./NewTaskModal";
+import { PlusIcon } from "../../Icons";
 
 export const NewTaskBtn = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -20,7 +20,7 @@ export const NewTaskBtn = () => {
         <Button
           colorScheme="primary"
           backgroundColor="primary.600"
-          leftIcon={<AddIcon />}
+          leftIcon={<PlusIcon color="white" />}
           fontSize="14px"
         >
           تسک جدید

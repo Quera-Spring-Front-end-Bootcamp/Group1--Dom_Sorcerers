@@ -149,15 +149,7 @@ const Board = () => {
         >
           تسک جدید
         </Button> */}
-        <Box
-          borderRadius="6px"
-          backgroundColor="primary.600"
-          position="fixed"
-          left="50px"
-          bottom="30px"
-          zIndex="50"
-          fontSize="14px"
-        >
+        <Box position="fixed" left="50px" bottom="30px" zIndex="50">
           <NewTaskBtn />
         </Box>
       </Stack>
