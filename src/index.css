@@ -29,6 +29,9 @@ body {
 	/* visibility: visible; */
 	display: block;
 }
+.quera-cell.addEventIcon:active {
+	display: block;
+}
 .quera-cell.fc-day-today > div {
 	background: #fff !important;
 	border: 1px solid #208d8e !important;
