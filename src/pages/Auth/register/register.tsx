@@ -12,6 +12,10 @@ import {
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
 import Strings from "../../../data/string";
+import { useState } from "react";
+import authApi from "../../../api/auth";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 const backGroundStyle = {
   backgroundImage: `url(${backGround})`,
@@ -49,6 +53,40 @@ const submitButton = {
 };
 
 const Register = () => {
+  const navigate = useNavigate();
+  const toast = useToast();
+  const [userData, setUserData] = useState({
+    username: "",
+    password: "",
+    email: "",
+  });
+
+  const [checked, setChecked] = useState(false);
+
+  const handleRegister = async () => {
+    try {
+      console.log(userData);
+      const response = await authApi.register(userData);
+      navigate("/");
+      toast({
+        title: "ثبت‌نام موفق",
+        description: "ثبت‌نام شما با موفقیت انجام شد.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+      console.log(response.data);
+    } catch (ex) {
+      toast({
+        title: "خطا",
+        description: "مشکلی پیش آمده است.",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  };
+
   return (
     <Stack sx={backGroundStyle}>
       <Header
@@ -69,21 +107,48 @@ const Register = () => {
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
             <Text sx={lableStyle}>نام کامل</Text>
-            <Input sx={inputStyle} />
+            <Input
+              sx={inputStyle}
+              onChange={(e) =>
+                setUserData({ ...userData, username: e.target.value })
+              }
+            />
 
             <Text sx={lableStyle} mt="20px">
               ایمیل
             </Text>
-            <Input sx={inputStyle} />
+            <Input
+              sx={inputStyle}
+              onChange={(e) =>
+                setUserData({ ...userData, email: e.target.value })
+              }
+            />
 
             <Text sx={lableStyle} mt="20px">
               رمز عبور
             </Text>
-            <Input sx={inputStyle} />
+            <Input
+              sx={inputStyle}
+              onChange={(e) =>
+                setUserData({ ...userData, password: e.target.value })
+              }
+            />
 
-            <Checkbox mt="20px">قوانین و مقرارت را میپذریم.</Checkbox>
+            <Checkbox
+              mt="20px"
+              onChange={(e) => {
+                setChecked(e.target.checked);
+              }}
+            >
+              قوانین و مقرارت را میپذریم.
+            </Checkbox>
 
-            <Button sx={submitButton} colorScheme="teal" variant="solid">
+            <Button
+              onClick={handleRegister}
+              sx={submitButton}
+              colorScheme="teal"
+              variant="solid"
+            >
               ثبت‌نام
             </Button>
             <Stack
