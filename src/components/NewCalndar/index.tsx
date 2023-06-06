@@ -22,12 +22,12 @@ import interactionPlugin from "@fullcalendar/interaction";
 import faLocale from "@fullcalendar/core/locales/fa";
 import { FlagIcon, PlusIcon } from "../Icons";
 
-import { CloseIcon } from "@chakra-ui/icons";
+import { CloseIcon, PlusSquareIcon } from "@chakra-ui/icons";
 
 import SearchBarInFullCalendar from "../board/SearchBarInFullCalendar";
 import { useEffect, useRef, useState } from "react";
 
-const NewCalendar = () => {
+const OriginalCalendar = () => {
   const refCalnedar = useRef<FullCalendar>(null);
   const [yearTitle, setYearTitle] = useState<string | undefined>("");
   const [monthTitle, setMonthTitle] = useState<string | undefined>("");
@@ -130,6 +130,7 @@ const NewCalendar = () => {
                   flexDirection="row-reverse"
                   minW="100%"
                   paddingBottom="5px"
+                  // role="group"
                 >
                   <Text fontSize="16px" fontWeight="500" lineHeight="25px">
                     {props.dayNumberText}
@@ -138,18 +139,39 @@ const NewCalendar = () => {
                     {({ isOpen, onClose }) => (
                       <>
                         <PopoverTrigger>
-                          <div
+                          <Box
                             // onClick={() => alert("aaaaa")}
-                            className="addEventIcon"
+                            width="25px"
+                            height="25px"
                             style={{
-                              background: "#208D8E",
+                              // background: "#208D8E",
                               padding: "2px",
                               borderRadius: "5px",
                               cursor: "pointer",
                             }}
+                            // display="none"
+                            // _hover={{ display: "block" }}
+                            // _groupHover={{ display: "block" }}
                           >
-                            <PlusIcon color="#fff" />
-                          </div>
+                            {/* <PlusIcon color="#fff" /> */}
+                            {!isOpen && (
+                              <PlusSquareIcon
+                                width="25px"
+                                height="25px"
+                                background="#208D8E"
+                                className="addEventIcon"
+                                color="white"
+                              />
+                            )}
+                            {isOpen && (
+                              <PlusSquareIcon
+                                width="25px"
+                                height="25px"
+                                background="#208D8E"
+                                color="white"
+                              />
+                            )}
+                          </Box>
                         </PopoverTrigger>
                         <Portal>
                           <PopoverContent
@@ -238,4 +260,4 @@ const NewCalendar = () => {
   );
 };
 
-export default NewCalendar;
+export default OriginalCalendar;

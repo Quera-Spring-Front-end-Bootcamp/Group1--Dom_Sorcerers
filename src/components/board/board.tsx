@@ -21,15 +21,14 @@ import ListIcon from "../Icons/listIcon";
 import GridIcon from "../Icons/gridIcon";
 import CalenderIcon from "../Icons/calendarIcon";
 import ShareIcon from "../Icons/shareIcon";
-
 import GridBoardView from "./gridBoardView";
 import ListBoardView from "./listBoardView";
 import SearchBar from "./searchBar";
 import { ShareProjectModal } from "../Modals/ShareModal/ShareProjectModal";
 import AddIcon from "../Icons/addIcon";
-import NewCalendar from "../NewCalndar";
 import { NewTaskBtn } from "../Modals/NewTask/NewTaskBtn";
 import SearchBarInFullCalendar from "./SearchBarInFullCalendar";
+import OriginalCalendar from "../NewCalndar";
 
 const Board = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -134,7 +133,7 @@ const Board = () => {
             </TabPanel>
             <TabPanel overflowY="auto" px="0" py="0">
               {/* <SearchBar /> */}
-              {tabIndex === 2 && <NewCalendar />}
+              {tabIndex === 2 && <OriginalCalendar />}
             </TabPanel>
           </TabPanels>
         </Tabs>
