@@ -19,7 +19,7 @@ type CreateUser = {
 };
 
 export function register(user: CreateUser) {
-  return axios.post<CreateUser>("/auth/register", {
+  return axios.post<CreateUser>(apiUrl + "/auth/register", {
     username: user.username,
     email: user.email,
     password: user.password,
