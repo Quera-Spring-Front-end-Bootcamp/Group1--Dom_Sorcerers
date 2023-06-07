@@ -14,42 +14,19 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
+  useToast,
 } from "@chakra-ui/react";
-import TagIcon from "../../Icons/tagIcon";
+import { useState } from "react";
+
 import UploadIcon from "../../Icons/uploadIcon";
 import CalendartwoIcon from "../../Icons/calendartwoIcon";
-import FlagIcone from "../../Icons/flagIcone";
 import AddUserIcon from "../../Icons/addUserIcon";
 import RectangleIcon from "../../Icons/rectangleIcon";
 import { EIcon } from "../../Icons/EIcon";
 import TagMenu from "../../menus/tagMenu";
 import PriorityMenu from "../../menus/priorityMenu";
 
-const inputStyle = {
-  height: "220px",
-  borderColor: "#AAAAAA",
-  marginTop: "30px",
-  alignItems: "flex-start",
-};
-const submitBtn = {
-  background: "#208D8E",
-  color: "#FFFFFF",
-  width: "119px",
-  borderRadius: "4px",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  py: "4px",
-  px: "7px",
-  gap: "10px",
-};
-const uploadBtn = {
-  borderRadius: "4px",
-  border: "solid 1px",
-  borderColor: "primary.600",
-  padding: "8px",
-  bg: "white",
-};
+import taskApi from "../../../api/task";
 
 interface Props {
   onCloseModal: () => void;
@@ -57,6 +34,37 @@ interface Props {
 }
 
 export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
+  const toast = useToast();
+  const [taskData, settaskData] = useState({
+    name: "task name 123",
+    description: "",
+    boardId: "646e905e35066827eebc6c79",
+  });
+
+  const handleCreate = async () => {
+    try {
+      console.log(taskData);
+      const response = await taskApi.creattask(taskData);
+      toast({
+        title: "ثبت‌ موفق",
+        description: "تسک شما با موفقیت ثبت شد.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      console.log(response.data);
+      onCloseModal();
+    } catch (ex) {
+      toast({
+        title: "خطا",
+        description: "مشکلی پیش آمده است.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
   return (
     <>
       <Modal
@@ -92,12 +100,29 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
             <Textarea
               resize="none"
               placeholder="توضیحاتی برای این تسک بنویسید"
-              sx={inputStyle}
+              sx={{
+                height: "220px",
+                borderColor: "#AAAAAA",
+                marginTop: "30px",
+                alignItems: "flex-start",
+              }}
+              onChange={(e) =>
+                settaskData({ ...taskData, description: e.target.value })
+              }
             ></Textarea>
             <HStack py="20px">
               <Flex alignItems="center">
                 <Text padding="10px"> افزودن پیوست</Text>
-                <Button sx={uploadBtn} leftIcon={<UploadIcon />}>
+                <Button
+                  sx={{
+                    borderRadius: "4px",
+                    border: "solid 1px",
+                    borderColor: "primary.600",
+                    padding: "8px",
+                    bg: "white",
+                  }}
+                  leftIcon={<UploadIcon />}
+                >
                   آپلود فایل
                 </Button>
               </Flex>
@@ -132,7 +157,22 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
                 </Box>
               </Flex>
               <Spacer />
-              <Button sx={submitBtn} mr={2}>
+              <Button
+                onClick={handleCreate}
+                sx={{
+                  background: "#208D8E",
+                  color: "#FFFFFF",
+                  width: "119px",
+                  borderRadius: "4px",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  py: "4px",
+                  px: "7px",
+                  gap: "10px",
+                }}
+                mr={2}
+              >
                 ساختن تسک
               </Button>
             </HStack>
