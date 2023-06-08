@@ -12,6 +12,12 @@ import {
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
 import Strings from "../../../data/string";
+import { useState, useEffect } from "react";
+import authApi from "../../../api/auth";
+import { useNavigate, RedirectFunction, redirect } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
+import Board from "../../../components/board/board";
+import Home from "../../home/home";
 
 const backGroundStyle = {
   backgroundImage: `url(${backGround})`,
@@ -55,6 +61,40 @@ const submitButton = {
 };
 
 const Login = () => {
+  const navigate = useNavigate();
+  const toast = useToast();
+  const [userData, setUserData] = useState({
+    username: "",
+    password: "",
+    email: "",
+  });
+
+  const handleLogin = async () => {
+    try {
+      console.log(userData);
+      const response = await authApi.login(userData);
+      toast({
+        title: "ورود موفق",
+        // description: "ثبت‌نام شما با موفقیت انجام شد.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+      navigate("main-page");
+      //  console.log(response);
+    } catch (ex) {
+      toast({
+        title: "خطا",
+        description: "مشکلی پیش آمده است.",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  };
+
+  if (authApi.getCurrentUser()) navigate("main-page");
+
   return (
     <Stack sx={backGroundStyle}>
       <Header
@@ -75,21 +115,36 @@ const Login = () => {
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
             <Text sx={lableStyle}>ایمیل</Text>
-            <Input sx={inputStyle} />
+            <Input
+              sx={inputStyle}
+              onChange={(e) =>
+                setUserData({ ...userData, email: e.target.value })
+              }
+            />
             <Text sx={lableStyle} mt="20px">
               رمز عبور
             </Text>
-            <Input sx={inputStyle} />
+            <Input
+              sx={inputStyle}
+              onChange={(e) =>
+                setUserData({ ...userData, password: e.target.value })
+              }
+            />
             <Link href="/forget">
               <Button sx={forgetButton} color="#208D8E" variant="link">
                 رمز عبور را فراموش کرده‌ای؟
               </Button>
             </Link>
-            <Link href="/">
-              <Button sx={submitButton} colorScheme="teal" variant="solid">
-                ورود
-              </Button>
-            </Link>
+
+            <Button
+              onClick={handleLogin}
+              sx={submitButton}
+              colorScheme="teal"
+              variant="solid"
+            >
+              ورود
+            </Button>
+
             <Stack
               sx={{ justifyContent: "center", alignContent: "center" }}
               direction="row"
