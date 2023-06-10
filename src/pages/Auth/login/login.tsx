@@ -18,6 +18,7 @@ import { useNavigate, RedirectFunction, redirect } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import Board from "../../../components/board/board";
 import Home from "../../home/home";
+import { useAuth } from "../../../context/authContext";
 
 const backGroundStyle = {
   backgroundImage: `url(${backGround})`,
@@ -68,6 +69,7 @@ const Login = () => {
     password: "",
     email: "",
   });
+  const authCtx = useAuth();
 
   const handleLogin = async () => {
     try {
@@ -80,8 +82,7 @@ const Login = () => {
         duration: 9000,
         isClosable: true,
       });
-      navigate("main-page");
-      //  console.log(response);
+      authCtx.setUserToken(response.data.data.accessToken);
     } catch (ex) {
       toast({
         title: "خطا",
@@ -92,8 +93,6 @@ const Login = () => {
       });
     }
   };
-
-  if (authApi.getCurrentUser()) navigate("main-page");
 
   return (
     <Stack sx={backGroundStyle}>

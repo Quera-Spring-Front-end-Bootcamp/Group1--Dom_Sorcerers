@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import authApi from "../../api/auth";
 import Login from "../Auth/login/login";
 import MainPage from "../mainPage/mainPage";
+import { useAuth } from "../../context/authContext";
 
 const Home = () => {
-  const [token, setToken] = useState<string | null>();
-  console.log(token);
-  useEffect(() => {
-    setToken(authApi.getCurrentUser());
-  }, []);
-  return <>{token ? <MainPage /> : <Login />}</>;
+  const authCtx = useAuth();
+  console.log(authCtx.token);
+
+  return <>{!!authCtx.token ? <MainPage /> : <Login />}</>;
 };
 
 export default Home;

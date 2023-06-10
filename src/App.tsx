@@ -13,29 +13,32 @@ import Setting from "./components/profile-main/setting";
 import Home from "./pages/home/home";
 import authApi from "./api/auth";
 import { useState, useEffect } from "react";
+import { AuthProvider } from "./context/authContext";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          {/* <Route index element={<Navigation />} /> */}
-          <Route path="reset" element={<Reset />} />
-          <Route path="forget" element={<Forget />} />
-          <Route path="forgetnotif" element={<ForgetNotif />} />
-          <Route path="register" element={<Register />} />
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* <Route index element={<Navigation />} /> */}
+            <Route path="reset" element={<Reset />} />
+            <Route path="forget" element={<Forget />} />
+            <Route path="forgetnotif" element={<ForgetNotif />} />
+            <Route path="register" element={<Register />} />
 
-          <Route path="profile" element={<ProfilePage />}>
-            <Route index element={<PersonalInfo />} />
-            <Route path="personal-info" element={<PersonalInfo />} />
-            <Route path="account-info" element={<AccountInfo />} />
-            <Route path="setting" element={<Setting />} />
-          </Route>
-          <Route path="main-page" element={<MainPage />} />
-          <Route path="/" element={<Login />} />
-          {/* <Route path="/" element={<Home />} /> */}
-        </Routes>
-      </BrowserRouter>
+            <Route path="profile" element={<ProfilePage />}>
+              <Route index element={<PersonalInfo />} />
+              <Route path="personal-info" element={<PersonalInfo />} />
+              <Route path="account-info" element={<AccountInfo />} />
+              <Route path="setting" element={<Setting />} />
+            </Route>
+            <Route path="main-page" element={<MainPage />} />
+            <Route path="login" element={<Login />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </>
   );
 }
