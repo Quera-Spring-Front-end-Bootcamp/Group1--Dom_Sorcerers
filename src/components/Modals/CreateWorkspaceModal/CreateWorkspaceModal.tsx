@@ -19,6 +19,9 @@ import { ColorForm } from "./ColorForm";
 import { useMultistepForm } from "./useMultistepForm";
 import { NameForm } from "./NameForm";
 import { ArrowBackIcon } from "../../Icons/ArrowBackIcon";
+import workSpaceApi from "../../../api/workSpace";
+import { useToast } from "@chakra-ui/react";
+
 type FormData = {
   spaceName: string;
   Color: string;
@@ -35,37 +38,72 @@ interface Props {
 }
 export const CreateWorkspaceModal = ({ isShowModal, onCloseModal }: Props) => {
   const [data, setData] = useState(INITIAL_DATA);
+  const toast = useToast();
+
   function updateFields(fields: Partial<FormData>) {
     setData((prev) => {
       return { ...prev, ...fields };
     });
   }
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    useMultistepForm([
-      <NameForm {...data} updateFields={updateFields} />,
-      <ColorForm {...data} updateFields={updateFields} />,
-      <ConfirmForm spaceName={data.spaceName} color={data.Color} />,
-    ]);
+  const {
+    steps,
+    currentStepIndex,
+    step,
+    isFirstStep,
+    isLastStep,
+    back,
+    next,
+    goTo,
+  } = useMultistepForm([
+    <NameForm {...data} updateFields={updateFields} />,
+    <ColorForm {...data} updateFields={updateFields} />,
+    <ConfirmForm spaceName={data.spaceName} color={data.Color} />,
+  ]);
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
     if (!isLastStep) return next();
-    alert("Successful workspace Creation");
+    // alert("Successful workspace Creation");
+    try {
+      console.log(data);
+      const response = await workSpaceApi.creatWorkSpace(data);
+      toast({
+        title: "عملیات موفق",
+        description: "ورک اسپیس  با موفقیت ایجاد شد.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+      setData(INITIAL_DATA);
+      goTo(0);
+      onCloseModal();
+      console.log(response);
+    } catch (ex) {
+      toast({
+        title: "خطا",
+        description: "مشکلی پیش آمده است.",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
   }
   // ----------------------------------
   return (
     <>
       <Modal size="6xl" isCentered isOpen={isShowModal} onClose={onCloseModal}>
         <ModalOverlay />
+
         <ModalContent borderRadius="12px" width="500px" padding="20px">
           {/* ////////////////////////////////////HEADER/////////////////////////////////////////////// */}
           <ModalHeader padding="0">
-            <HStack w="100%" alignItems="center" zIndex="10">
+            <HStack w="100%" alignItems="center">
               <Flex
                 _hover={{ cursor: "pointer" }}
                 onClick={onCloseModal}
                 alignItems="center"
                 justifyContent="center"
+                zIndex="10"
               >
                 <CLoseIcon />
               </Flex>
