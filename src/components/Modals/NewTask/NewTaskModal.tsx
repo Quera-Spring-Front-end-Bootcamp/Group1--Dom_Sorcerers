@@ -80,14 +80,23 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
             <HStack>
               <RectangleIcon />
               <Text fontSize="28px" fontWeight="bold">
-                عنوان تسک
+                تسک جدید
               </Text>
             </HStack>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {/* -----------------------------aria----------------------------------------- */}
             <HStack mt="19px">
+              <Text>ایجاد</Text>
+              {/* ____________________________________________________________________________ */}
+              <Input
+                placeholder="عنوان تسک"
+                width="158px"
+                height="33px"
+                onChange={(e) =>
+                  settaskData({ ...taskData, name: e.target.value })
+                }
+              ></Input>
               <Text>در</Text>
               <Input
                 placeholder="پروژه اول"
@@ -136,6 +145,8 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
 
                 <Box
                   position="relative"
+                  width="50px"
+                  height="50px"
                   _after={{
                     position: "absolute",
                     fontSize: "12px",
@@ -144,8 +155,8 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
                     width: "17px",
                     height: "17px",
                     bg: "#4AB7D8",
-                    top: "-8px",
-                    right: "-7px",
+                    top: "-2px",
+                    right: "1px",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
@@ -182,7 +193,6 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
               spacing={2}
               mt="20px"
             ></Stack>
-            {/* -----------------------------aria----------------------------------------- */}
           </ModalBody>
           {/* <ModalFooter></ModalFooter> */}
         </ModalContent>
