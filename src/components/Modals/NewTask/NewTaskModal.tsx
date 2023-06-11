@@ -17,7 +17,6 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
-
 import UploadIcon from "../../Icons/uploadIcon";
 import CalendartwoIcon from "../../Icons/calendartwoIcon";
 import AddUserIcon from "../../Icons/addUserIcon";
@@ -36,15 +35,15 @@ interface Props {
 export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
   const toast = useToast();
   const [taskData, settaskData] = useState({
-    name: "task name 123",
+    name: "",
     description: "",
-    boardId: "646e905e35066827eebc6c79",
+    boardId: "646e905e35066827eebc6c79", //Hard code  data for test
   });
 
   const handleCreate = async () => {
     try {
-      console.log(taskData);
-      const response = await taskApi.creattask(taskData);
+      // console.log(taskData);
+      const response = await taskApi.creatTask(taskData);
       toast({
         title: "ثبت‌ موفق",
         description: "تسک شما با موفقیت ثبت شد.",
@@ -62,6 +61,7 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
         duration: 3000,
         isClosable: true,
       });
+      // console.log(response.data);
     }
   };
 
@@ -99,7 +99,7 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
               ></Input>
               <Text>در</Text>
               <Input
-                placeholder="پروژه اول"
+                placeholder="نام پروژه "
                 width="158px"
                 height="33px"
               ></Input>
@@ -194,7 +194,6 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
               mt="20px"
             ></Stack>
           </ModalBody>
-          {/* <ModalFooter></ModalFooter> */}
         </ModalContent>
       </Modal>
     </>
