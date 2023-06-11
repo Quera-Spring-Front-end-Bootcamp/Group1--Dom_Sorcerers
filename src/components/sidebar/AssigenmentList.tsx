@@ -11,6 +11,7 @@ import AssignmentItem from "./AssignmentItem";
 import { Assigenment } from "../../data/assignment";
 import { useState, useEffect } from "react";
 import workSpaceApi from "../../api/workSpace";
+import { useWorkspace } from "../../context/workspaceContext";
 
 const modalData = [
   { id: 1, title: "ساختن پروژه جدید", icon: SimplePlusIcon },
@@ -20,16 +21,19 @@ const modalData = [
   { id: 5, title: "حذف", icon: TrashIcon },
 ];
 
-// type workSpaceType = {
-//   _id: string;
-//   name: string;
-//   user: string;
-//   members: [];
-//   projects: [];
-// }[];
+type workSpaceType = {
+  _id: string;
+  name: string;
+  user: string;
+  members: object;
+  projects: [];
+}[];
 
 export const AssignmentList = () => {
-  const [workSpace, setWorkSpace] = useState([
+  const workSpaceCtx = useWorkspace();
+  //const workSpace1 = workSpaceCtx.workSpace;
+
+  const [workSpace, setWorkSpace] = useState<workSpaceType>([
     {
       _id: "",
       name: "",
@@ -40,26 +44,25 @@ export const AssignmentList = () => {
   ]);
 
   useEffect(() => {
-    fetchWorkspaces();
-    console.log(workSpace);
+    console.log(workSpaceCtx.workSpace);
+    setWorkSpace(JSON.parse(JSON.stringify(workSpaceCtx.workSpace)));
   }, []);
 
-  const fetchWorkspaces = async () => {
-    const response = await workSpaceApi.getAllWorkSpace();
-    setWorkSpace(response.data.data);
-  };
+  console.log("in assignList:");
+
+  console.log(workSpace);
+
   return (
     <>
       <Accordion allowToggle>
         <Stack gap="12px">
-          {workSpace.map((item) => (
+          {workSpaceCtx.workSpace.map((item) => (
             <AssignmentItem
               key={item._id}
               id={item._id}
               //color={item.color}
               name={item.name}
               // hasSub={item?.hasSub}
-              //subAss={item.subAss}
             />
           ))}
         </Stack>

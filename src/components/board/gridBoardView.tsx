@@ -36,9 +36,10 @@ const GridBoardView = () => {
       pb="90px"
     >
       <HStack alignItems="flex-start" spacing="20px">
-        {tasksData?.map((task) => (
+        {tasksData?.map((task, index) => (
           <Stack>
             <Card
+              key={index}
               boxShadow="0px 2px 8px rgba(0, 0, 0, 0.18)"
               borderRadius="4px"
               borderTop="#F98F2E solid 1px"
@@ -72,8 +73,9 @@ const GridBoardView = () => {
                 </Box>
               </HStack>
             </Card>
-            {tasksData?.map((task) => (
+            {tasksData?.map((task, index) => (
               <Card
+                key={index}
                 p="12px"
                 mb="12px"
                 width="250px"

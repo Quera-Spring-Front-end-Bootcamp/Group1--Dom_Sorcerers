@@ -176,8 +176,13 @@ const ListBoardView = () => {
                     fontSize="12px"
                     pr="14px"
                   >
-                    {task.members.map((_) => (
-                      <Avatar mr="-14px" width="26px" height="26px" />
+                    {task.members.map((_, index) => (
+                      <Avatar
+                        key={index}
+                        mr="-14px"
+                        width="26px"
+                        height="26px"
+                      />
                     ))}
                   </Flex>
                   <Flex

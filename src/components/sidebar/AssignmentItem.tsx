@@ -28,18 +28,31 @@ import {
 import { AssignmentSubItem } from "./AssignmentSubItem";
 import { useState } from "react";
 import { ShareSpaceModal } from "../../components/Modals/ShareModal/ShareSpaceModal";
+import { useWorkspace } from "../../context/workspaceContext";
 
 export interface Props {
   id: string;
   name: string;
+  //onClickAssign : () => void
   //color: string;
   //hasSub?: boolean;
   //subAss?: { subId: number; subTitle: string }[];
 }
 export const AssignmentItem = (ass: Props) => {
+  const workSpaceCtx = useWorkspace();
+
   const [isShowDots, setIsShowDots] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [projects, setProjects] = useState([]);
+
+  //   useEffect(() => {
+  // 	workSpaceCtx.workSpace
+  //   }, []);
+
+  const onClickAssign = () => {
+    workSpaceCtx.setCurrentWorkspaceId(ass.id);
+  };
   return (
     <>
       <AccordionItem border="none" background="none">
@@ -56,7 +69,7 @@ export const AssignmentItem = (ass: Props) => {
               onMouseOut={() => setIsShowDots(false)}
             >
               <HStack width="100%">
-                <HStack>
+                <HStack onClick={onClickAssign}>
                   <Box
                     width="20px"
                     height="20px"
@@ -181,8 +194,8 @@ export const AssignmentItem = (ass: Props) => {
                 </Menu>
               </HStack>
             </AccordionButton>
-            {/* {ass.subAss?.map((subItem) => (
-              <AccordionPanel key={subItem.subId} paddingBottom="0">
+            {/* {ass.projects?.map((subItem) => (
+              <AccordionPanel key={subItem.} paddingBottom="0">
                 <Stack gap="12px">
                   //
                   <AssignmentSubItem
