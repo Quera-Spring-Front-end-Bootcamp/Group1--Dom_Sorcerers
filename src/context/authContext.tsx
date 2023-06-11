@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
 type AuthContextType = {
-  token: string; // Assuming the token is a string or null
+  token: string;
   setUserToken: (token: string) => void;
 };
 type Props = {
