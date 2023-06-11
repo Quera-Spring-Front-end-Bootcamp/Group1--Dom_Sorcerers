@@ -29,6 +29,7 @@ const SearchBar = () => {
   const [selected, setSelected] = useState<string>("");
   const [selected2, setSelected2] = useState<string>("");
   const [selected3, setSelected3] = useState<string>("");
+  const handleSearch = () => {};
   return (
     <>
       <Divider borderColor="#AAAAAA" zIndex="0" mt="1px" />
@@ -37,6 +38,7 @@ const SearchBar = () => {
         <HStack my="8px" h="25px">
           <MagnifierIcon />
           <Input
+            onChange={handleSearch}
             fontSize="12px"
             width="227px"
             border="none"
