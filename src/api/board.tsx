@@ -10,6 +10,11 @@ type boardData = {
   projectid: string;
 };
 
+type renameBoardData = {
+  id: string;
+  newName: string;
+};
+
 export function creatBoard(data: boardData) {
   console.log(data);
   return axios.post<boardData>(apiUrl + "/board/", {
@@ -26,8 +31,18 @@ export function getBoardTasks() {
   return axios.get(apiUrl + "/board/:id/tasks");
 }
 
+export function renameBoard(data: renameBoardData) {
+  return axios.put(apiUrl + `/board/:id`, { name: data.newName });
+}
+
+// export function changeBoardPostion(data: renameBoardData) {
+//   return axios.put(apiUrl + `/board/:id/position/:index`, { name: data.newName });
+// }
+
 export default {
   creatBoard,
   getAllProjectBoards,
   getBoardTasks,
+  renameBoard,
+  // changeBoardPostion,
 };
