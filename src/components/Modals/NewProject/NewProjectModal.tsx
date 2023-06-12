@@ -93,6 +93,7 @@ export default function NewProjectModal({ isShowModal, onCloseModal }: Props) {
               colorScheme="teal"
               variant="solid"
               onClick={handleCreate}
+              marginBottom="20px"
             >
               ساخت پروژه
             </Button>
