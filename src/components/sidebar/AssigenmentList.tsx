@@ -31,31 +31,30 @@ type workSpaceType = {
 
 export const AssignmentList = () => {
   const workSpaceCtx = useWorkspace();
-  //const workSpace1 = workSpaceCtx.workSpace;
 
-  const [workSpace, setWorkSpace] = useState<workSpaceType>([
-    {
-      _id: "",
-      name: "",
-      user: "",
-      members: [],
-      projects: [],
-    },
-  ]);
+  // const [workSpace, setWorkSpace] = useState<workSpaceType>([
+  //   {
+  //     _id: "",
+  //     name: "",
+  //     user: "",
+  //     members: [],
+  //     projects: [],
+  //   },
+  // ]);
 
-  useEffect(() => {
-    console.log(workSpaceCtx.workSpace);
-    setWorkSpace(JSON.parse(JSON.stringify(workSpaceCtx.workSpace)));
-  }, []);
+  // useEffect(() => {
+  //   console.log(workSpaceCtx.workSpace);
+  //   setWorkSpace(JSON.parse(JSON.stringify(workSpaceCtx.workSpace)));
+  // }, []);
 
   console.log("in assignList:");
 
-  console.log(workSpace);
+  console.log(workSpaceCtx.workSpace);
 
   return (
     <>
       <Accordion allowToggle>
-        <Stack gap="12px">
+        <Stack gap="5px">
           {workSpaceCtx.workSpace.map((item) => (
             <AssignmentItem
               key={item._id}

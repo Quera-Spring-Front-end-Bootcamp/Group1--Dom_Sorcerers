@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import TextIcon from "../Icons/textIcon";
 import FlagIcon from "../Icons/flagIcon";
+import { useState } from "react";
 
 const tasksData = [
   {
@@ -66,6 +67,7 @@ const tasksData = [
 ];
 
 const ListBoardView = () => {
+  const [boards, setBoards] = useState([]);
   return (
     <Box
       css={{

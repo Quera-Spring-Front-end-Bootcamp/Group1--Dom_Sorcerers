@@ -17,8 +17,16 @@ type workSpaceType = {
   name: string;
   user: string;
   members: object;
-  projects: object;
+  projects: projectType[];
 }[];
+
+type projectType = {
+  _id: string;
+  name: string;
+  workspace: string;
+  members: [];
+  board: [];
+};
 const WorkspaceContext = createContext<WorkspaceContextType>({
   workSpace: [
     {
@@ -26,7 +34,15 @@ const WorkspaceContext = createContext<WorkspaceContextType>({
       name: "",
       user: "",
       members: [],
-      projects: [],
+      projects: [
+        {
+          _id: "",
+          name: "",
+          workspace: "",
+          members: [],
+          board: [],
+        },
+      ],
     },
   ],
   workSpaceId: "",

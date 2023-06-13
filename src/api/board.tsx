@@ -32,7 +32,7 @@ export function getBoardTasks() {
 }
 
 export function renameBoard(data: renameBoardData) {
-  return axios.put(apiUrl + `/board/:id`, { name: data.newName });
+  return axios.put(apiUrl + `/board/id`, { name: data.newName });
 }
 
 // export function changeBoardPostion(data: renameBoardData) {

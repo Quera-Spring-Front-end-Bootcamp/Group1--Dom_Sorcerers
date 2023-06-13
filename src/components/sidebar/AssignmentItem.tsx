@@ -26,9 +26,10 @@ import {
 } from "../../components/Icons";
 
 import { AssignmentSubItem } from "./AssignmentSubItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ShareSpaceModal } from "../../components/Modals/ShareModal/ShareSpaceModal";
 import { useWorkspace } from "../../context/workspaceContext";
+import projectApi from "../../api/project";
 
 export interface Props {
   id: string;
@@ -38,20 +39,36 @@ export interface Props {
   //hasSub?: boolean;
   //subAss?: { subId: number; subTitle: string }[];
 }
-export const AssignmentItem = (ass: Props) => {
+type projectsType = {
+  _id: string;
+  name: string;
+  workspace: string;
+  members: [];
+  board: [];
+}[];
+export const AssignmentItem = (workspace: Props) => {
   const workSpaceCtx = useWorkspace();
+  const [projects, setProjects] = useState<projectsType>([
+    {
+      _id: "",
+      name: "",
+      workspace: "",
+      members: [],
+      board: [],
+    },
+  ]);
 
   const [isShowDots, setIsShowDots] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [projects, setProjects] = useState([]);
-
-  //   useEffect(() => {
-  // 	workSpaceCtx.workSpace
-  //   }, []);
+  const fetchProject = async () => {
+    const response = await projectApi.getProjectByWorkSpaceId(workspace.id);
+    setProjects(response.data.data);
+  };
 
   const onClickAssign = () => {
-    workSpaceCtx.setCurrentWorkspaceId(ass.id);
+    workSpaceCtx.setCurrentWorkspaceId(workspace.id);
+    fetchProject();
   };
   return (
     <>
@@ -74,10 +91,10 @@ export const AssignmentItem = (ass: Props) => {
                     width="20px"
                     height="20px"
                     borderRadius="4px"
-                    //background={ass.color}
+                    //background={workspace.color}
                   />
                   <Text fontSize="16px" color="#1E1E1E" fontWeight="500">
-                    {ass.name}
+                    {workspace.name}
                   </Text>
                 </HStack>
                 <Spacer />
@@ -85,11 +102,11 @@ export const AssignmentItem = (ass: Props) => {
                 <Menu>
                   {isShowDots && (
                     <MenuButton
-                      //   onClick={(e) => {
-                      //     if (ass.hasSub) {
-                      //       e.stopPropagation();
-                      //     }
-                      //   }}
+                      onClick={(e) => {
+                        if (projects[0]._id) {
+                          e.stopPropagation();
+                        }
+                      }}
                       bg="transparent"
                       _hover={{ bg: "transparent" }}
                       _focusWithin={{ bg: "transparent" }}
@@ -194,18 +211,17 @@ export const AssignmentItem = (ass: Props) => {
                 </Menu>
               </HStack>
             </AccordionButton>
-            {/* {ass.projects?.map((subItem) => (
-              <AccordionPanel key={subItem.} paddingBottom="0">
-                <Stack gap="12px">
-                  //
+            {projects?.map((project) => (
+              <AccordionPanel key={project._id} paddingBottom="0">
+                <Stack gap="0px">
                   <AssignmentSubItem
-                    key={subItem.subId}
-                    subId={subItem.subId}
-                    subTitle={subItem.subTitle}
+                    key={project._id}
+                    id={project._id}
+                    name={project.name}
                   />
                 </Stack>
               </AccordionPanel>
-            ))} */}
+            ))}
           </>
         )}
       </AccordionItem>
