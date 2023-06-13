@@ -32,13 +32,14 @@ export default function NewProjectModal({ isShowModal, onCloseModal }: Props) {
   const workSpaceCtx = useWorkspace();
   const [project, setProject] = useState<createProjectType>({
     name: "",
-    workspaceId: "",
+    workspaceId: workSpaceCtx.workSpaceId,
     members: [],
   });
 
-  useEffect(() => {
-    setProject({ ...project, workspaceId: workSpaceCtx.workSpaceId });
-  }, []);
+  // useEffect(() => {
+  //   setProject({ ...project, workspaceId: workSpaceCtx.workSpaceId });
+  //   console.log(project);
+  // }, []);
 
   const handleCreate = async () => {
     try {

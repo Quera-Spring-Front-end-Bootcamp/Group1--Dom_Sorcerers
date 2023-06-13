@@ -75,9 +75,9 @@ export const AssignmentItem = (workspace: Props) => {
   };
 
   const onClickMenu = (e: React.MouseEvent) => {
-    if (projects[0]._id) {
-      e.stopPropagation();
-    }
+    // if (projects[0]._id) {
+    //   e.stopPropagation();
+    // }
     workSpaceCtx.setCurrentWorkspaceId(workspace.id);
   };
   return (
