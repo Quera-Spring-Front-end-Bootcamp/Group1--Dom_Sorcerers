@@ -2,13 +2,16 @@ import { createContext, useContext, useState, useEffect } from "react";
 import workSpaceApi from "../api/workSpace";
 
 type WorkspaceContextType = {
-  workSpace: workSpaceType;
+  workSpace: workSpaceType | null;
   workSpaceId: string;
-  projectId: string;
-  setAllWorkSpace: (w: workSpaceType) => void;
+  project: projectType | null;
+  boards: boardsType | null;
+  setAllWorkSpace: (w: workSpaceType | null) => void;
   setCurrentWorkspaceId: (id: string) => void;
-  setCurrentProjectId: (id: string) => void;
+  setCurrentProject: (p: projectType | null) => void;
+  setCurrentBoards: (b: boardsType | null) => void;
 };
+
 type Props = {
   children: string | JSX.Element | JSX.Element[];
 };
@@ -27,6 +30,27 @@ type projectType = {
   members: [];
   board: [];
 };
+
+type boardsType = {
+  _id: string;
+  name: string;
+  position: number;
+  project: string;
+  tasks: taskType;
+}[];
+
+type taskType = {
+  _id: string;
+  name: string;
+  description: string;
+  label: [];
+  board: string;
+  taskTags: [];
+  taskAssigns: [];
+  comments: [];
+  position: 1;
+}[];
+
 const WorkspaceContext = createContext<WorkspaceContextType>({
   workSpace: [
     {
@@ -46,14 +70,42 @@ const WorkspaceContext = createContext<WorkspaceContextType>({
     },
   ],
   workSpaceId: "",
-  projectId: "",
+  project: {
+    _id: "",
+    name: "",
+    workspace: "",
+    members: [],
+    board: [],
+  },
+  boards: [
+    {
+      _id: "",
+      name: "",
+      position: 1,
+      project: "",
+      tasks: [
+        {
+          _id: "",
+          name: "",
+          description: "",
+          label: [],
+          board: "",
+          taskTags: [],
+          taskAssigns: [],
+          comments: [],
+          position: 1,
+        },
+      ],
+    },
+  ],
   setAllWorkSpace: () => {},
   setCurrentWorkspaceId: () => {},
-  setCurrentProjectId: () => {},
+  setCurrentProject: () => {},
+  setCurrentBoards: () => {},
 });
 
 export const WorkspaceProvider = ({ children }: Props) => {
-  const [workSpace, setWorkSpace] = useState<workSpaceType>([
+  const [workSpace, setWorkSpace] = useState<workSpaceType | null>([
     {
       _id: "",
       name: "",
@@ -63,41 +115,71 @@ export const WorkspaceProvider = ({ children }: Props) => {
     },
   ]);
   const [workSpaceId, setWorkSpaceId] = useState("");
-  const [projectId, setProjectId] = useState("");
+  const [project, setProject] = useState<projectType | null>({
+    _id: "",
+    name: "",
+    workspace: "",
+    members: [],
+    board: [],
+  });
 
-  const fetchWorkspaces = async () => {
-    const response = await workSpaceApi.getAllWorkSpace();
-    setWorkSpace(JSON.parse(JSON.stringify(response.data.data)));
-    console.log(response.data.data);
-  };
+  const [boards, setBoards] = useState<boardsType | null>([
+    {
+      _id: "",
+      name: "",
+      position: 1,
+      project: "",
+      tasks: [
+        {
+          _id: "",
+          name: "",
+          description: "",
+          label: [],
+          board: "",
+          taskTags: [],
+          taskAssigns: [],
+          comments: [],
+          position: 1,
+        },
+      ],
+    },
+  ]);
 
-  useEffect(() => {
-    fetchWorkspaces();
-  }, []);
+  // const fetchWorkspaces = async () => {
+  //   const response = await workSpaceApi.getAllWorkSpace();
+  //   setWorkSpace(JSON.parse(JSON.stringify(response.data.data)));
+  //   console.log(response.data.data);
+  // };
 
-  const setAllWorkSpace = (w: workSpaceType) => {
-    console.log("in context:");
-    console.log(w);
+  // useEffect(() => {
+  //   fetchWorkspaces();
+  // }, []);
+
+  const setAllWorkSpace = (w: workSpaceType | null) => {
     setWorkSpace(w);
   };
   const setCurrentWorkspaceId = (id: string) => {
     setWorkSpaceId(id);
   };
-  const setCurrentProjectId = (id: string) => {
-    setProjectId(id);
+  const setCurrentProject = (data: projectType | null) => {
+    setProject(data);
   };
-  console.log("in context state:");
-  console.log(workSpace);
-  console.log(workSpaceId);
+
+  const setCurrentBoards = (b: boardsType | null) => {
+    setBoards(b);
+  };
+
   return (
     <WorkspaceContext.Provider
       value={{
         workSpace,
         workSpaceId,
-        projectId,
+        project,
+        boards,
         setAllWorkSpace,
         setCurrentWorkspaceId,
-        setCurrentProjectId,
+        setCurrentProject,
+        setCurrentBoards,
       }}
     >
       {children}

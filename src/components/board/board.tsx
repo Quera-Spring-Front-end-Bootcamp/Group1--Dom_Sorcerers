@@ -25,12 +25,12 @@ import GridBoardView from "./gridBoardView";
 import ListBoardView from "./listBoardView";
 import SearchBar from "./searchBar";
 import { ShareProjectModal } from "../Modals/ShareModal/ShareProjectModal";
-import AddIcon from "../Icons/addIcon";
 import { NewTaskBtn } from "../Modals/NewTask/NewTaskBtn";
-import SearchBarInFullCalendar from "./SearchBarInFullCalendar";
 import OriginalCalendar from "../NewCalndar";
+import { useWorkspace } from "../../context/workspaceContext";
 
 const Board = () => {
+  const workspaceCtx = useWorkspace();
   const [tabIndex, setTabIndex] = useState(0);
   const handleTabsChange = (index: number) => {
     setTabIndex(index);
@@ -58,7 +58,7 @@ const Board = () => {
                   paddingLeft="20px"
                   lineHeight="22px"
                 >
-                  پروژه اول
+                  {workspaceCtx.project?.name}
                 </Text>
               </Stack>
 

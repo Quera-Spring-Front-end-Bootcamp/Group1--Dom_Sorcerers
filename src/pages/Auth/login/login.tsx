@@ -12,12 +12,10 @@ import {
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
 import Strings from "../../../data/string";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import authApi from "../../../api/auth";
-import { useNavigate, RedirectFunction, redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
-import Board from "../../../components/board/board";
-import Home from "../../home/home";
 import { useAuth } from "../../../context/authContext";
 
 const backGroundStyle = {
@@ -62,7 +60,6 @@ const submitButton = {
 };
 
 const Login = () => {
-  const navigate = useNavigate();
   const toast = useToast();
   const [userData, setUserData] = useState({
     username: "",
@@ -83,7 +80,10 @@ const Login = () => {
         isClosable: true,
       });
       authCtx.setUserToken(response.data.data.accessToken);
+      authCtx.setUserAllData(response.data.data.toBeSendUserData);
+      console.log(response.data.data.toBeSendUserData);
     } catch (ex) {
+      console.log(ex);
       toast({
         title: "خطا",
         description: "مشکلی پیش آمده است.",

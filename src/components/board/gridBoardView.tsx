@@ -13,10 +13,11 @@ import FlagIcon from "../Icons/flagIcon";
 import TextIcon from "../Icons/textIcon";
 import CheckIcon from "../Icons/checkIcon";
 import MoreIcon from "../Icons/moreIcon";
-import tasksData from "../../data/tasks";
 import { TaskInformationModal } from "../Modals/TaskInformationModal/TaskInformationModal";
+import { useWorkspace } from "../../context/workspaceContext";
 
 const GridBoardView = () => {
+  const workSpaceCtx = useWorkspace();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box
@@ -36,14 +37,14 @@ const GridBoardView = () => {
       pb="90px"
     >
       <HStack alignItems="flex-start" spacing="20px">
-        {tasksData?.map((task, index) => (
+        {workSpaceCtx.boards?.map((board) => (
           <Stack>
             <Card
-              key={index}
+              key={board._id}
               boxShadow="0px 2px 8px rgba(0, 0, 0, 0.18)"
               borderRadius="4px"
               borderTop="#F98F2E solid 1px"
-              borderTopColor={task.taskCategoryColor}
+              // borderTopColor={task.taskCategoryColor}
               width="250px"
               height="41px"
               px="12px"
@@ -52,7 +53,7 @@ const GridBoardView = () => {
               role="group"
             >
               <HStack justifyContent="flex-start" alignItems="center">
-                <Text>{task.taskCategory}</Text>
+                <Text>{board.name}</Text>
                 <Text
                   px="5px"
                   py="10px"
@@ -73,9 +74,9 @@ const GridBoardView = () => {
                 </Box>
               </HStack>
             </Card>
-            {tasksData?.map((task, index) => (
+            {board.tasks?.map((task) => (
               <Card
-                key={index}
+                key={task._id}
                 p="12px"
                 mb="12px"
                 width="250px"
@@ -91,18 +92,18 @@ const GridBoardView = () => {
                   fontWeight="500"
                   mb="8px"
                 >
-                  {task.taskName}
+                  {workSpaceCtx.project?.name}
                 </Text>
                 <HStack mb="20px">
                   <Text fontSize="12px" fontWeight="500">
-                    {task.taskTitle}
+                    {task.name}
                   </Text>
                   <TextIcon />
                 </HStack>
                 <HStack mb="15px">
                   <FlagIcon />
                   <Text fontSize="10px" fontWeight="500">
-                    {task.taskDeadline}
+                    {/* {task.taskDeadline} */}
                   </Text>
                 </HStack>
                 <HStack spacing="12px">

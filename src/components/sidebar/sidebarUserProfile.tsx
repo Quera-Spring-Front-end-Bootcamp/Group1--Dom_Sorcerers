@@ -1,6 +1,8 @@
-import { Flex, HStack, Text , Link } from "@chakra-ui/react";
+import { Flex, HStack, Text, Link } from "@chakra-ui/react";
+import { useAuth } from "../../context/authContext";
 
 const SidebarUserProfile = () => {
+  const authCtx = useAuth();
   return (
     <HStack gap="8px">
       <Flex
@@ -14,9 +16,10 @@ const SidebarUserProfile = () => {
         <Text>NM</Text>
       </Flex>
       <Link href="profile">
-      <Text fontSize="16px" color="#1E1E1E" fontWeight="500">
-        نیلوفر محمدی
-      </Text>
+        <Text fontSize="16px" color="#1E1E1E" fontWeight="500">
+          {authCtx.userData?.username ||
+            JSON.parse(localStorage.getItem("userData") || "").username}
+        </Text>
       </Link>
     </HStack>
   );

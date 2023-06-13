@@ -11,24 +11,39 @@ import {
   Flex,
   Input,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CLoseIcon } from "../../Icons";
+import projectApi from "../../../api/project";
+import { useWorkspace } from "../../../context/workspaceContext";
 
 interface Props {
   onCloseModal: () => void;
   isShowModal: boolean;
 }
 
+type createProjectType = {
+  name: string;
+  workspaceId: string;
+  members: [];
+};
+
 export default function NewProjectModal({ isShowModal, onCloseModal }: Props) {
   const toast = useToast();
-  const [taskData, settaskData] = useState({
+  const workSpaceCtx = useWorkspace();
+  const [project, setProject] = useState<createProjectType>({
     name: "",
+    workspaceId: "",
+    members: [],
   });
+
+  useEffect(() => {
+    setProject({ ...project, workspaceId: workSpaceCtx.workSpaceId });
+  }, []);
 
   const handleCreate = async () => {
     try {
-      console.log(taskData);
-      // const response = await projectApi.creatTask(taskData);
+      //console.log(taskData);
+      const response = await projectApi.createProject(project);
       toast({
         title: "ثبت‌ موفق",
         description: "پروژه شما با موفقیت ثبت شد.",
@@ -77,13 +92,18 @@ export default function NewProjectModal({ isShowModal, onCloseModal }: Props) {
                 fontWeight="500"
                 color="#000"
               >
-                ساخت پروژه جدید
+                ساخت پروژه جدید{workSpaceCtx.workSpaceId}
               </Text>
             </HStack>
           </ModalHeader>
           <ModalBody>
             <Text marginBottom="15px">نام پروژه</Text>
-            <Input autoFocus required type="text" />
+            <Input
+              autoFocus
+              required
+              type="text"
+              onChange={(e) => setProject({ ...project, name: e.target.value })}
+            />
             <Button
               type="submit"
               background="#208D8E"

@@ -8,10 +8,9 @@ import {
   TrashIcon,
 } from "../Icons";
 import AssignmentItem from "./AssignmentItem";
-import { Assigenment } from "../../data/assignment";
-import { useState, useEffect } from "react";
-import workSpaceApi from "../../api/workSpace";
 import { useWorkspace } from "../../context/workspaceContext";
+import workSpaceApi from "../../api/workSpace";
+import { useEffect } from "react";
 
 const modalData = [
   { id: 1, title: "ساختن پروژه جدید", icon: SimplePlusIcon },
@@ -42,20 +41,23 @@ export const AssignmentList = () => {
   //   },
   // ]);
 
-  // useEffect(() => {
-  //   console.log(workSpaceCtx.workSpace);
-  //   setWorkSpace(JSON.parse(JSON.stringify(workSpaceCtx.workSpace)));
-  // }, []);
+  const fetchWorkspaces = async () => {
+    const response = await workSpaceApi.getAllWorkSpace();
+    workSpaceCtx.setAllWorkSpace(
+      JSON.parse(JSON.stringify(response.data.data))
+    );
+    console.log(response.data.data);
+  };
 
-  console.log("in assignList:");
-
-  console.log(workSpaceCtx.workSpace);
+  useEffect(() => {
+    fetchWorkspaces();
+  }, []);
 
   return (
     <>
       <Accordion allowToggle>
         <Stack gap="5px">
-          {workSpaceCtx.workSpace.map((item) => (
+          {workSpaceCtx.workSpace?.map((item) => (
             <AssignmentItem
               key={item._id}
               id={item._id}

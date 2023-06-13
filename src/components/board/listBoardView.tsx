@@ -8,12 +8,12 @@ import {
   Text,
   HStack,
   Square,
-  Avatar,
   Flex,
 } from "@chakra-ui/react";
 import TextIcon from "../Icons/textIcon";
-import FlagIcon from "../Icons/flagIcon";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import boardApi from "../../api/board";
+import { useWorkspace } from "../../context/workspaceContext";
 
 const tasksData = [
   {
@@ -66,8 +66,51 @@ const tasksData = [
   },
 ];
 
+type boardsType = {
+  _id: string;
+  name: string;
+  position: number;
+  project: string;
+  tasks: taskType;
+}[];
+
+type taskType = {
+  _id: string;
+  name: string;
+  description: string;
+  label: [];
+  board: string;
+  taskTags: [];
+  taskAssigns: [];
+  comments: [];
+  position: 1;
+}[];
+
 const ListBoardView = () => {
-  const [boards, setBoards] = useState([]);
+  const [boards, setBoards] = useState<boardsType | null>();
+  const [projectId, setProjectId] = useState("");
+  const workspaceCtx = useWorkspace();
+  const fetchBoards = async () => {
+    // console.log("projectId");
+    // console.log(workspaceCtx.projectId);
+    if (workspaceCtx.project) {
+      const response = await boardApi.getAllProjectBoards(
+        workspaceCtx.project._id
+      );
+      setBoards(response.data.data);
+      workspaceCtx.setCurrentBoards(response.data.data);
+    }
+  };
+  useEffect(() => {
+    if (workspaceCtx.project) setProjectId(workspaceCtx.project._id);
+    //console.log("projectId");
+    //  console.log(workspaceCtx.project._id);
+  });
+
+  useEffect(() => {
+    if (workspaceCtx.project && workspaceCtx.project._id) fetchBoards();
+  }, [projectId]);
+
   return (
     <Box
       css={{
@@ -86,9 +129,9 @@ const ListBoardView = () => {
       overflowY="auto"
     >
       <Text fontWeight="600" fontSize="20px" pb="15px">
-        پروژه اول
+        {workspaceCtx.project?.name}
       </Text>
-      {tasksData.map((taskData, index) => (
+      {boards?.map((board, index) => (
         <Accordion key={index} allowToggle>
           <AccordionItem mb="30px" border="none">
             <h2>
@@ -101,17 +144,18 @@ const ListBoardView = () => {
                   <Box
                     as="span"
                     textAlign="right"
-                    bgColor={taskData.categoryColor}
+                    //  bgColor={taskData.categoryColor}
+                    bgColor="#F92E8F"
                     p="5px"
                     mx="10px"
                     borderRadius="5px"
                     fontWeight="500"
                     color="white"
                   >
-                    {taskData.category}
+                    {board.name}
                   </Box>
                   <Box as="span" flex="2" textAlign="right" fontSize="12px">
-                    ۲ تسک
+                    {board.tasks.length} تسک
                   </Box>
                 </HStack>
                 <Flex
@@ -149,7 +193,7 @@ const ListBoardView = () => {
               </AccordionButton>
             </h2>
 
-            {taskData.tasks.map((task, index) => (
+            {board.tasks.map((task, index) => (
               <AccordionPanel key={index} pb={4}>
                 <HStack
                   justifyContent="center"
@@ -161,13 +205,14 @@ const ListBoardView = () => {
                   <HStack textAlign="right" flex="2.5">
                     <Square
                       size="16px"
-                      bgColor={taskData.categoryColor}
+                      // bgColor={taskData.categoryColor}
+                      bgColor="#F92E8F"
                       ml="5px"
                       mr="32px"
                       borderRadius="3px"
                     />
                     <Box as="span" textAlign="right" fontSize="12px">
-                      {task.title}
+                      {task.name}
                     </Box>
                   </HStack>
                   <Flex
@@ -178,14 +223,14 @@ const ListBoardView = () => {
                     fontSize="12px"
                     pr="14px"
                   >
-                    {task.members.map((_, index) => (
+                    {/* {task.members.map((_, index) => (
                       <Avatar
                         key={index}
                         mr="-14px"
                         width="26px"
                         height="26px"
                       />
-                    ))}
+                    ))} */}
                   </Flex>
                   <Flex
                     justifyContent="center"
@@ -194,7 +239,7 @@ const ListBoardView = () => {
                     fontWeight="500"
                     fontSize="12px"
                   >
-                    {task.deadline}
+                    {/* {task.deadline} */}
                   </Flex>
                   <Flex
                     justifyContent="center"
@@ -203,7 +248,7 @@ const ListBoardView = () => {
                     fontWeight="500"
                     fontSize="12px"
                   >
-                    {task.priority ? <FlagIcon color="red" /> : null}
+                    {/* {task.priority ? <FlagIcon color="red" /> : null} */}
                   </Flex>
                   <Flex
                     justifyContent="center"

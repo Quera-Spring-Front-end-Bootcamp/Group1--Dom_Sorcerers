@@ -16,6 +16,7 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+
 import {
   ColorPalletIcon,
   EditIcon,
@@ -30,6 +31,7 @@ import { useState, useEffect } from "react";
 import { ShareSpaceModal } from "../../components/Modals/ShareModal/ShareSpaceModal";
 import { useWorkspace } from "../../context/workspaceContext";
 import projectApi from "../../api/project";
+import NewProjectModal from "../../components/Modals/NewProject/NewProjectModal";
 
 export interface Props {
   id: string;
@@ -47,6 +49,8 @@ type projectsType = {
   board: [];
 }[];
 export const AssignmentItem = (workspace: Props) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const modal2 = useDisclosure();
   const workSpaceCtx = useWorkspace();
   const [projects, setProjects] = useState<projectsType>([
     {
@@ -59,16 +63,22 @@ export const AssignmentItem = (workspace: Props) => {
   ]);
 
   const [isShowDots, setIsShowDots] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const fetchProject = async () => {
     const response = await projectApi.getProjectByWorkSpaceId(workspace.id);
     setProjects(response.data.data);
   };
 
-  const onClickAssign = () => {
+  const onClickWorkSpace = () => {
     workSpaceCtx.setCurrentWorkspaceId(workspace.id);
     fetchProject();
+  };
+
+  const onClickMenu = (e: React.MouseEvent) => {
+    if (projects[0]._id) {
+      e.stopPropagation();
+    }
+    workSpaceCtx.setCurrentWorkspaceId(workspace.id);
   };
   return (
     <>
@@ -86,7 +96,7 @@ export const AssignmentItem = (workspace: Props) => {
               onMouseOut={() => setIsShowDots(false)}
             >
               <HStack width="100%">
-                <HStack onClick={onClickAssign}>
+                <HStack onClick={onClickWorkSpace}>
                   <Box
                     width="20px"
                     height="20px"
@@ -102,11 +112,7 @@ export const AssignmentItem = (workspace: Props) => {
                 <Menu>
                   {isShowDots && (
                     <MenuButton
-                      onClick={(e) => {
-                        if (projects[0]._id) {
-                          e.stopPropagation();
-                        }
-                      }}
+                      onClick={(e) => onClickMenu(e)}
                       bg="transparent"
                       _hover={{ bg: "transparent" }}
                       _focusWithin={{ bg: "transparent" }}
@@ -132,7 +138,12 @@ export const AssignmentItem = (workspace: Props) => {
                         >
                           <SimplePlusIcon />
                         </Flex>
-                        <Text fontSize="14px" fontWeight="400" color="#1E1E1E">
+                        <Text
+                          onClick={modal2.onOpen}
+                          fontSize="14px"
+                          fontWeight="400"
+                          color="#1E1E1E"
+                        >
                           ساختن پروژه‌جدید
                         </Text>
                       </MenuItem>
@@ -211,13 +222,20 @@ export const AssignmentItem = (workspace: Props) => {
                 </Menu>
               </HStack>
             </AccordionButton>
+            <NewProjectModal
+              isShowModal={modal2.isOpen}
+              onCloseModal={modal2.onClose}
+            />
             {projects?.map((project) => (
               <AccordionPanel key={project._id} paddingBottom="0">
                 <Stack gap="0px">
                   <AssignmentSubItem
                     key={project._id}
-                    id={project._id}
+                    _id={project._id}
                     name={project.name}
+                    workspace={project.workspace}
+                    members={[]}
+                    board={[]}
                   />
                 </Stack>
               </AccordionPanel>

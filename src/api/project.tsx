@@ -11,10 +11,11 @@ type Data = {
   members: [];
 };
 
-export function creatProject(data: Data) {
-  return axios.post(apiUrl + "/workspace/create", {
+export function createProject(data: Data) {
+  return axios.post(apiUrl + "/projects", {
     name: data.name,
     workspaceId: data.workspaceId,
+    members: [],
   });
 }
 
@@ -27,7 +28,7 @@ export function getProjectByWorkSpaceId(id: string) {
 }
 
 export default {
-  creatProject,
+  createProject,
   getProjectById,
   getProjectByWorkSpaceId,
 };

@@ -36,8 +36,11 @@ const modalData = [
   { id: 5, title: "حذف", icon: TrashIcon },
 ];
 interface projectType {
-  id: string;
+  _id: string;
   name: string;
+  workspace: string;
+  members: [];
+  board: [];
 }
 export const AssignmentSubItem = (project: projectType) => {
   const [isShowDots, setIsShowDots] = useState(false);
@@ -58,7 +61,7 @@ export const AssignmentSubItem = (project: projectType) => {
   //   };
 
   const onClickProject = () => {
-    workSpaceCtx.setCurrentProjectId(project.id);
+    workSpaceCtx.setCurrentProject(project);
     console.log(project.name);
     //fetchProject();
   };
@@ -80,7 +83,7 @@ export const AssignmentSubItem = (project: projectType) => {
               >
                 <HStack
                   width="100%"
-                  key={project.id}
+                  key={project._id}
                   role="group"
                   padding="4px 6px"
                   // background={id === String(item.id) ? "#E9F9FF" : "none"}
