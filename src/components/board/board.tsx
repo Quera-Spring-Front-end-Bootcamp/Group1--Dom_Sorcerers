@@ -99,7 +99,6 @@ const Board = () => {
                   تقویم
                 </Text>
               </Tab>
-
               <Spacer />
 
               <HStack

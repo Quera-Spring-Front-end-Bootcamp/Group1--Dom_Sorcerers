@@ -23,16 +23,16 @@ export function creatBoard(data: boardData) {
   });
 }
 
-export function getAllProjectBoards() {
-  return axios.get(apiUrl + "/board/:projectId");
+export function getAllProjectBoards(projectid: string) {
+  return axios.get(apiUrl + `/board/${projectid}`);
 }
 
-export function getBoardTasks() {
-  return axios.get(apiUrl + "/board/:id/tasks");
+export function getBoardTasks(boardid: string) {
+  return axios.get(apiUrl + `/board/${boardid}/tasks`);
 }
 
 export function renameBoard(data: renameBoardData) {
-  return axios.put(apiUrl + `/board/id`, { name: data.newName });
+  return axios.put(apiUrl + `/board/${data.id}`, { name: data.newName });
 }
 
 // export function changeBoardPostion(data: renameBoardData) {
