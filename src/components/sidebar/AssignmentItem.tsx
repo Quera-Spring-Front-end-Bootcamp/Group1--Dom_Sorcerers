@@ -52,15 +52,7 @@ export const AssignmentItem = (workspace: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const modal2 = useDisclosure();
   const workSpaceCtx = useWorkspace();
-  const [projects, setProjects] = useState<projectsType>([
-    {
-      _id: "",
-      name: "",
-      workspace: "",
-      members: [],
-      board: [],
-    },
-  ]);
+  const [projects, setProjects] = useState<projectsType | null>();
 
   const [isShowDots, setIsShowDots] = useState(false);
 
@@ -74,11 +66,12 @@ export const AssignmentItem = (workspace: Props) => {
     fetchProject();
   };
 
-  const onClickMenu = (e: React.MouseEvent) => {
+  const onClickMenu = () => {
     // if (projects[0]._id) {
     //   e.stopPropagation();
     // }
     workSpaceCtx.setCurrentWorkspaceId(workspace.id);
+    console.log(workspace.id);
   };
   return (
     <>
@@ -112,7 +105,7 @@ export const AssignmentItem = (workspace: Props) => {
                 <Menu>
                   {isShowDots && (
                     <MenuButton
-                      onClick={(e) => onClickMenu(e)}
+                      onClick={onClickMenu}
                       bg="transparent"
                       _hover={{ bg: "transparent" }}
                       _focusWithin={{ bg: "transparent" }}
@@ -223,6 +216,7 @@ export const AssignmentItem = (workspace: Props) => {
               </HStack>
             </AccordionButton>
             <NewProjectModal
+              id={workspace.id}
               isShowModal={modal2.isOpen}
               onCloseModal={modal2.onClose}
             />

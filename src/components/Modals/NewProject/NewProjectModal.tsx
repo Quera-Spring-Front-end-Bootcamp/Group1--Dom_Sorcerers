@@ -19,6 +19,7 @@ import { useWorkspace } from "../../../context/workspaceContext";
 interface Props {
   onCloseModal: () => void;
   isShowModal: boolean;
+  id: string;
 }
 
 type createProjectType = {
@@ -27,24 +28,27 @@ type createProjectType = {
   members: [];
 };
 
-export default function NewProjectModal({ isShowModal, onCloseModal }: Props) {
+export default function NewProjectModal({
+  isShowModal,
+  onCloseModal,
+  id,
+}: Props) {
   const toast = useToast();
   const workSpaceCtx = useWorkspace();
   const [project, setProject] = useState<createProjectType>({
     name: "",
-    workspaceId: workSpaceCtx.workSpaceId,
+    workspaceId: "",
     members: [],
   });
 
-  // useEffect(() => {
-  //   setProject({ ...project, workspaceId: workSpaceCtx.workSpaceId });
-  //   console.log(project);
-  // }, []);
+  useEffect(() => {
+    setProject({ ...project, workspaceId: id });
+    console.log(project);
+  }, []);
 
   const handleCreate = async () => {
     try {
-      //console.log(taskData);
-      const response = await projectApi.createProject(project);
+      await projectApi.createProject(project);
       toast({
         title: "ثبت‌ موفق",
         description: "پروژه شما با موفقیت ثبت شد.",
