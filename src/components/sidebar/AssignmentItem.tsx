@@ -52,7 +52,15 @@ export const AssignmentItem = (workspace: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const modal2 = useDisclosure();
   const workSpaceCtx = useWorkspace();
-  const [projects, setProjects] = useState<projectsType | null>();
+  const [projects, setProjects] = useState<projectsType>([
+    {
+      _id: "",
+      name: "",
+      workspace: "",
+      members: [],
+      board: [],
+    },
+  ]);
 
   const [isShowDots, setIsShowDots] = useState(false);
 
@@ -66,10 +74,9 @@ export const AssignmentItem = (workspace: Props) => {
     fetchProject();
   };
 
-  const onClickMenu = () => {
-    // if (projects[0]._id) {
-    //   e.stopPropagation();
-    // }
+  const onClickMenu = (e: React.MouseEvent) => {
+    e.stopPropagation();
+
     workSpaceCtx.setCurrentWorkspaceId(workspace.id);
     console.log(workspace.id);
   };
@@ -89,133 +96,161 @@ export const AssignmentItem = (workspace: Props) => {
               onMouseOut={() => setIsShowDots(false)}
             >
               <HStack width="100%">
-                <HStack onClick={onClickWorkSpace}>
+                <HStack flex="10" onClick={onClickWorkSpace}>
                   <Box
                     width="20px"
                     height="20px"
                     borderRadius="4px"
                     //background={workspace.color}
                   />
-                  <Text fontSize="16px" color="#1E1E1E" fontWeight="500">
+                  <Text
+                    textAlign="right"
+                    width="100%"
+                    fontSize="16px"
+                    color="#1E1E1E"
+                    fontWeight="500"
+                  >
                     {workspace.name}
                   </Text>
                 </HStack>
-                <Spacer />
 
-                <Menu>
-                  {isShowDots && (
-                    <MenuButton
-                      onClick={onClickMenu}
-                      bg="transparent"
-                      _hover={{ bg: "transparent" }}
-                      _focusWithin={{ bg: "transparent" }}
-                      _active={{ bg: "transparent" }}
-                    >
-                      ...
-                    </MenuButton>
-                  )}
-                  <Portal>
-                    <MenuList
-                      zIndex="1000"
-                      minWidth="184px"
-                      borderRadius="8px"
-                      border="none"
-                      boxShadow="0px 4px 16px rgba(0, 0, 0, 0.16)"
-                    >
-                      <MenuItem gap="10px">
-                        <Flex
-                          width="20px"
-                          height="20px"
-                          justifyContent="center"
-                          alignItems="center"
-                        >
-                          <SimplePlusIcon />
-                        </Flex>
-                        <Text
-                          onClick={modal2.onOpen}
-                          fontSize="14px"
-                          fontWeight="400"
-                          color="#1E1E1E"
-                        >
-                          ساختن پروژه‌جدید
-                        </Text>
-                      </MenuItem>
-                      <MenuItem gap="10px">
-                        <Flex
-                          width="20px"
-                          height="20px"
-                          justifyContent="center"
-                          alignItems="center"
-                        >
-                          <EditIcon />
-                        </Flex>
-                        <Text fontSize="14px" fontWeight="400" color="#1E1E1E">
-                          ویرایش نام‌ورک‌اسپیس
-                        </Text>
-                      </MenuItem>
-                      <MenuItem gap="10px">
-                        <Flex
-                          width="20px"
-                          height="20px"
-                          justifyContent="center"
-                          alignItems="center"
-                        >
-                          <ColorPalletIcon />
-                        </Flex>
-                        <Text fontSize="14px" fontWeight="400" color="#1E1E1E">
-                          ویرایش رنگ
-                        </Text>
-                      </MenuItem>
-                      <MenuItem gap="10px">
-                        <Flex
-                          width="20px"
-                          height="20px"
-                          justifyContent="center"
-                          alignItems="center"
-                        >
-                          <ShareLinkIcon />
-                        </Flex>
-                        <Text fontSize="14px" fontWeight="400" color="#1E1E1E">
-                          کپی لینک
-                        </Text>
-                      </MenuItem>
-                      <MenuItem gap="10px">
-                        <Flex
-                          width="20px"
-                          height="20px"
-                          justifyContent="center"
-                          alignItems="center"
-                        >
-                          <TrashIcon />
-                        </Flex>
-                        <Text fontSize="14px" fontWeight="400" color="#9F0000">
-                          حذف
-                        </Text>
-                      </MenuItem>
-                      <MenuItem _hover={{ bg: "none" }}>
-                        <Button
-                          background="primary.600"
-                          colorScheme="teal"
-                          width="100%"
-                          color="white"
-                          flexDirection="row"
-                          gap="10px"
-                          alignItems="center"
-                          onClick={() => {
-                            // onCloseModal();
-                            onOpen();
-                          }}
-                        >
-                          <ShareButtonIcon />
-                          <Text color="#fff">اشتراک گذاری</Text>
-                        </Button>
-                      </MenuItem>
-                    </MenuList>
-                  </Portal>
-                </Menu>
+                <HStack flex="0.1">
+                  <Menu>
+                    {isShowDots && (
+                      <MenuButton
+                        m="0px"
+                        onClick={(e) => onClickMenu(e)}
+                        bg="transparent"
+                        _hover={{ bg: "transparent" }}
+                        _focusWithin={{ bg: "transparent" }}
+                        _active={{ bg: "transparent" }}
+                      >
+                        ...
+                      </MenuButton>
+                    )}
+                    <Portal>
+                      <MenuList
+                        zIndex="1000"
+                        borderRadius="8px"
+                        border="none"
+                        boxShadow="0px 4px 16px rgba(0, 0, 0, 0.16)"
+                      >
+                        <MenuItem gap="10px">
+                          <Flex
+                            width="20px"
+                            height="20px"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <SimplePlusIcon />
+                          </Flex>
+                          <Text
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              modal2.onOpen();
+                            }}
+                            fontSize="14px"
+                            fontWeight="400"
+                            color="#1E1E1E"
+                          >
+                            ساختن پروژه‌جدید
+                          </Text>
+                        </MenuItem>
+                        <MenuItem gap="10px">
+                          <Flex
+                            width="20px"
+                            height="20px"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <EditIcon />
+                          </Flex>
+                          <Text
+                            fontSize="14px"
+                            fontWeight="400"
+                            color="#1E1E1E"
+                          >
+                            ویرایش نام‌ورک‌اسپیس
+                          </Text>
+                        </MenuItem>
+                        <MenuItem gap="10px">
+                          <Flex
+                            width="20px"
+                            height="20px"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <ColorPalletIcon />
+                          </Flex>
+                          <Text
+                            fontSize="14px"
+                            fontWeight="400"
+                            color="#1E1E1E"
+                          >
+                            ویرایش رنگ
+                          </Text>
+                        </MenuItem>
+                        <MenuItem gap="10px">
+                          <Flex
+                            width="20px"
+                            height="20px"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <ShareLinkIcon />
+                          </Flex>
+                          <Text
+                            fontSize="14px"
+                            fontWeight="400"
+                            color="#1E1E1E"
+                          >
+                            کپی لینک
+                          </Text>
+                        </MenuItem>
+                        <MenuItem gap="10px">
+                          <Flex
+                            width="20px"
+                            height="20px"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <TrashIcon />
+                          </Flex>
+                          <Text
+                            fontSize="14px"
+                            fontWeight="400"
+                            color="#9F0000"
+                          >
+                            حذف
+                          </Text>
+                        </MenuItem>
+                        <MenuItem _hover={{ bg: "none" }}>
+                          <Button
+                            background="primary.600"
+                            colorScheme="teal"
+                            width="100%"
+                            color="white"
+                            flexDirection="row"
+                            gap="10px"
+                            alignItems="center"
+                            onClick={() => {
+                              // onCloseModal();
+                              onOpen();
+                            }}
+                          >
+                            <ShareButtonIcon />
+                            <Text color="#fff">اشتراک گذاری</Text>
+                          </Button>
+                        </MenuItem>
+                      </MenuList>
+                    </Portal>
+                  </Menu>
+                </HStack>
               </HStack>
             </AccordionButton>
             <NewProjectModal
+              projects={projects}
+              setProjects={setProjects}
               id={workspace.id}
               isShowModal={modal2.isOpen}
               onCloseModal={modal2.onClose}

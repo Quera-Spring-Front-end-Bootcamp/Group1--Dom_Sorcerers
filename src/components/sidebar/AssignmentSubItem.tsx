@@ -72,7 +72,7 @@ export const AssignmentSubItem = (project: projectType) => {
           {({ isExpanded }) => (
             <>
               <AccordionButton
-                paddingRight="0"
+                px="10px"
                 paddingTop="6px"
                 paddingBottom="6px"
                 borderRadius="4px"
@@ -85,17 +85,19 @@ export const AssignmentSubItem = (project: projectType) => {
                   width="100%"
                   key={project._id}
                   role="group"
-                  padding="4px 6px"
+                  //padding="4px 6px"
                   // background={id === String(item.id) ? "#E9F9FF" : "none"}
                   // _hover={{ background: "#E9F9FF" }}
                   // _focusWithin={{ background: "#E9F9FF" }}
                   cursor="pointer"
                   borderRadius="4px"
                   justifyContent="space-between"
-                  // onMouseMove={() => setIsShowDots(true)}
-                  // onMouseOut={() => setIsShowDots(false)}
+                  //   onMouseMove={() => setIsShowDots(true)}
+                  //   onMouseOut={() => setIsShowDots(false)}
                 >
                   <Box
+                    textAlign="right"
+                    flex="10"
                     fontSize="16px"
                     fontWeight="500"
                     onClick={onClickProject}
@@ -103,7 +105,7 @@ export const AssignmentSubItem = (project: projectType) => {
                     {project.name}
                   </Box>
                   <Spacer />
-                  <>
+                  <Box flex="0.1">
                     <Menu>
                       {isShowDots && (
                         <MenuButton
@@ -213,7 +215,7 @@ export const AssignmentSubItem = (project: projectType) => {
                         </MenuList>
                       </Portal>
                     </Menu>
-                  </>
+                  </Box>
                 </HStack>
               </AccordionButton>
             </>

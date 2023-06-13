@@ -20,6 +20,8 @@ interface Props {
   onCloseModal: () => void;
   isShowModal: boolean;
   id: string;
+  setProjects: (p: projectsType) => void;
+  projects: projectsType;
 }
 
 type createProjectType = {
@@ -28,10 +30,20 @@ type createProjectType = {
   members: [];
 };
 
+type projectsType = {
+  _id: string;
+  name: string;
+  workspace: string;
+  members: [];
+  board: [];
+}[];
+
 export default function NewProjectModal({
   isShowModal,
   onCloseModal,
   id,
+  projects,
+  setProjects,
 }: Props) {
   const toast = useToast();
   const workSpaceCtx = useWorkspace();
@@ -43,12 +55,24 @@ export default function NewProjectModal({
 
   useEffect(() => {
     setProject({ ...project, workspaceId: id });
+
     console.log(project);
   }, []);
 
   const handleCreate = async () => {
     try {
-      await projectApi.createProject(project);
+      const response = await projectApi.createProject(project);
+      const data = response.data.data;
+      const _project = {
+        _id: data.id,
+        name: data.name,
+        workspace: data.workspace,
+        members: data.members,
+        board: data.boards,
+      };
+      const _projects = [...projects];
+      _projects.push(_project);
+      setProjects(_projects);
       toast({
         title: "ثبت‌ موفق",
         description: "پروژه شما با موفقیت ثبت شد.",
