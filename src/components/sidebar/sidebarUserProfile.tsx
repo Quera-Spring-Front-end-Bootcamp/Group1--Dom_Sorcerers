@@ -22,7 +22,7 @@ const SidebarUserProfile = () => {
         alignItems="center"
         justifyContent="center"
       >
-        <Text>NM</Text>
+        <Text> {username.split(" ").map((word) => word[0])}</Text>
       </Flex>
       <Link href="profile">
         <Text fontSize="16px" color="#1E1E1E" fontWeight="500">

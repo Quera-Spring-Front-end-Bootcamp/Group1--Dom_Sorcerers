@@ -127,8 +127,9 @@ export const CreateWorkspaceModal = ({ isShowModal, onCloseModal }: Props) => {
                   style={{
                     direction: "ltr",
                     position: "absolute",
-                    bottom: "40px",
-                    left: "0.1rem",
+                    bottom: "-30px",
+                    left: "47%",
+                    zIndex: "50",
                   }}
                 >
                   {currentStepIndex + 1} / {steps.length}

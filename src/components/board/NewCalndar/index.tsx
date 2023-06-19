@@ -20,11 +20,11 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import faLocale from "@fullcalendar/core/locales/fa";
-import { FlagIcon, PlusIcon } from "../Icons";
+import { FlagIcon, PlusIcon } from "../../Icons";
 
 import { CloseIcon, PlusSquareIcon } from "@chakra-ui/icons";
 
-import SearchBarInFullCalendar from "../board/SearchBarInFullCalendar";
+import SearchBarInFullCalendar from "../SearchBarInFullCalendar";
 import { useEffect, useRef, useState } from "react";
 
 const OriginalCalendar = () => {

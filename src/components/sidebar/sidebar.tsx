@@ -1,8 +1,7 @@
-import { Stack } from "@chakra-ui/react";
+import { Stack, Text } from "@chakra-ui/react";
 import SidebarLogoutBtn from "./sidebarLogoutBtn";
 import SidebarUserProfile from "./sidebarUserProfile";
 import SidebarWorkSpace from "./sidebarWorkSpace";
-import { Logo } from "../logo";
 const Sidebar = () => {
   return (
     <>
@@ -19,7 +18,16 @@ const Sidebar = () => {
         right="0"
       >
         {/* title */}
-        <Logo />
+        <Text
+          fontWeight="800"
+          fontSize="32px"
+          bgGradient="linear(to-l,#4AB7D8, #118C80)"
+          bgClip="text"
+          textAlign="right"
+          width="100%"
+        >
+          کوئرا تسک منیجر
+        </Text>
         <Stack justifyContent="space-between" h="100%" width="100%">
           {/*Top section*/}
           <SidebarWorkSpace />

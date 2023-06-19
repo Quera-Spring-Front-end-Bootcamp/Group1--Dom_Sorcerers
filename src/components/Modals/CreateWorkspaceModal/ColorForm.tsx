@@ -9,10 +9,6 @@ import {
 } from "@chakra-ui/react";
 import { NoColorIcon } from "../../Icons/NoColorIcon";
 
-type ColorData = {
-  Color: string;
-};
-
 const ColorDataList = [
   {
     ID: 1,
@@ -108,11 +104,16 @@ const ColorDataList = [
   },
 ];
 
+type ColorData = {
+  spaceName: string;
+  Color: string;
+};
+
 type ColorFormProps = ColorData & {
   updateFields: (fields: Partial<ColorData>) => void;
 };
 
-export function ColorForm({ Color, updateFields }: ColorFormProps) {
+export function ColorForm({ spaceName, Color, updateFields }: ColorFormProps) {
   return (
     <VStack align="right" width="100%" gap="10px">
       <Text
@@ -133,7 +134,11 @@ export function ColorForm({ Color, updateFields }: ColorFormProps) {
             color="white"
             borderRadius="5px"
           >
-            ط
+            {/* Showing First Word of Workspace Name */}
+            {spaceName
+              .split(" ")
+              .map((word) => word[0])
+              .join(" ")}
           </Square>
         </Center>
         {/* --------------------small color Square----------------- */}
@@ -153,7 +158,7 @@ export function ColorForm({ Color, updateFields }: ColorFormProps) {
                   </Square>
                 </Center>
               </WrapItem>
-              {/* #######map on Colordata DATA######### */}
+              {/* #######map on ColorData DATA######### */}
               {ColorDataList.map((data) => (
                 <WrapItem>
                   <Center>
@@ -167,12 +172,12 @@ export function ColorForm({ Color, updateFields }: ColorFormProps) {
                   </Center>
                 </WrapItem>
               ))}
+              {/* ###########map END########### */}
             </Wrap>
-            {/* ###########map END########### */}
           </HStack>
         </VStack>
       </HStack>
-      <label>{Color}</label>
+      {/* <label>{Color}</label> */}
     </VStack>
   );
 }
