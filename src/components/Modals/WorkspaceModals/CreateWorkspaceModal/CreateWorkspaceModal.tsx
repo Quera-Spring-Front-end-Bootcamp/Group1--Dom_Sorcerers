@@ -11,15 +11,15 @@ import {
   Stack,
   Box,
 } from "@chakra-ui/react";
-import { CLoseIcon } from "../../Icons";
+import { CLoseIcon } from "../../../Icons";
 // ----------------------------------
 import { FormEvent, useState } from "react";
 import { ConfirmForm } from "./ConfirmForm";
 import { ColorForm } from "./ColorForm";
 import { useMultistepForm } from "./useMultistepForm";
 import { NameForm } from "./NameForm";
-import { ArrowBackIcon } from "../../Icons/ArrowBackIcon";
-import workSpaceApi from "../../../api/workSpace";
+import { ArrowBackIcon } from "../../../Icons/ArrowBackIcon";
+import workSpaceApi from "../../../../api/workSpace";
 import { useToast } from "@chakra-ui/react";
 
 type FormData = {

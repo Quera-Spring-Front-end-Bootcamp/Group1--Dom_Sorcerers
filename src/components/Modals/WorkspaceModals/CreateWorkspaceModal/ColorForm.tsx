@@ -7,7 +7,7 @@ import {
   WrapItem,
   Text,
 } from "@chakra-ui/react";
-import { NoColorIcon } from "../../Icons/NoColorIcon";
+import { NoColorIcon } from "../../../Icons/NoColorIcon";
 
 const ColorDataList = [
   {

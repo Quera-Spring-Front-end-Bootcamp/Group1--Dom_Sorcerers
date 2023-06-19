@@ -31,7 +31,8 @@ import { ShareSpaceModal } from "../../components/Modals/ShareModal/ShareSpaceMo
 import { useWorkspace } from "../../context/workspaceContext";
 import projectApi from "../../api/project";
 import NewProjectModal from "../../components/Modals/NewProject/NewProjectModal";
-import DeleteWorkspaceModal from "../Modals/DeleteWorkspaceModal/DeleteWorkspaceModal";
+import DeleteWorkspaceModal from "../Modals/WorkspaceModals/DeleteWorkspaceModal/DeleteWorkspaceModal";
+import RenameWorkspaceModal from "../Modals/WorkspaceModals/RenameWorkspaceModal/RenameWorkspaceModal";
 
 export interface Props {
   id: string;
@@ -48,8 +49,9 @@ type projectsType = {
 
 export const AssignmentItem = (workspace: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const newProjectmodal = useDisclosure();
-  const deleteModal = useDisclosure();
+  const newProjectmodalDisclosure = useDisclosure();
+  const deleteModalDisclosure = useDisclosure();
+  const renameModalDisclosure = useDisclosure();
   const workSpaceCtx = useWorkspace();
   console.log(workSpaceCtx.workSpaceId);
   const [projects, setProjects] = useState<projectsType>([
@@ -140,7 +142,7 @@ export const AssignmentItem = (workspace: Props) => {
                           gap="10px"
                           onClick={(e) => {
                             e.stopPropagation();
-                            newProjectmodal.onOpen();
+                            newProjectmodalDisclosure.onOpen();
                           }}
                         >
                           <Flex
@@ -159,7 +161,13 @@ export const AssignmentItem = (workspace: Props) => {
                             ساختن پروژه‌جدید
                           </Text>
                         </MenuItem>
-                        <MenuItem gap="10px">
+                        <MenuItem
+                          gap="10px"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            renameModalDisclosure.onOpen();
+                          }}
+                        >
                           <Flex
                             width="20px"
                             height="20px"
@@ -214,7 +222,7 @@ export const AssignmentItem = (workspace: Props) => {
                           gap="10px"
                           onClick={(e) => {
                             e.stopPropagation();
-                            deleteModal.onOpen();
+                            deleteModalDisclosure.onOpen();
                           }}
                         >
                           <Flex
@@ -261,13 +269,18 @@ export const AssignmentItem = (workspace: Props) => {
               projects={projects}
               setProjects={setProjects}
               id={workspace.id}
-              isShowModal={newProjectmodal.isOpen}
-              onCloseModal={newProjectmodal.onClose}
+              isShowModal={newProjectmodalDisclosure.isOpen}
+              onCloseModal={newProjectmodalDisclosure.onClose}
             />
             <DeleteWorkspaceModal
               id={workspace.id}
-              isShowModal={deleteModal.isOpen}
-              onCloseModal={deleteModal.onClose}
+              isShowModal={deleteModalDisclosure.isOpen}
+              onCloseModal={deleteModalDisclosure.onClose}
+            />
+            <RenameWorkspaceModal
+              id={workspace.id}
+              isShowModal={renameModalDisclosure.isOpen}
+              onCloseModal={renameModalDisclosure.onClose}
             />
             {/* ++++++++++++++Show Projects++++++++++++++ */}
             {projects?.map((project) => (

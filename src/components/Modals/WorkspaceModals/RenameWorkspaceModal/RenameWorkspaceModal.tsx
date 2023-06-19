@@ -10,12 +10,10 @@ import {
   useToast,
   Flex,
   ButtonGroup,
+  Input,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
-import { CLoseIcon } from "../../Icons";
-import projectApi from "../../../api/project";
-import workSpace from "../../../api/workSpace";
-import { useWorkspace } from "../../../context/workspaceContext";
+import { CLoseIcon } from "../../../Icons";
+import workSpace from "../../../../api/workSpace";
 
 interface Props {
   isShowModal: boolean;
@@ -23,29 +21,24 @@ interface Props {
   id: string;
 }
 
-type createProjectType = {
+type renameData = {
   name: string;
-  workspaceId: string;
-  members: [];
+  usernameOrId: string;
+  image: string;
 };
 
-export default function DeleteWorkspaceModal({
+export default function RenameWorkspaceModal({
   isShowModal,
   onCloseModal,
   id,
 }: Props) {
   const toast = useToast();
-  const workSpaceCtx = useWorkspace();
-  const [project, setProject] = useState<createProjectType>({
-    name: "",
-    workspaceId: "",
-    members: [],
-  });
-
-  useEffect(() => {
-    setProject({ ...project, workspaceId: id });
-    // console.log(project);
-  }, []);
+  // const workSpaceCtx = useWorkspace();
+  // const [project, setProject] = useState<createProjectType>({
+  //   name: "",
+  //   workspaceId: "",
+  //   members: [],
+  // });
 
   const handleDelete = async () => {
     onCloseModal();
@@ -53,12 +46,12 @@ export default function DeleteWorkspaceModal({
       await workSpace.deleteWorkSpace(id);
       toast({
         title: "ثبت‌ موفق",
-        description: "ورک‌اسپیس با موفقیت حذف شد",
+        description: "تغییر نام با موفقیت انجام شد",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      console.log("Workspace deleted successfully.");
+      console.log("Workspace renamed successfully.");
     } catch (ex) {
       toast({
         title: "خطا",
@@ -99,14 +92,19 @@ export default function DeleteWorkspaceModal({
                 fontWeight="500"
                 color="#000"
               >
-                حذف ورک‌اسپیس
+                تغییر نام ورک‌اسپیس
               </Text>
             </HStack>
           </ModalHeader>
           <ModalBody>
-            <Text marginBottom="0 15px 15px">
-              آیا از پاک کردن ورک‌اسپیس اطمینان دارید؟؟
-            </Text>
+            <Text margin="10px 0 15px">نام جدید ورک اسپیس را وارد کنید:</Text>
+            <Input
+              autoFocus
+              placeholder="اسم قبلی"
+              required
+              type="text"
+              // onChange={(e) => setProject({ ...project, name: e.target.value })}
+            />
             <ButtonGroup>
               <Button
                 type="submit"
@@ -119,7 +117,7 @@ export default function DeleteWorkspaceModal({
                 onClick={onCloseModal}
                 marginBottom="20px"
               >
-                خیر
+                انصراف
               </Button>
               <Button
                 type="submit"
@@ -132,7 +130,7 @@ export default function DeleteWorkspaceModal({
                 onClick={handleDelete}
                 marginBottom="20px"
               >
-                بله
+                ثبت
               </Button>
             </ButtonGroup>
           </ModalBody>

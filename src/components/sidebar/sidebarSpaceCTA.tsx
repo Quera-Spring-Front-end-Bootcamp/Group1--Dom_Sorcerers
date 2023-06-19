@@ -1,6 +1,6 @@
 import { Button, Text, useDisclosure } from "@chakra-ui/react";
 import { PlusIcon } from "../Icons/PlusIcon";
-import { CreateWorkspaceModal } from "../Modals/CreateWorkspaceModal/CreateWorkspaceModal";
+import { CreateWorkspaceModal } from "../Modals/WorkspaceModals/CreateWorkspaceModal/CreateWorkspaceModal";
 const SidebarSpaceCTA = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
