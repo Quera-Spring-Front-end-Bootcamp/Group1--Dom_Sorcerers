@@ -1,45 +1,29 @@
 import { Accordion, Stack } from "@chakra-ui/react";
-
-import {
-  ColorPalletIcon,
-  EditIcon,
-  ShareLinkIcon,
-  SimplePlusIcon,
-  TrashIcon,
-} from "../Icons";
 import AssignmentItem from "./AssignmentItem";
 import { useWorkspace } from "../../context/workspaceContext";
 import workSpaceApi from "../../api/workSpace";
 import { useEffect } from "react";
 
-const modalData = [
-  { id: 1, title: "ساختن پروژه جدید", icon: SimplePlusIcon },
-  { id: 2, title: "ویرایش نام ورک‌اسپیس", icon: EditIcon },
-  { id: 3, title: "ویرایش رنگ", icon: ColorPalletIcon },
-  { id: 4, title: "کپی لینک", icon: ShareLinkIcon },
-  { id: 5, title: "حذف", icon: TrashIcon },
-];
+// type workSpaceType = {
+//   _id: string;
+//   name: string;
+//   user: string;
+//   members: object;
+//   projects: [];
+// }[];
 
-type workSpaceType = {
-  _id: string;
-  name: string;
-  user: string;
-  members: object;
-  projects: [];
-}[];
+// const [workSpace, setWorkSpace] = useState<workSpaceType>([
+//   {
+//     _id: "",
+//     name: "",
+//     user: "",
+//     members: [],
+//     projects: [],
+//   },
+// ]);
 
 export const AssignmentList = () => {
   const workSpaceCtx = useWorkspace();
-
-  // const [workSpace, setWorkSpace] = useState<workSpaceType>([
-  //   {
-  //     _id: "",
-  //     name: "",
-  //     user: "",
-  //     members: [],
-  //     projects: [],
-  //   },
-  // ]);
 
   const fetchWorkspaces = async () => {
     const response = await workSpaceApi.getAllWorkSpace();
@@ -61,7 +45,7 @@ export const AssignmentList = () => {
             <AssignmentItem
               key={item._id}
               id={item._id}
-              //color={item.color}
+              color={"#80DC69"}
               name={item.name}
               // hasSub={item?.hasSub}
             />

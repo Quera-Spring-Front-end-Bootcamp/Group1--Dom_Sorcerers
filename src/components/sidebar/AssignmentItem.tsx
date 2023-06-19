@@ -11,7 +11,6 @@ import {
   MenuItem,
   MenuList,
   Portal,
-  Spacer,
   Stack,
   Text,
   useDisclosure,
@@ -36,8 +35,8 @@ import NewProjectModal from "../../components/Modals/NewProject/NewProjectModal"
 export interface Props {
   id: string;
   name: string;
+  color: string;
   //onClickAssign : () => void
-  //color: string;
   //hasSub?: boolean;
   //subAss?: { subId: number; subTitle: string }[];
 }
@@ -78,7 +77,7 @@ export const AssignmentItem = (workspace: Props) => {
     e.stopPropagation();
 
     workSpaceCtx.setCurrentWorkspaceId(workspace.id);
-    console.log(workspace.id);
+    // console.log(workspace.id);
   };
   return (
     <>
@@ -101,7 +100,7 @@ export const AssignmentItem = (workspace: Props) => {
                     width="20px"
                     height="20px"
                     borderRadius="4px"
-                    //background={workspace.color}
+                    background={workspace.color}
                   />
                   <Text
                     textAlign="right"
