@@ -20,7 +20,12 @@ export function getAllWorkSpace() {
   return axios.get(apiUrl + "/workspace/get-all");
 }
 
+export function deleteWorkSpace(WorkSpaceid: string) {
+  return axios.delete(apiUrl + `/workspace/${WorkSpaceid}`);
+}
+
 export default {
   getAllWorkSpace,
   creatWorkSpace,
+  deleteWorkSpace,
 };

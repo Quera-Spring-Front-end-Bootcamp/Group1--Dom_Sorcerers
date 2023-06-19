@@ -107,15 +107,6 @@ export const CreateWorkspaceModal = ({ isShowModal, onCloseModal }: Props) => {
               >
                 <CLoseIcon />
               </Flex>
-              {/* <Text
-                width="100%"
-                textAlign="center"
-                fontSize="20px"
-                fontWeight="500"
-                color="#000"
-              >
-                ساخت ورک‌اسپیس جدید
-              </Text> */}
             </HStack>
           </ModalHeader>
           {/* //////////////////////////////////////BODY////////////////////////////////////////////// */}

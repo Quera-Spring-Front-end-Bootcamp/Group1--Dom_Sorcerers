@@ -31,14 +31,12 @@ import { ShareSpaceModal } from "../../components/Modals/ShareModal/ShareSpaceMo
 import { useWorkspace } from "../../context/workspaceContext";
 import projectApi from "../../api/project";
 import NewProjectModal from "../../components/Modals/NewProject/NewProjectModal";
+import DeleteWorkspaceModal from "../Modals/DeleteWorkspaceModal/DeleteWorkspaceModal";
 
 export interface Props {
   id: string;
   name: string;
   color: string;
-  //onClickAssign : () => void
-  //hasSub?: boolean;
-  //subAss?: { subId: number; subTitle: string }[];
 }
 type projectsType = {
   _id: string;
@@ -47,10 +45,13 @@ type projectsType = {
   members: [];
   board: [];
 }[];
+
 export const AssignmentItem = (workspace: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const modal2 = useDisclosure();
+  const newProjectmodal = useDisclosure();
+  const deleteModal = useDisclosure();
   const workSpaceCtx = useWorkspace();
+  console.log(workSpaceCtx.workSpaceId);
   const [projects, setProjects] = useState<projectsType>([
     {
       _id: "",
@@ -79,6 +80,7 @@ export const AssignmentItem = (workspace: Props) => {
     workSpaceCtx.setCurrentWorkspaceId(workspace.id);
     // console.log(workspace.id);
   };
+
   return (
     <>
       <AccordionItem border="none" background="none">
@@ -134,7 +136,13 @@ export const AssignmentItem = (workspace: Props) => {
                         border="none"
                         boxShadow="0px 4px 16px rgba(0, 0, 0, 0.16)"
                       >
-                        <MenuItem gap="10px">
+                        <MenuItem
+                          gap="10px"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            newProjectmodal.onOpen();
+                          }}
+                        >
                           <Flex
                             width="20px"
                             height="20px"
@@ -144,10 +152,6 @@ export const AssignmentItem = (workspace: Props) => {
                             <SimplePlusIcon />
                           </Flex>
                           <Text
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              modal2.onOpen();
-                            }}
                             fontSize="14px"
                             fontWeight="400"
                             color="#1E1E1E"
@@ -206,7 +210,13 @@ export const AssignmentItem = (workspace: Props) => {
                             کپی لینک
                           </Text>
                         </MenuItem>
-                        <MenuItem gap="10px">
+                        <MenuItem
+                          gap="10px"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            deleteModal.onOpen();
+                          }}
+                        >
                           <Flex
                             width="20px"
                             height="20px"
@@ -251,9 +261,15 @@ export const AssignmentItem = (workspace: Props) => {
               projects={projects}
               setProjects={setProjects}
               id={workspace.id}
-              isShowModal={modal2.isOpen}
-              onCloseModal={modal2.onClose}
+              isShowModal={newProjectmodal.isOpen}
+              onCloseModal={newProjectmodal.onClose}
             />
+            <DeleteWorkspaceModal
+              id={workspace.id}
+              isShowModal={deleteModal.isOpen}
+              onCloseModal={deleteModal.onClose}
+            />
+            {/* ++++++++++++++Show Projects++++++++++++++ */}
             {projects?.map((project) => (
               <AccordionPanel key={project._id} paddingBottom="0">
                 <Stack gap="0px">
@@ -268,6 +284,7 @@ export const AssignmentItem = (workspace: Props) => {
                 </Stack>
               </AccordionPanel>
             ))}
+            {/* ------------------------Show Projects------------------------ */}
           </>
         )}
       </AccordionItem>
