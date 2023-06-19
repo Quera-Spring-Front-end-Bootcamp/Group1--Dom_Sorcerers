@@ -11,10 +11,8 @@ import {
 } from "@chakra-ui/react";
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
-import Strings from "../../../data/string";
 import { useState } from "react";
 import authApi from "../../../api/auth";
-import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import { useAuth } from "../../../context/authContext";
 
@@ -97,8 +95,8 @@ const Login = () => {
   return (
     <Stack sx={backGroundStyle}>
       <Header
-        linkText={Strings.registerText}
-        btnText={Strings.registerBtn}
+        linkText={"ثبت‌نام نکرده‌ای؟"}
+        btnText={"ثبت نام"}
         path={"/register"}
       />
       <Stack

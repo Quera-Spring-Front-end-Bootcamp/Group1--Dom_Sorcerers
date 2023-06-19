@@ -40,10 +40,9 @@ export default function RenameWorkspaceModal({
   //   members: [],
   // });
 
-  const handleDelete = async () => {
-    onCloseModal();
+  const handleRename = async () => {
     try {
-      await workSpace.deleteWorkSpace(id);
+      // await workSpace.renameWorkSpace(id,);
       toast({
         title: "ثبت‌ موفق",
         description: "تغییر نام با موفقیت انجام شد",
@@ -51,6 +50,7 @@ export default function RenameWorkspaceModal({
         duration: 3000,
         isClosable: true,
       });
+      onCloseModal();
       console.log("Workspace renamed successfully.");
     } catch (ex) {
       toast({
@@ -127,7 +127,7 @@ export default function RenameWorkspaceModal({
                 width="200px"
                 colorScheme="teal"
                 variant="solid"
-                onClick={handleDelete}
+                onClick={handleRename}
                 marginBottom="20px"
               >
                 ثبت

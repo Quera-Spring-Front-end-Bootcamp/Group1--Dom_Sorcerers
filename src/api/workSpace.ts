@@ -32,8 +32,8 @@ export function deleteWorkSpace(WorkSpaceid: string) {
 export function renameWorkSpace(workSpaceID: string, data: renameData) {
   return axios.patch<renameData>(apiUrl + `/workspace/${workSpaceID}`, {
     name: data.name,
-    user: data.usernameOrId,
-    img: data.image,
+    usernameOrId: data.usernameOrId,
+    image: data.image,
   });
 }
 

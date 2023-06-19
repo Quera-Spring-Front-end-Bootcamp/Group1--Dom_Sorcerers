@@ -1,11 +1,9 @@
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
-import { FlagIcon } from "../Icons";
-import DeleteIcon from "../Icons/deleteIcon";
-import PriorityList from "../../data/priorityList";
-import TagIcon from "../Icons/tagIcon";
-
-
+import { FlagIcon } from "../../../Icons";
+import DeleteIcon from "../../../Icons/deleteIcon";
+import PriorityList from "../../../../data/priorityList";
+import TagIcon from "../../../Icons/tagIcon";
 
 const PriorityMenu = () => {
   return (

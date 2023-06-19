@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
-import Strings from "../../../data/string";
 
 const backGroundStyle = {
   backgroundImage: `url(${backGround})`,
@@ -51,8 +50,8 @@ const Reset = () => {
   return (
     <Stack sx={backGroundStyle}>
       <Header
-        linkText={Strings.loginText}
-        btnText={Strings.loginBtn}
+        linkText={"قبلا ثبت‌نام کرده‌ای؟"}
+        btnText={"ورود"}
         path={"/login"}
       />
       <Stack
