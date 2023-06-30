@@ -4,10 +4,12 @@ import {
   Stack,
   Heading,
   CardBody,
-  Text,
   Input,
   Button,
   Checkbox,
+  FormControl,
+  FormLabel,
+  FormHelperText,
 } from "@chakra-ui/react";
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
@@ -87,7 +89,16 @@ const Register = () => {
   };
 
   return (
-    <Stack sx={backGroundStyle}>
+    <Stack
+      sx={backGroundStyle}
+      as="form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (checked) {
+          handleRegister();
+        }
+      }}
+    >
       <Header
         linkText={"قبلا ثبت‌نام کرده‌ای؟"}
         btnText={"ورود"}
@@ -105,57 +116,59 @@ const Register = () => {
             <Heading fontSize="28px">ثبت نام در کوئرا تسک منیجر</Heading>
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
-            <Text sx={lableStyle}>نام کامل</Text>
-            <Input
-              sx={inputStyle}
-              onChange={(e) =>
-                setUserData({ ...userData, username: e.target.value })
-              }
-            />
-
-            <Text sx={lableStyle} mt="20px">
-              ایمیل
-            </Text>
-            <Input
-              sx={inputStyle}
-              onChange={(e) =>
-                setUserData({ ...userData, email: e.target.value })
-              }
-            />
-
-            <Text sx={lableStyle} mt="20px">
-              رمز عبور
-            </Text>
-            <Input
-              sx={inputStyle}
-              onChange={(e) =>
-                setUserData({ ...userData, password: e.target.value })
-              }
-            />
-
-            <Checkbox
-              mt="20px"
-              onChange={(e) => {
-                setChecked(e.target.checked);
-              }}
-            >
-              قوانین و مقرارت را میپذریم.
-            </Checkbox>
-
+            <FormControl isRequired>
+              <FormLabel sx={lableStyle}>نام کامل</FormLabel>
+              <Input
+                sx={inputStyle}
+                onChange={(e) =>
+                  setUserData({ ...userData, username: e.target.value })
+                }
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel sx={lableStyle} mt="20px">
+                ایمیل
+              </FormLabel>
+              <Input
+                sx={inputStyle}
+                onChange={(e) =>
+                  setUserData({ ...userData, email: e.target.value })
+                }
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel sx={lableStyle} mt="20px">
+                رمز عبور
+              </FormLabel>
+              <Input
+                sx={inputStyle}
+                onChange={(e) =>
+                  setUserData({ ...userData, password: e.target.value })
+                }
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <Checkbox
+                mt="20px"
+                onChange={(e) => {
+                  setChecked(e.target.checked);
+                }}
+              >
+                قوانین و مقرارت را میپذریم.
+              </Checkbox>
+              <FormHelperText>
+                {checked ? "" : "قوانین و مقرارت را باید بپذیرید."}
+              </FormHelperText>
+            </FormControl>
             <Button
-              onClick={handleRegister}
+              type="submit"
               sx={submitButton}
               colorScheme="teal"
               variant="solid"
+              disabled={!checked}
             >
               ثبت‌نام
             </Button>
-            <Stack
-              sx={{ justifyContent: "center", alignContent: "center" }}
-              direction="row"
-              spacing={2}
-              mt="20px"
-            ></Stack>
           </CardBody>
         </Card>
       </Stack>
