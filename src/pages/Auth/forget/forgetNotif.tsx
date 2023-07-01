@@ -5,6 +5,7 @@ import {
   Heading,
   CardBody,
   Text,
+  Link,
 } from "@chakra-ui/react";
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
@@ -53,10 +54,12 @@ const ForgetNotif = () => {
             <Heading fontSize="28px">فراموشی رمز عبور</Heading>
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
-            <Text sx={lableStyle}>
-              لینک بازیابی رمز عبور برای شما ایمیل شد. لطفا ایمیل خود را بررسی
-              کنید.
-            </Text>
+            <Link href="reset">
+              <Text sx={lableStyle}>
+                لینک بازیابی رمز عبور برای شما ایمیل شد. لطفا ایمیل خود را بررسی
+                کنید.
+              </Text>
+            </Link>
           </CardBody>
         </Card>
       </Stack>

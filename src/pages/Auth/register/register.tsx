@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import authApi from "../../../api/auth";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
@@ -53,21 +53,25 @@ const submitButton = {
   width: "100%",
 };
 
+type FormData = {
+  username: string;
+  email: string;
+  password: string;
+};
+
 const Register = () => {
   const navigate = useNavigate();
   const toast = useToast();
-  const [userData, setUserData] = useState({
-    username: "",
-    password: "",
-    email: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
-  const [checked, setChecked] = useState(false);
-
-  const handleRegister = async () => {
+  const handleRegister = async (data: FormData) => {
     try {
-      console.log(userData);
-      const response = await authApi.register(userData);
+      console.log(data);
+      const response = await authApi.register(data);
       navigate("/");
       toast({
         title: "ثبت‌نام موفق",
@@ -92,12 +96,7 @@ const Register = () => {
     <Stack
       sx={backGroundStyle}
       as="form"
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (checked) {
-          handleRegister();
-        }
-      }}
+      onSubmit={handleSubmit(handleRegister)}
     >
       <Header
         linkText={"قبلا ثبت‌نام کرده‌ای؟"}
@@ -120,9 +119,7 @@ const Register = () => {
               <FormLabel sx={lableStyle}>نام کامل</FormLabel>
               <Input
                 sx={inputStyle}
-                onChange={(e) =>
-                  setUserData({ ...userData, username: e.target.value })
-                }
+                {...register("username", { required: true })}
               />
             </FormControl>
             <FormControl isRequired>
@@ -131,41 +128,36 @@ const Register = () => {
               </FormLabel>
               <Input
                 sx={inputStyle}
-                onChange={(e) =>
-                  setUserData({ ...userData, email: e.target.value })
-                }
+                {...register("email", {
+                  required: true,
+                  pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
+                })}
               />
+              {errors.email && (
+                <FormLabel color="red">ایمیل معتبر وارد کنید.</FormLabel>
+              )}
             </FormControl>
             <FormControl isRequired>
               <FormLabel sx={lableStyle} mt="20px">
                 رمز عبور
               </FormLabel>
               <Input
+                type="password"
                 sx={inputStyle}
-                onChange={(e) =>
-                  setUserData({ ...userData, password: e.target.value })
-                }
+                {...register("password", { required: true })}
               />
             </FormControl>
             <FormControl isRequired>
-              <Checkbox
-                mt="20px"
-                onChange={(e) => {
-                  setChecked(e.target.checked);
-                }}
-              >
-                قوانین و مقرارت را میپذریم.
-              </Checkbox>
-              <FormHelperText>
-                {checked ? "" : "قوانین و مقرارت را باید بپذیرید."}
-              </FormHelperText>
+              <Checkbox mt="20px">قوانین و مقرارت را میپذریم.</Checkbox>
+              <FormHelperText></FormHelperText>
             </FormControl>
+
             <Button
               type="submit"
               sx={submitButton}
               colorScheme="teal"
               variant="solid"
-              disabled={!checked}
+              disabled={!!errors.email}
             >
               ثبت‌نام
             </Button>

@@ -67,12 +67,12 @@ const Reset = () => {
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
             <Text sx={lableStyle}>پسورد جدید خود را وارد کنید</Text>
-            <Input sx={inputStyle} />
+            <Input sx={inputStyle} type="password" />
 
             <Text sx={lableStyle} mt="20px">
               تایید پسورد
             </Text>
-            <Input sx={inputStyle} />
+            <Input sx={inputStyle} type="password" />
 
             <Button sx={submitButton} colorScheme="teal" variant="solid">
               ذخیره

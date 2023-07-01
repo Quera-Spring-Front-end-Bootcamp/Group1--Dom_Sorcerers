@@ -3,7 +3,7 @@ import http from "./http";
 
 import { apiUrl } from "../config.json";
 
-const apiEndpoint = apiUrl + "/auth/register";
+// const apiEndpoint = apiUrl + "/auth/register";
 const tokenKey = "token";
 
 http.setJwt(getJwt());
@@ -16,6 +16,9 @@ type CreateUser = {
   //   lastname: string;
   //   profile_url: string;
   //   phone: string;
+};
+type Forgetpass = {
+  email: string;
 };
 
 export function register(user: CreateUser) {
@@ -31,7 +34,7 @@ export async function login(user: CreateUser) {
     emailOrUsername: user.email,
     password: user.password,
   });
-  console.log(response.data.data.accessToken);
+  // console.log(response.data.data.accessToken);
   localStorage.setItem(
     tokenKey,
     JSON.stringify(response.data.data.accessToken)
@@ -61,11 +64,18 @@ export function getJwt(): string | null {
   return localStorage.getItem(tokenKey);
 }
 
+export function forget(user: Forgetpass) {
+  return axios.post<Forgetpass>(apiUrl + "/auth/forget-password", {
+    email: user.email,
+  });
+}
+
 export default {
   register,
   getJwt,
   login,
   getCurrentUser,
   logout,
+  forget,
   //   loginWithJwt,
 };
