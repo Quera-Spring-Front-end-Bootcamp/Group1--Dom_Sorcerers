@@ -15,9 +15,8 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
-  ColorPalletIcon,
   EditIcon,
   ShareButtonIcon,
   ShareLinkIcon,
@@ -27,14 +26,8 @@ import {
 import { ShareProjectModal } from "../../components/Modals/ShareModal/ShareProjectModal";
 import { useWorkspace } from "../../context/workspaceContext";
 import projectApi from "../../api/project";
+import NewBoardModal from "../Modals/NewBoard/NewBoardModal";
 
-const modalData = [
-  { id: 1, title: "ساختن پروژه جدید", icon: SimplePlusIcon },
-  { id: 2, title: "ویرایش نام ورک‌اسپیس", icon: EditIcon },
-  { id: 3, title: "ویرایش رنگ", icon: ColorPalletIcon },
-  { id: 4, title: "کپی لینک", icon: ShareLinkIcon },
-  { id: 5, title: "حذف", icon: TrashIcon },
-];
 interface projectType {
   _id: string;
   name: string;
@@ -42,9 +35,11 @@ interface projectType {
   members: [];
   board: [];
 }
+
 export const AssignmentSubItem = (project: projectType) => {
   const [isShowDots, setIsShowDots] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const newBoardmodalDisclosure = useDisclosure();
 
   const workSpaceCtx = useWorkspace();
   //   const [project, setProject] = useState<projectType>({
@@ -59,7 +54,6 @@ export const AssignmentSubItem = (project: projectType) => {
   //     const response = await projectApi.getProjectById(proj.id);
   //     setProject(response.data.data);
   //   };
-
   const onClickProject = () => {
     workSpaceCtx.setCurrentProject(project);
     console.log(project.name);
@@ -125,6 +119,29 @@ export const AssignmentSubItem = (project: projectType) => {
                           border="none"
                           boxShadow="0px 4px 16px rgba(0, 0, 0, 0.16)"
                         >
+                          <MenuItem
+                            gap="10px"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              newBoardmodalDisclosure.onOpen();
+                            }}
+                          >
+                            <Flex
+                              width="20px"
+                              height="20px"
+                              justifyContent="center"
+                              alignItems="center"
+                            >
+                              <SimplePlusIcon />
+                            </Flex>
+                            <Text
+                              fontSize="14px"
+                              fontWeight="400"
+                              color="#1E1E1E"
+                            >
+                              ساختن ستون جدید
+                            </Text>
+                          </MenuItem>
                           <MenuItem gap="10px">
                             <Flex
                               width="20px"
@@ -218,6 +235,11 @@ export const AssignmentSubItem = (project: projectType) => {
                   </Box>
                 </HStack>
               </AccordionButton>
+              <NewBoardModal
+                id={"id"}
+                isShowModal={newBoardmodalDisclosure.isOpen}
+                onCloseModal={newBoardmodalDisclosure.onClose}
+              />
             </>
           )}
         </AccordionItem>
