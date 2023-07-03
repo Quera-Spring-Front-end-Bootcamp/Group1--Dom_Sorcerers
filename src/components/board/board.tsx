@@ -28,8 +28,11 @@ import { ShareProjectModal } from "../Modals/ShareModal/ShareProjectModal";
 import { NewTaskBtn } from "../Modals/NewTask/NewTaskBtn";
 import OriginalCalendar from "./NewCalndar";
 import { useWorkspace } from "../../context/workspaceContext";
+import { AddIcon } from "@chakra-ui/icons";
+import NewTaskModal from "../Modals/NewTask/NewTaskModal";
 
 const Board = () => {
+  const newTaskmodalDisclosure = useDisclosure();
   const workspaceCtx = useWorkspace();
   const [tabIndex, setTabIndex] = useState(0);
   const handleTabsChange = (index: number) => {
@@ -136,7 +139,7 @@ const Board = () => {
             </TabPanel>
           </TabPanels>
         </Tabs>
-        {/* <Button
+        <Button
           colorScheme="primary"
           backgroundColor="primary.600"
           position="fixed"
@@ -145,10 +148,19 @@ const Board = () => {
           leftIcon={<AddIcon />}
           zIndex="50"
           fontSize="14px"
+          onClick={(e) => {
+            e.stopPropagation();
+            newTaskmodalDisclosure.onOpen();
+          }}
         >
           تسک جدید
-        </Button> */}
-        <Box
+        </Button>
+        <NewTaskModal
+          // id={project._id}
+          isShowModal={newTaskmodalDisclosure.isOpen}
+          onCloseModal={newTaskmodalDisclosure.onClose}
+        />
+        {/* <Box
           borderRadius="6px"
           backgroundColor="primary.600"
           position="fixed"
@@ -158,7 +170,7 @@ const Board = () => {
           fontSize="14px"
         >
           <NewTaskBtn />
-        </Box>
+        </Box> */}
       </Stack>
     </Box>
   );

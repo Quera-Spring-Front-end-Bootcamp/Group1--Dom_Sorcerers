@@ -26,13 +26,16 @@ import { EIcon } from "../../Icons/EIcon";
 import TagMenu from "./menus/tagMenu";
 import PriorityMenu from "./menus/priorityMenu";
 import taskApi from "../../../api/task";
+import { getAllProjectBoards } from "../../../api/board";
 
 interface Props {
   onCloseModal: () => void;
   isShowModal: boolean;
+  id: string;
 }
 
-export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
+export default function NewTaskModal({ id, isShowModal, onCloseModal }: Props) {
+  console.log(id);
   const toast = useToast();
   const [taskData, settaskData] = useState({
     name: "",
@@ -199,3 +202,124 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
     </>
   );
 }
+// --------------------------------------------------------------------------------------------------------
+
+// const [boards, setBoards] = useState([]);
+// useEffect(() => {
+//   const fetchBoards = async () => {
+//     try {
+//       const response = await getAllProjectBoards(id);
+//       console.log(id);
+//       setBoards(response.data);
+//     } catch (ex) {
+//       console.log(ex);
+//     }
+//   };
+//   fetchBoards();
+// }, [id]);
+//   const handleCreate = async () => {
+//     try {
+//       const response = await taskApi.creatTask(taskData);
+//       toast({
+//         title: "ثبت‌ موفق",
+//         description: "تسک شما با موفقیت ثبت شد.",
+//         status: "success",
+//         duration: 3000,
+//         isClosable: true,
+//       });
+//       onCloseModal();
+//     } catch (ex) {
+//       toast({
+//         title: "خطا",
+//         description: "مشکلی پیش آمده است.",
+//         status: "error",
+//         duration: 3000,
+//         isClosable: true,
+//       });
+//     }
+//   };
+
+//   return (
+//     <>
+//       <Modal
+//         size="6xl"
+//         isCentered
+//         isOpen={isShowModal}
+//         onClose={onCloseModal}
+//         motionPreset="slideInBottom"
+//       >
+//         <ModalOverlay />
+//         <ModalContent>
+//           <ModalHeader>
+//             <HStack>
+//               <RectangleIcon />
+//               <Text fontSize="xl">ایجاد تسک جدید</Text>
+//             </HStack>
+//           </ModalHeader>
+//           <ModalCloseButton />
+//           <ModalBody>
+//             <Stack spacing="24px">
+//               <Input
+//                 placeholder="عنوان تسک"
+//                 value={taskData.name}
+//                 onChange={(e) =>
+//                   setTaskData({ ...taskData, name: e.target.value })
+//                 }
+//               />
+//               <Textarea
+//                 placeholder="توضیحات"
+//                 value={taskData.description}
+//                 onChange={(e) =>
+//                   setTaskData({ ...taskData, description: e.target.value })
+//                 }
+//               />
+// <Select
+//   placeholder="بورد مورد نظر را انتخاب کنید"
+//   value={taskData.boardId}
+//   onChange={(e) =>
+//     setTaskData({ ...taskData, boardId: e.target.value })
+//   }
+// >
+//   {boards.map((board: any) => (
+//     <option key={board.id} value={board.id}>
+//       {board.name}
+//     </option>
+//   ))}
+// </Select>
+//               <HStack>
+//                 <TagMenu />
+//                 <PriorityMenu />
+//               </HStack>
+//               <Flex>
+//                 <Box>
+//                   <Button leftIcon={<UploadIcon />} variant="ghost">
+//                     آپلود فایل
+//                   </Button>
+//                 </Box>
+//                 <Spacer />
+//                 <Box>
+//                   <Button leftIcon={<CalendartwoIcon />} variant="ghost">
+//                     تاریخ
+//                   </Button>
+//                 </Box>
+//                 <Spacer />
+//                 <Box>
+//                   <Button leftIcon={<AddUserIcon />} variant="ghost">
+//                     افزودن کاربر
+//                   </Button>
+//                 </Box>
+//               </Flex>
+//               <Button
+//                 leftIcon={<EIcon />}
+//                 colorScheme="green"
+//                 onClick={handleCreate}
+//               >
+//                 ایجاد تسک
+//               </Button>
+//             </Stack>
+//           </ModalBody>
+//         </ModalContent>
+//       </Modal>
+//     </>
+//   );
+// }

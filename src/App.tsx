@@ -22,7 +22,6 @@ function App() {
         <WorkspaceProvider>
           <BrowserRouter>
             <Routes>
-              {/* <Route index element={<Navigation />} /> */}
               <Route path="reset" element={<Reset />} />
               <Route path="forget" element={<Forget />} />
               <Route path="forgetnotif" element={<ForgetNotif />} />
@@ -34,6 +33,7 @@ function App() {
                 <Route path="account-info" element={<AccountInfo />} />
                 <Route path="setting" element={<Setting />} />
               </Route>
+
               <Route path="main-page" element={<MainPage />} />
               <Route path="login" element={<Login />} />
               <Route path="loading" element={<Loading />} />

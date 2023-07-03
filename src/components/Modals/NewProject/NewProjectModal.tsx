@@ -55,7 +55,6 @@ export default function NewProjectModal({
 
   useEffect(() => {
     setProject({ ...project, workspaceId: id });
-
     console.log(project);
   }, []);
 

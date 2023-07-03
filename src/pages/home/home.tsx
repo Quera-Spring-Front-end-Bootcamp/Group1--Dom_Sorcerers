@@ -14,18 +14,15 @@ const Home = () => {
     if (token) {
       authCtx.setUserToken(JSON.parse(token));
     }
-
     const setLoadingTimeout = setTimeout(() => {
       setLoading(false);
     }, 100);
 
     return () => clearTimeout(setLoadingTimeout);
   }, [authCtx]);
-
   if (loading) {
     return <Loading />;
   }
-
   return <>{authCtx.token ? <MainPage /> : <Login />}</>;
 };
 

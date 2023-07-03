@@ -26,6 +26,7 @@ import {
 import { ShareProjectModal } from "../../components/Modals/ShareModal/ShareProjectModal";
 import { useWorkspace } from "../../context/workspaceContext";
 import NewBoardModal from "../Modals/NewBoard/NewBoardModal";
+import NewTaskModal from "../Modals/NewTask/NewTaskModal";
 
 interface projectType {
   _id: string;
@@ -39,6 +40,7 @@ export const AssignmentSubItem = (project: projectType) => {
   const [isShowDots, setIsShowDots] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const newBoardmodalDisclosure = useDisclosure();
+  const newTaskmodalDisclosure = useDisclosure();
 
   const workSpaceCtx = useWorkspace();
   //   const [project, setProject] = useState<projectType>({
@@ -56,6 +58,8 @@ export const AssignmentSubItem = (project: projectType) => {
   const onClickProject = () => {
     workSpaceCtx.setCurrentProject(project);
     console.log(project.name);
+    console.log(project._id);
+    console.log(project.board);
     //fetchProject();
   };
   return (
@@ -82,11 +86,11 @@ export const AssignmentSubItem = (project: projectType) => {
                   // background={id === String(item.id) ? "#E9F9FF" : "none"}
                   // _hover={{ background: "#E9F9FF" }}
                   // _focusWithin={{ background: "#E9F9FF" }}
+                  //   onMouseMove={() => setIsShowDots(true)}
+                  //   onMouseOut={() => setIsShowDots(false)}
                   cursor="pointer"
                   borderRadius="4px"
                   justifyContent="space-between"
-                  //   onMouseMove={() => setIsShowDots(true)}
-                  //   onMouseOut={() => setIsShowDots(false)}
                 >
                   <Box
                     textAlign="right"
@@ -141,7 +145,13 @@ export const AssignmentSubItem = (project: projectType) => {
                               ساختن ستون جدید
                             </Text>
                           </MenuItem>
-                          <MenuItem gap="10px">
+                          <MenuItem
+                            gap="10px"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              newTaskmodalDisclosure.onOpen();
+                            }}
+                          >
                             <Flex
                               width="20px"
                               height="20px"
@@ -235,9 +245,14 @@ export const AssignmentSubItem = (project: projectType) => {
                 </HStack>
               </AccordionButton>
               <NewBoardModal
-                id={"id"}
+                id={project._id}
                 isShowModal={newBoardmodalDisclosure.isOpen}
                 onCloseModal={newBoardmodalDisclosure.onClose}
+              />
+              <NewTaskModal
+                id={project._id}
+                isShowModal={newTaskmodalDisclosure.isOpen}
+                onCloseModal={newTaskmodalDisclosure.onClose}
               />
             </>
           )}
