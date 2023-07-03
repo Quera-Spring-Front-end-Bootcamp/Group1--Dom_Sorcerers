@@ -15,6 +15,7 @@ import {
   ModalBody,
   ModalCloseButton,
   useToast,
+  Select,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import UploadIcon from "../../Icons/uploadIcon";
@@ -24,7 +25,6 @@ import RectangleIcon from "../../Icons/rectangleIcon";
 import { EIcon } from "../../Icons/EIcon";
 import TagMenu from "./menus/tagMenu";
 import PriorityMenu from "./menus/priorityMenu";
-
 import taskApi from "../../../api/task";
 
 interface Props {
@@ -98,11 +98,11 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
                 }
               ></Input>
               <Text>در</Text>
-              <Input
-                placeholder="نام پروژه "
-                width="158px"
-                height="33px"
-              ></Input>
+              <Select placeholder="ستون" size="sm" width="200px">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </Select>
               <Text>برای</Text>
               <AddUserIcon />
             </HStack>

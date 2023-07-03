@@ -25,7 +25,6 @@ import {
 } from "../../components/Icons";
 import { ShareProjectModal } from "../../components/Modals/ShareModal/ShareProjectModal";
 import { useWorkspace } from "../../context/workspaceContext";
-import projectApi from "../../api/project";
 import NewBoardModal from "../Modals/NewBoard/NewBoardModal";
 
 interface projectType {

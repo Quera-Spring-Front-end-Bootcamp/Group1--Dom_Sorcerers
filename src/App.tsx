@@ -13,6 +13,7 @@ import Setting from "./components/profile-main/setting";
 import Home from "./pages/home/home";
 import { AuthProvider } from "./context/authContext";
 import { WorkspaceProvider } from "./context/workspaceContext";
+import Loading from "./pages/home/Loading";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               </Route>
               <Route path="main-page" element={<MainPage />} />
               <Route path="login" element={<Login />} />
+              <Route path="loading" element={<Loading />} />
               <Route path="/" element={<Home />} />
             </Routes>
           </BrowserRouter>

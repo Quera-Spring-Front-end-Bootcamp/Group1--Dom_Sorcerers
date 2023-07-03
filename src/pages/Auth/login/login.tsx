@@ -17,7 +17,6 @@ import { useState } from "react";
 import authApi from "../../../api/auth";
 import { useToast } from "@chakra-ui/react";
 import { useAuth } from "../../../context/authContext";
-import { Form } from "react-router-dom";
 
 const backGroundStyle = {
   backgroundImage: `url(${backGround})`,
