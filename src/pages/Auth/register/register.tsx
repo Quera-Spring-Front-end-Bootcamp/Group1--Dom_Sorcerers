@@ -4,14 +4,16 @@ import {
   Stack,
   Heading,
   CardBody,
-  Text,
   Input,
   Button,
   Checkbox,
+  FormControl,
+  FormLabel,
+  FormHelperText,
 } from "@chakra-ui/react";
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import authApi from "../../../api/auth";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
@@ -51,21 +53,25 @@ const submitButton = {
   width: "100%",
 };
 
+type FormData = {
+  username: string;
+  email: string;
+  password: string;
+};
+
 const Register = () => {
   const navigate = useNavigate();
   const toast = useToast();
-  const [userData, setUserData] = useState({
-    username: "",
-    password: "",
-    email: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
-  const [checked, setChecked] = useState(false);
-
-  const handleRegister = async () => {
+  const handleRegister = async (data: FormData) => {
     try {
-      console.log(userData);
-      const response = await authApi.register(userData);
+      console.log(data);
+      const response = await authApi.register(data);
       navigate("/");
       toast({
         title: "ثبت‌نام موفق",
@@ -87,7 +93,11 @@ const Register = () => {
   };
 
   return (
-    <Stack sx={backGroundStyle}>
+    <Stack
+      sx={backGroundStyle}
+      as="form"
+      onSubmit={handleSubmit(handleRegister)}
+    >
       <Header
         linkText={"قبلا ثبت‌نام کرده‌ای؟"}
         btnText={"ورود"}
@@ -105,57 +115,52 @@ const Register = () => {
             <Heading fontSize="28px">ثبت نام در کوئرا تسک منیجر</Heading>
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
-            <Text sx={lableStyle}>نام کامل</Text>
-            <Input
-              sx={inputStyle}
-              onChange={(e) =>
-                setUserData({ ...userData, username: e.target.value })
-              }
-            />
-
-            <Text sx={lableStyle} mt="20px">
-              ایمیل
-            </Text>
-            <Input
-              sx={inputStyle}
-              onChange={(e) =>
-                setUserData({ ...userData, email: e.target.value })
-              }
-            />
-
-            <Text sx={lableStyle} mt="20px">
-              رمز عبور
-            </Text>
-            <Input
-              sx={inputStyle}
-              onChange={(e) =>
-                setUserData({ ...userData, password: e.target.value })
-              }
-            />
-
-            <Checkbox
-              mt="20px"
-              onChange={(e) => {
-                setChecked(e.target.checked);
-              }}
-            >
-              قوانین و مقرارت را میپذریم.
-            </Checkbox>
+            <FormControl isRequired>
+              <FormLabel sx={lableStyle}>نام کامل</FormLabel>
+              <Input
+                sx={inputStyle}
+                {...register("username", { required: true })}
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel sx={lableStyle} mt="20px">
+                ایمیل
+              </FormLabel>
+              <Input
+                sx={inputStyle}
+                {...register("email", {
+                  required: true,
+                  pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
+                })}
+              />
+              {errors.email && (
+                <FormLabel color="red">ایمیل معتبر وارد کنید.</FormLabel>
+              )}
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel sx={lableStyle} mt="20px">
+                رمز عبور
+              </FormLabel>
+              <Input
+                type="password"
+                sx={inputStyle}
+                {...register("password", { required: true })}
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <Checkbox mt="20px">قوانین و مقرارت را میپذریم.</Checkbox>
+              <FormHelperText></FormHelperText>
+            </FormControl>
 
             <Button
-              onClick={handleRegister}
+              type="submit"
               sx={submitButton}
               colorScheme="teal"
               variant="solid"
+              disabled={!!errors.email}
             >
               ثبت‌نام
             </Button>
-            <Stack
-              sx={{ justifyContent: "center", alignContent: "center" }}
-              direction="row"
-              spacing={2}
-              mt="20px"
-            ></Stack>
           </CardBody>
         </Card>
       </Stack>

@@ -1,6 +1,6 @@
+import React, { useState } from "react";
 import {
   Button,
-  HStack,
   Text,
   Modal,
   ModalOverlay,
@@ -11,80 +11,45 @@ import {
   Flex,
   Input,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
-import { CLoseIcon } from "../../Icons";
-import projectApi from "../../../api/project";
-import { useWorkspace } from "../../../context/workspaceContext";
+import boardApi from "../../../api/board";
+import { CloseIcon } from "@chakra-ui/icons";
 
-interface Props {
-  onCloseModal: () => void;
+interface NewBoardModalProps {
   isShowModal: boolean;
+  onCloseModal: () => void;
   id: string;
-  setProjects: (p: projectsType) => void;
-  projects: projectsType;
 }
 
-type createProjectType = {
-  name: string;
-  workspaceId: string;
-  members: [];
-};
-
-type projectsType = {
-  _id: string;
-  name: string;
-  workspace: string;
-  members: [];
-  board: [];
-}[];
-
-export default function NewProjectModal({
+const NewBoardModal: React.FC<NewBoardModalProps> = ({
   isShowModal,
   onCloseModal,
   id,
-  projects,
-  setProjects,
-}: Props) {
+}) => {
+  console.log(id);
   const toast = useToast();
-  const workSpaceCtx = useWorkspace();
-  const [project, setProject] = useState<createProjectType>({
-    name: "",
-    workspaceId: "",
-    members: [],
-  });
-
-  useEffect(() => {
-    setProject({ ...project, workspaceId: id });
-    console.log(project);
-  }, []);
+  const [boardName, setBoardName] = useState("");
 
   const handleCreate = async () => {
     try {
-      const response = await projectApi.createProject(project);
-      const data = response.data.data;
-      const _project = {
-        _id: data.id,
-        name: data.name,
-        workspace: data.workspace,
-        members: data.members,
-        board: data.boards,
-      };
-      const _projects = [...projects];
-      _projects.push(_project);
-      setProjects(_projects);
+      const response = await boardApi.creatBoard({
+        name: boardName,
+        projectid: id,
+        color: "#fffff",
+      });
+
       toast({
-        title: "ثبت‌ موفق",
-        description: "پروژه شما با موفقیت ثبت شد.",
+        title: "ثبت موفق",
+        description: "ستون جدید با موفقیت ایجاد شد.",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      // console.log(response.data);
       onCloseModal();
     } catch (ex) {
+      console.log(ex);
       toast({
         title: "خطا",
-        description: "مشکلی پیش آمده است.",
+        description: "مشکلی در ایجاد ستون جدید پیش آمده است.",
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -103,7 +68,7 @@ export default function NewProjectModal({
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <HStack w="100%" alignItems="center">
+            <Flex w="100%" alignItems="center">
               <Flex
                 _hover={{ cursor: "pointer" }}
                 onClick={onCloseModal}
@@ -111,7 +76,7 @@ export default function NewProjectModal({
                 justifyContent="center"
                 zIndex="10"
               >
-                <CLoseIcon />
+                <CloseIcon />
               </Flex>
               <Text
                 width="100%"
@@ -120,17 +85,17 @@ export default function NewProjectModal({
                 fontWeight="500"
                 color="#000"
               >
-                ساخت پروژه جدید{workSpaceCtx.workSpaceId}
+                ساخت ستون جدید
               </Text>
-            </HStack>
+            </Flex>
           </ModalHeader>
           <ModalBody>
-            <Text marginBottom="15px">نام پروژه</Text>
+            <Text marginBottom="15px">نام ستون</Text>
             <Input
               autoFocus
               required
               type="text"
-              onChange={(e) => setProject({ ...project, name: e.target.value })}
+              onChange={(e) => setBoardName(e.target.value)}
             />
             <Button
               type="submit"
@@ -143,11 +108,13 @@ export default function NewProjectModal({
               onClick={handleCreate}
               marginBottom="20px"
             >
-              ساخت پروژه
+              ساخت ستون
             </Button>
           </ModalBody>
         </ModalContent>
       </Modal>
     </>
   );
-}
+};
+
+export default NewBoardModal;

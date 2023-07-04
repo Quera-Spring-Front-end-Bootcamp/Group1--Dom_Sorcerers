@@ -8,6 +8,7 @@ http.setJwt(getJwt());
 type boardData = {
   name: string;
   projectid: string;
+  color: string;
 };
 
 type renameBoardData = {
@@ -20,10 +21,12 @@ export function creatBoard(data: boardData) {
   return axios.post<boardData>(apiUrl + "/board/", {
     name: data.name,
     projectid: data.projectid,
+    color: data.color,
   });
 }
 
 export function getAllProjectBoards(projectid: string) {
+  console.log(projectid);
   return axios.get(apiUrl + `/board/${projectid}`);
 }
 

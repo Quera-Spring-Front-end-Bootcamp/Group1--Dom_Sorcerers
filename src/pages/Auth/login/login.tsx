@@ -8,6 +8,8 @@ import {
   Input,
   Button,
   Link,
+  FormControl,
+  FormLabel,
 } from "@chakra-ui/react";
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
@@ -93,7 +95,14 @@ const Login = () => {
   };
 
   return (
-    <Stack sx={backGroundStyle}>
+    <Stack
+      sx={backGroundStyle}
+      as="form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleLogin();
+      }}
+    >
       <Header
         linkText={"ثبت‌نام نکرده‌ای؟"}
         btnText={"ثبت نام"}
@@ -111,37 +120,40 @@ const Login = () => {
             <Heading fontSize="28px">به کوئرا تسک منیجر خوش برگشتی :) </Heading>
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
-            <Text sx={lableStyle}>ایمیل</Text>
-            <Input
-              sx={inputStyle}
-              onChange={(e) =>
-                setUserData({ ...userData, email: e.target.value })
-              }
-            />
-            <Text sx={lableStyle} mt="20px">
-              رمز عبور
-            </Text>
-            <Input
-              sx={inputStyle}
-              onChange={(e) =>
-                setUserData({ ...userData, password: e.target.value })
-              }
-            />
+            <FormControl isRequired>
+              <FormLabel sx={lableStyle}>ایمیل</FormLabel>
+              <Input
+                sx={inputStyle}
+                onChange={(e) =>
+                  setUserData({ ...userData, email: e.target.value })
+                }
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel sx={lableStyle} mt="20px">
+                رمز عبور
+              </FormLabel>
+              <Input
+                sx={inputStyle}
+                type="password"
+                onChange={(e) =>
+                  setUserData({ ...userData, password: e.target.value })
+                }
+              />
+            </FormControl>
             <Link href="/forget">
               <Button sx={forgetButton} color="#208D8E" variant="link">
                 رمز عبور را فراموش کرده‌ای؟
               </Button>
             </Link>
-
             <Button
-              onClick={handleLogin}
+              type="submit"
               sx={submitButton}
               colorScheme="teal"
               variant="solid"
             >
               ورود
             </Button>
-
             <Stack
               sx={{ justifyContent: "center", alignContent: "center" }}
               direction="row"

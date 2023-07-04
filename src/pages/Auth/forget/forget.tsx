@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -11,6 +12,8 @@ import {
 } from "@chakra-ui/react";
 import backGround from "../../../assets/backGround.png";
 import Header from "../../../components/header/header";
+import authApi from "../../../api/auth";
+import { useToast } from "@chakra-ui/react";
 
 const backGroundStyle = {
   backgroundImage: `url(${backGround})`,
@@ -48,6 +51,36 @@ const submitButton = {
 };
 
 const Forget = () => {
+  const [email, setEmail] = useState("");
+  const toast = useToast();
+
+  const handleForgetPassword = async () => {
+    try {
+      const response = await authApi.forget({ email });
+      console.log(response);
+      toast({
+        title: "ایمیل بازیابی رمز عبور ارسال شد",
+        description: "ایمیل بازیابی رمز عبور به ایمیل شما ارسال شد.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (ex) {
+      console.log(ex);
+      // toast({
+      //   title: "خطا",
+      //   description: "مشکلی پیش آمده است.",
+      //   status: "error",
+      //   duration: 3000,
+      //   isClosable: true,
+      // });
+    }
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
   return (
     <Stack sx={backGroundStyle}>
       <Header
@@ -68,9 +101,15 @@ const Forget = () => {
           </CardHeader>
           <CardBody sx={{ width: "100%" }}>
             <Text sx={lableStyle}>ایمیل خود را وارد کنید</Text>
-            <Input sx={inputStyle} />
+            <Input sx={inputStyle} value={email} onChange={handleEmailChange} />
             <Link href="forgetnotif">
-              <Button sx={submitButton} colorScheme="teal" variant="solid">
+              <Button
+                sx={submitButton}
+                colorScheme="teal"
+                variant="solid"
+                mt="30px"
+                onClick={handleForgetPassword}
+              >
                 دریافت ایمیل بازیابی رمز عبور
               </Button>
             </Link>
