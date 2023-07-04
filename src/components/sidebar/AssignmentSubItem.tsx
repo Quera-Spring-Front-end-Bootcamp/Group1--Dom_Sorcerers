@@ -245,12 +245,13 @@ export const AssignmentSubItem = (project: projectType) => {
                 </HStack>
               </AccordionButton>
               <NewBoardModal
+                boards={project.board}
                 id={project._id}
                 isShowModal={newBoardmodalDisclosure.isOpen}
                 onCloseModal={newBoardmodalDisclosure.onClose}
               />
               <NewTaskModal
-                id={project._id}
+                //  id={project._id}
                 isShowModal={newTaskmodalDisclosure.isOpen}
                 onCloseModal={newTaskmodalDisclosure.onClose}
               />

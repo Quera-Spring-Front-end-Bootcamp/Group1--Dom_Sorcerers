@@ -32,11 +32,11 @@ import { getAllProjectBoards } from "../../../api/board";
 interface Props {
   onCloseModal: () => void;
   isShowModal: boolean;
-  id: string;
+  // id: string;
 }
 
-export default function NewTaskModal({ id, isShowModal, onCloseModal }: Props) {
-  console.log(id);
+export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
+  ///console.log(id);
   const toast = useToast();
   const [taskData, settaskData] = useState({
     name: "",

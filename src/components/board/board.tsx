@@ -25,7 +25,6 @@ import GridBoardView from "./gridBoardView";
 import ListBoardView from "./listBoardView";
 import SearchBar from "./searchBar";
 import { ShareProjectModal } from "../Modals/ShareModal/ShareProjectModal";
-import { NewTaskBtn } from "../Modals/NewTask/NewTaskBtn";
 import OriginalCalendar from "./NewCalndar";
 import { useWorkspace } from "../../context/workspaceContext";
 import { AddIcon } from "@chakra-ui/icons";

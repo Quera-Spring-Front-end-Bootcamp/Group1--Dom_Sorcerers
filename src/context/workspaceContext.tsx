@@ -36,7 +36,7 @@ type boardsType = {
   name: string;
   position: number;
   project: string;
-  tasks: taskType;
+  tasks: taskType | null;
 }[];
 
 type taskType = {

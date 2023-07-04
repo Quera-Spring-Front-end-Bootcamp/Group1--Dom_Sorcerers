@@ -13,29 +13,54 @@ import {
 } from "@chakra-ui/react";
 import boardApi from "../../../api/board";
 import { CloseIcon } from "@chakra-ui/icons";
+import { useWorkspace } from "../../../context/workspaceContext";
+type boardsType = {
+  _id: string;
+  name: string;
+  position: number;
+  project: string;
+  tasks: taskType | null;
+}[];
+
+type taskType = {
+  _id: string;
+  name: string;
+  description: string;
+  label: [];
+  board: string;
+  taskTags: [];
+  taskAssigns: [];
+  comments: [];
+  position: 1;
+}[];
 
 interface NewBoardModalProps {
   isShowModal: boolean;
   onCloseModal: () => void;
   id: string;
+  boards: boardsType;
 }
 
 const NewBoardModal: React.FC<NewBoardModalProps> = ({
   isShowModal,
   onCloseModal,
   id,
+  boards,
+  // setBoards,
 }) => {
   console.log(id);
   const toast = useToast();
   const [boardName, setBoardName] = useState("");
 
+  const workSpaceCtx = useWorkspace();
+
   const handleCreate = async () => {
     try {
       const response = await boardApi.creatBoard({
         name: boardName,
-        projectid: id,
-        color: "#fffff",
+        projectId: id,
       });
+      // const data = response.data.data;
 
       toast({
         title: "ثبت موفق",
@@ -44,6 +69,18 @@ const NewBoardModal: React.FC<NewBoardModalProps> = ({
         duration: 3000,
         isClosable: true,
       });
+
+      // const _boards = [...boards];
+      // const _board = {
+      //   _id: data._id,
+      //   name: data.name,
+      //   position: data.position,
+      //   project: data.project,
+      //   tasks: null,
+      // };
+      // _boards.push(_board);
+      // workSpaceCtx.setCurrentBoards(_boards);
+
       onCloseModal();
     } catch (ex) {
       console.log(ex);
