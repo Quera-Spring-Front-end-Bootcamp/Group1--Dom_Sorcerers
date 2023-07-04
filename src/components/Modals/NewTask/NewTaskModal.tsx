@@ -22,8 +22,8 @@ import CalendartwoIcon from "../../Icons/calendartwoIcon";
 import AddUserIcon from "../../Icons/addUserIcon";
 import RectangleIcon from "../../Icons/rectangleIcon";
 import { EIcon } from "../../Icons/EIcon";
-import TagMenu from "./menus/tagMenu";
-import PriorityMenu from "./menus/priorityMenu";
+import TagMenu from "../../menus/tagMenu";
+import PriorityMenu from "../../menus/priorityMenu";
 
 import taskApi from "../../../api/task";
 

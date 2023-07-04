@@ -22,8 +22,8 @@ import { MagnifierIcon } from "../Icons";
 import FilterIcon from "../Icons/filterIcon";
 import { useState } from "react";
 import DeleteIcon from "../Icons/deleteIcon";
-import TagMenu from "../Modals/NewTask/menus/tagMenu";
-import PriorityMenu from "../Modals/NewTask/menus/priorityMenu";
+import TagMenu from "../menus/tagMenu";
+import PriorityMenu from "../menus/priorityMenu";
 
 const SearchBar = () => {
   const [selected, setSelected] = useState<string>("");

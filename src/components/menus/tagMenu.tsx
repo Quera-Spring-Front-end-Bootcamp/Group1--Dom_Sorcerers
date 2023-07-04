@@ -9,11 +9,11 @@ import {
   PopoverBody,
 } from "@chakra-ui/react";
 import { Flex, Square, WrapItem, Wrap } from "@chakra-ui/react";
-import { ColorPalletIcon, EditIcon, MagnifierIcon } from "../../../Icons";
-import DeleteIcon from "../../../Icons/deleteIcon";
-import MoreIcon from "../../../Icons/moreIcon";
-import ColorDataList from "../../../../data/colorList";
-import FlagIcone from "../../../Icons/flagIcone";
+import { ColorPalletIcon, EditIcon, MagnifierIcon } from "../Icons";
+import DeleteIcon from "../Icons/deleteIcon";
+import MoreIcon from "../Icons/moreIcon";
+import ColorDataList from "../../data/colorList";
+import FlagIcone from "../Icons/flagIcone";
 
 const TagMenu = () => {
   const [selected, setSelected] = useState<string>("");

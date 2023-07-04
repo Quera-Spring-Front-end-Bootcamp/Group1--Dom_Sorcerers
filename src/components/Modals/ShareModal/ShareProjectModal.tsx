@@ -19,7 +19,7 @@ import {
   InputRightAddon,
 } from "@chakra-ui/react";
 import { ShareLinkIcon, CLoseIcon } from "../../Icons";
-import PermissionMenu from "../NewTask/menus/permissionMenu";
+import PermissionMenu from "../../menus/permissionMenu";
 interface Props {
   onCloseModal: () => void;
   isShowModal: boolean;
