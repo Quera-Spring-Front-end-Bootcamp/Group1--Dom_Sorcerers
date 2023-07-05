@@ -13,7 +13,7 @@ type creatTask = {
 
 export function creatTask(data: creatTask) {
   console.log(data);
-  return axios.post<creatTask>(apiUrl + "/task/", {
+  return axios.post(apiUrl + "/task/", {
     name: data.name,
     description: data.description,
     boardId: data.boardId,

@@ -17,7 +17,7 @@ import {
   useToast,
   Select,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UploadIcon from "../../Icons/uploadIcon";
 import CalendartwoIcon from "../../Icons/calendartwoIcon";
 import AddUserIcon from "../../Icons/addUserIcon";
@@ -27,7 +27,7 @@ import TagMenu from "../../menus/tagMenu";
 import PriorityMenu from "../../menus/priorityMenu";
 
 import taskApi from "../../../api/task";
-import { getAllProjectBoards } from "../../../api/board";
+import { useWorkspace } from "../../../context/workspaceContext";
 
 interface Props {
   onCloseModal: () => void;
@@ -37,17 +37,26 @@ interface Props {
 
 export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
   ///console.log(id);
+  const workSpaceCtx = useWorkspace();
   const toast = useToast();
+  const [boards, setBoards] = useState(workSpaceCtx.boards);
+  const [boardId, setBoardId] = useState("");
   const [taskData, settaskData] = useState({
     name: "",
     description: "",
-    boardId: "646e905e35066827eebc6c79", //Hard code  data for test
+    boardId: boardId,
+  });
+
+  useEffect(() => {
+    setBoards(workSpaceCtx.boards);
   });
 
   const handleCreate = async () => {
     try {
-      // console.log(taskData);
+      console.log(taskData);
       const response = await taskApi.creatTask(taskData);
+      console.log(response);
+
       toast({
         title: "ثبت‌ موفق",
         description: "تسک شما با موفقیت ثبت شد.",
@@ -55,7 +64,7 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
         duration: 3000,
         isClosable: true,
       });
-      console.log(response.data);
+      //console.log(response.data);
       onCloseModal();
     } catch (ex) {
       toast({
@@ -102,10 +111,21 @@ export default function NewTaskModal({ isShowModal, onCloseModal }: Props) {
                 }
               ></Input>
               <Text>در</Text>
-              <Select placeholder="ستون" size="sm" width="200px">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+              <Select
+                value={boardId}
+                onChange={(e) => {
+                  settaskData({ ...taskData, boardId: e.target.value });
+                  setBoardId(e.target.value);
+                  console.log(e.target.value);
+                  console.log(boardId);
+                }}
+                placeholder="ستون"
+                size="sm"
+                width="200px"
+              >
+                {boards?.map((board) => (
+                  <option value={board._id}>{board.name}</option>
+                ))}
               </Select>
               <Text>برای</Text>
               <AddUserIcon />

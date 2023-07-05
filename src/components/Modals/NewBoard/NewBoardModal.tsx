@@ -52,7 +52,18 @@ const NewBoardModal: React.FC<NewBoardModalProps> = ({
   const toast = useToast();
   const [boardName, setBoardName] = useState("");
 
-  const workSpaceCtx = useWorkspace();
+  const workspaceCtx = useWorkspace();
+  const fetchBoards = async () => {
+    // console.log("projectId");
+    // console.log(workspaceCtx.projectId);
+    if (workspaceCtx.project) {
+      const response = await boardApi.getAllProjectBoards(
+        workspaceCtx.project._id
+      );
+      // setBoards(response.data.data);
+      workspaceCtx.setCurrentBoards(response.data.data);
+    }
+  };
 
   const handleCreate = async () => {
     try {
@@ -61,6 +72,8 @@ const NewBoardModal: React.FC<NewBoardModalProps> = ({
         projectId: id,
       });
       // const data = response.data.data;
+
+      fetchBoards();
 
       toast({
         title: "ثبت موفق",
